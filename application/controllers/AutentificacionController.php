@@ -65,7 +65,18 @@ class AutentificacionController extends Zend_Controller_Action
 
     public function crearAction()
     {
-        // action body
+        $forma = new Application_Form_CrearCuenta();
+        $request = $this->getRequest();
+
+        if ( $request->isPost() )
+        {
+            if ( $forma->isValid( $request->getPost() ) )
+            {
+                //Funcionalidad de crear clientes
+            }
+        }
+
+        $this->view->forma = $forma;
     }
 
 
