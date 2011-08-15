@@ -25,7 +25,7 @@ class AutentificacionController extends Zend_Controller_Action
     	$this->view->forma = $forma;
     }
 
-    protected function _process( $values )
+    protected function _process($values)
     {
         // Get our authentication adapter and check credentials
         $adapter = $this->_getAuthAdapter();
@@ -62,4 +62,13 @@ class AutentificacionController extends Zend_Controller_Action
         Zend_Auth::getInstance()->clearIdentity();
         $this->_helper->redirector( 'index', 'index' );
     }
+
+    public function crearAction()
+    {
+        // action body
+    }
+
+
 }
+
+

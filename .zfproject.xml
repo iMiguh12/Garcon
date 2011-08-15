@@ -26,6 +26,7 @@
         </controllerFile>
         <controllerFile controllerName="Autentificacion">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="crear"/>
         </controllerFile>
         <controllerFile controllerName="Movimientos">
           <actionMethod actionName="index"/>
@@ -36,6 +37,7 @@
       <formsDirectory>
         <formFile formName="Productos"/>
         <formFile formName="Login"/>
+        <formFile formName="CrearCuenta"/>
       </formsDirectory>
       <layoutsDirectory enabled="false"/>
       <modelsDirectory>
@@ -88,6 +90,9 @@
           <viewControllerScriptsDirectory forControllerName="Movimientos">
             <viewScriptFile forActionName="donar"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Autentificacion">
+            <viewScriptFile forActionName="crear"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -139,6 +144,7 @@
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Autentificacion">
             <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="crear"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Movimientos">
             <testApplicationActionMethod forActionName="index"/>
