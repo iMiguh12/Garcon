@@ -72,7 +72,23 @@ class AutentificacionController extends Zend_Controller_Action
         {
             if ( $forma->isValid( $request->getPost() ) )
             {
-                //Funcionalidad de crear clientes
+                //Recuperar la subforma
+                $login = $forma->getSubForm( 'login' );
+
+                //Poner los datos de la forma el variables
+                $nombre = $forma->getValue( 'nombre' );
+                $telefono = $forma->getValue( 'telefono' );
+                $email = $login->getValue( 'email' );
+                $clave = $login->getValue( 'clave' );
+                $condimento = $forma->getValue( 'condimento' );
+
+                //Guardar información en la DB
+                $clientes   = new Application_Model_DbTable_Clientes();
+                $clientes->addCliente( $nombre, $email, $telefono, $clave, $condimento );
+
+                //Iniciar seción
+                $this->_process( $login->getValues() );
+                $this->_helper->redirector( 'index', 'index' );
             }
         }
 
@@ -81,5 +97,4 @@ class AutentificacionController extends Zend_Controller_Action
 
 
 }
-
 
