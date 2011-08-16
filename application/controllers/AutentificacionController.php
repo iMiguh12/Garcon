@@ -25,7 +25,7 @@ class AutentificacionController extends Zend_Controller_Action
     	$this->view->forma = $forma;
     }
 
-    protected function _process( $values )
+    protected function _process($values)
     {
         // Get our authentication adapter and check credentials
         $adapter = $this->_getAuthAdapter();
@@ -62,4 +62,39 @@ class AutentificacionController extends Zend_Controller_Action
         Zend_Auth::getInstance()->clearIdentity();
         $this->_helper->redirector( 'index', 'index' );
     }
+
+    public function crearAction()
+    {
+        $forma = new Application_Form_CrearCuenta();
+        $request = $this->getRequest();
+
+        if ( $request->isPost() )
+        {
+            if ( $forma->isValid( $request->getPost() ) )
+            {
+                //Recuperar la subforma
+                $login = $forma->getSubForm( 'login' );
+
+                //Poner los datos de la forma el variables
+                $nombre = $forma->getValue( 'nombre' );
+                $telefono = $forma->getValue( 'telefono' );
+                $email = $login->getValue( 'email' );
+                $clave = $login->getValue( 'clave' );
+                $condimento = $forma->getValue( 'condimento' );
+
+                //Guardar información en la DB
+                $clientes   = new Application_Model_DbTable_Clientes();
+                $clientes->addCliente( $nombre, $email, $telefono, $clave, $condimento );
+
+                //Iniciar seción
+                $this->_process( $login->getValues() );
+                $this->_helper->redirector( 'index', 'index' );
+            }
+        }
+
+        $this->view->forma = $forma;
+    }
+
+
 }
+
