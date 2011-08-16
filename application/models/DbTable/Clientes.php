@@ -18,13 +18,13 @@ class Application_Model_DbTable_Clientes extends Zend_Db_Table_Abstract
     public function addCliente($nombre, $email, $telefono, $clave, $condimento)
     {
         $data = array(
-            'nombre' => $nombre,
-            'email' => $email,
-            'telefono' => $telefono,
-            'clave' => $clave,
-            'condimento' => $condimento,
+            'nombre'    => $nombre,
+            'email'     => $email,
+            'telefono'  => $telefono,
+            'clave'     => sha1( $clave . sha1( $condimento ) ),
+            'condimento' => sha1( $condimento ),
             );
-            $this->insert($data);
+            $this->insert( $data );
     } 
 
     public function updateCliente($nombre, $email, $telefono, $clave)
