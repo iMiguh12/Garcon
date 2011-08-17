@@ -24,4 +24,4 @@ Links
 
 * http://linuxcabal.org/
 
-* http://wiki.cabal.mx/wiki/Garçon
+* http://wiki.cabal.mx/wiki/Gar%C3%A7on
