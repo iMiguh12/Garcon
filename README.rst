@@ -19,6 +19,9 @@ Procedimiento
 Brindamos un script en el branch "master" para generar el usuario correspondiente.
 También, en el branch "productos", están los scripts de tabla de productos y productos de prueba.
 
-# Links
+Links
+=====
+
 * http://linuxcabal.org/
+
 * http://wiki.cabal.mx/wiki/Garçon
