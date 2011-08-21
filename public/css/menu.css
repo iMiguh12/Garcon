@@ -1,13 +1,10 @@
 /* Menu */
-div#Menu {
-    position: absolute; 
-    top: 0; 
-    right: 0;
-    margin-top: .5em;
-    text-align:right;
+nav {
+    display: inline-block;
+    text-align: right;
 }
 
-div#Menu a {
+nav a {
     text-decoration: none;
 }
 
@@ -26,6 +23,6 @@ ul.nav {
 
 ul.nav li {
     display: inline-block;
-    margin: 0 1em 0 1em;
+    margin: 0 0 0 1em;
     text-decoration: none;
 }
