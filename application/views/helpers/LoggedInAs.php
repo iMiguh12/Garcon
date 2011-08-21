@@ -17,7 +17,7 @@ class Zend_View_Helper_LoggedInAs extends Zend_View_Helper_Abstract
                 true
             );
             
-            return "<span>Bienvenido $usuario  <a href='$logoutUrl'>logout</a></span>";
+            return "<span>Bienvenido, {$usuario}! <a href='$logoutUrl'>salir</a></span>";
         }
 
         $request = Zend_Controller_Front::getInstance()->getRequest();

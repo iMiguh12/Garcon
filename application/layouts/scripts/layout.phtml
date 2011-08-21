@@ -20,19 +20,19 @@
     
      <body>
         <!-- Header container -->
-        <div id="Header">
+        <header>
 <?php echo $this->partial( '_header.phtml' ) . "\n"; ?>
 
             <!-- Menu container -->
-            <div id="Menu">
+            <nav>
+                <!-- Login -->
+                <div id="Login">
+                    <?php echo $this->LoggedInAs() . "\n"; ?>
+                </div>
+
 <?php echo $this->partial( '_nav.phtml' ) . "\n"; ?>
-            </div>
-            
-            <!-- BreadCrumbs container -->
-            <div id="BreadCrumbs">
-                <span><?php echo $this->navigation()->breadcrumbs()->setMinDepth( 0 ); ?></span>
-            </div>
-        </div>
+            </nav>
+        </header>
 
         <!-- Content container -->
         <div id="Contenido">
@@ -44,8 +44,8 @@
         </div>
 
         <!-- Footer container -->
-        <div id="Footer">
+        <footer>
 <?php echo $this->partial( '_footer.phtml' ) . "\n"; ?>
-        </div>
+        </footer>
     </body>
 </html>
