@@ -49,7 +49,7 @@ class AutentificacionController extends Zend_Controller_Action
         $dbAdapter = Zend_Db_Table::getDefaultAdapter();
         $authAdapter = new Zend_Auth_Adapter_DbTable( $dbAdapter );
 
-        $authAdapter->setTableName( 'clientes' )
+        $authAdapter->setTableName( 'usuarios' )
                     ->setIdentityColumn( 'email' )
                     ->setCredentialColumn( 'clave' )
                     ->setCredentialTreatment( 'SHA1( CONCAT( ?, condimento ) )' );

@@ -1,6 +1,6 @@
 <?php
 
-class ClientesController extends Zend_Controller_Action
+class UsuariosController extends Zend_Controller_Action
 {
 
     public function init()
@@ -10,8 +10,8 @@ class ClientesController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $clientes= new Application_Model_DbTable_Clientes();
-        $this->view->clientes = $clientes->fetchAll(); 
+        $usuarios= new Application_Model_DbTable_Usuarios();
+        $this->view->usuarios = $usuarios->fetchAll();
     }
 
     public function addAction()
@@ -31,12 +31,4 @@ class ClientesController extends Zend_Controller_Action
 
 
 }
-
-
-
-
-
-
-
-
 

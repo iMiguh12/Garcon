@@ -11,6 +11,6 @@ productos.mysql
 ===============
 Crea la tabla de productos en garcon
 
-clientes.mysql
+usuarios.mysql
 ==============
-Crea la tabla de clientes en la base de datos garcon
+Crea la tabla de usuarios en la base de datos garcon
