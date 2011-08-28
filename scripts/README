@@ -14,3 +14,7 @@ Crea la tabla de productos en garcon
 clientes.mysql
 ==============
 Crea la tabla de clientes en la base de datos garcon
+
+datos de prueba
+===============
+Para introducir datos de pureba. utiliza los scripts que dicen 'prueba'.
