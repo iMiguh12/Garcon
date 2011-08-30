@@ -5,5 +5,7 @@ CREATE TABLE productos (
     nombre VARCHAR(255) NOT NULL,
     descripcion TEXT NOT NULL,
     precio FLOAT(4,2) UNSIGNED NOT NULL ,
-    existencia INT(3) UNSIGNED NOT NULL
+    existencia INT(3) UNSIGNED NOT NULL ,
+    imagen BLOB NOT NULL ,
+    mime VARCHAR(20)	
 )
