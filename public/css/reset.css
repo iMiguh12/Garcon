@@ -1,13 +1,18 @@
 body,html {
-    margin: 0 5px;
-    font-family: Verdana,sans-serif;
+    margin: 0 5px 0 5px;
+    font-family: verdana, arial;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
 }
 
 h1 {
-    font-size: 1.4em;
-    color: #080;
+	color: #080;
 }
 
 a {
-    color: #080;
+	color: #0a0;
+	font-weight: bold;
+	text-decoration: none;
 }

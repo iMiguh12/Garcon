@@ -3,11 +3,10 @@
 $site = new Zend_Config_Ini( APPLICATION_PATH . '/configs/sitio.ini', APPLICATION_ENV );
 
 $this->placeholder( 'header' )->captureStart(); ?>
-<div id="headerSitioNombre">
+<hgroup>
     <h1><?php echo $site->name; ?></h1>
-</div>
-
-<div id="headerSitioSlogan">
-    <small><?php echo $site->slogan; ?></small>
-</div><?php $this->placeholder( 'header' )->captureEnd(); ?>
+    <h2><?php echo $site->slogan; ?></h2>
+    <h3><?php echo $this->navigation()->breadcrumbs()->setMinDepth( 0 ); ?></h3>
+</hgroup>
+<?php $this->placeholder( 'header' )->captureEnd(); ?>
 <?php echo $this->placeholder( 'header' )->setIndent( 12 ); ?>
