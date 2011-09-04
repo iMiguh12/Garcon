@@ -5,36 +5,12 @@ require_once 'Zend/Tool/Project/Provider/Exception.php';
 
 class GarconProvider extends Zend_Tool_Project_Provider_Abstract
 {
-    private $db, $host, $user, $password;
-    
     public function instalar( $db = 'garcon', $host = 'localhost', $user = 'root', $password = null )
     {    
-        $this->db = $db;
-        $this->host = $host;
-        $this->user = $user;
-        $this->password = $password;
-        
-        $db = $this->getAnswer( 'Db?', 'db' );
-        
-        $respuesta = $this->_registry
-                          ->getClient()
-                          ->promptInteractiveInput( "DB? ({$db}) " );
-        $db = $respuesta->getContent();
-        
-        $respuesta = $this->_registry
-                          ->getClient()
-                          ->promptInteractiveInput( "Host? ({$host})");
-        $host = $respuesta->getContent();
-        
-        $respuesta = $this->_registry
-                     ->getClient()
-                     ->promptInteractiveInput( "User? ({$user})");
-        $user = $respuesta->getContent();
-        
-        $respuesta = $this->_registry
-                         ->getClient()
-                         ->promptInteractiveInput( "Password? ({$password})");
-        $password = $respuesta->getContent();
+        $db = $this->getAnswer( 'Db?', $db );
+        $host = $this->getAnswer( 'Host?', $host );
+        $user = $this->getAnswer( 'User?', $user );
+        $password = $this->getAnswer( 'Password?', $password );
         
         $confirmacion = <<<EOF
 
@@ -64,7 +40,7 @@ EOF;
         } else {
             $this->_registry
                  ->getResponse()
-                 ->appendContent( 'Ok, inténtalo de nuevo.' );
+                 ->appendContent( 'Proceso Abortado, inténtalo de nuevo.' );
         }
     }
 
@@ -82,8 +58,8 @@ EOF;
                           ->getClient()
                           ->promptInteractiveInput( "$pregunta ({$default}) " );
         
-        if ( $respuesta->getContent() == $this->{$default} ) {
-            return $this->$default;
+        if ( $respuesta->getContent() == null ) {
+            return $default;
         } else {
             return $respuesta->getContent();
         }
