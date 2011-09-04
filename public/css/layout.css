@@ -4,7 +4,6 @@ body {
 
 header {
     margin-top: .0em;
-    background-color:#d0e4fe;
     margin:0px;
     padding:0px;
 }
@@ -29,7 +28,6 @@ header hgroup h3 {
 
 nav {
     float: right;
-    background-color:#003300;
 }
 
 header div#Login {
