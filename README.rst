@@ -8,7 +8,7 @@ allí los resultados antes de pasarlos a master.
 
 Procedimiento
 =============
-*Registrate en github.com
+* Registrate en github.com
 * Haz un fork
 * Clona tu fork
 * Agrega a PHP/Cabal como remote "upstream"
