@@ -8,10 +8,12 @@ class GarconProvider extends Zend_Tool_Project_Provider_Abstract
     public function instalar()
     {
         /** @todo Implementation */
+        echo 'No implementado';
     }
 
     public function desinstalar()
     {
         /** @todo Implementation */
+        echo 'No implementado';
     }
 }
