@@ -36,4 +36,4 @@ Links
 
 * http://wiki.cabal.mx/wiki/Gar%C3%A7on
 
-*http://groups.google.com/group/PHPCabal/
+* http://groups.google.com/group/PHPCabal/
