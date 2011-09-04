@@ -5,12 +5,15 @@ require_once 'Zend/Tool/Project/Provider/Exception.php';
 
 class GarconProvider extends Zend_Tool_Project_Provider_Abstract
 {
-    public function instalar( $db = 'garcon', $host = 'localhost', $user = 'root', $password = null )
+    public function instalar( $db = 'garcon', $host = 'localhost', $user = 'root', $password = null, $guser = 'garcon', $gpassword = 'somecoolpassword', $datos = 'no' )
     {    
         $db = $this->getAnswer( 'Db?', $db );
         $host = $this->getAnswer( 'Host?', $host );
-        $user = $this->getAnswer( 'User?', $user );
-        $password = $this->getAnswer( 'Password?', $password );
+        $user = $this->getAnswer( 'Root User?', $user );
+        $password = $this->getAnswer( 'Root Password?', $password );
+        $guser = $this->getAnswer( 'Garcon User?', $guser );
+        $gpassword = $this->getAnswer( 'Garcon Password?', $gpassword );
+        $datos = $this->getAnswer( 'Quieres datos de prueba?', $datos );
         
         $confirmacion = <<<EOF
 
@@ -18,10 +21,13 @@ Confirmación
 ================================================================================
 
 Las respuestas dadas fueron:
-    DB          = $db
-    Host        = $host
-    User        = $user
-    Password    = $password
+    DB              = $db
+    Host            = $host
+    Root User       = $user
+    Root Password   = $password
+    Garcon User     = $guser
+    Garcon Password = $gpassword
+    Datos de prueba = $datos
 EOF;
     
         $this->_registry
