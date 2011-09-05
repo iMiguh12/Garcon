@@ -10,6 +10,7 @@ class AutentificacionController extends Zend_Controller_Action
 
     public function indexAction()
     {
+        $forma = new Application_Form_Login();
         $request = $this->getRequest();
 
         if ( $request->isPost() ) {
