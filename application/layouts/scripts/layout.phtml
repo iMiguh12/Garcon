@@ -12,7 +12,7 @@
 <?php echo $this->headLink() . "\n"; ?>
 
         <!-- jQuery -->
-<?php echo $this->partial( '_jquery.phtml' ); ?>
+<?php // echo $this->partial( '_jquery.phtml' ); ?>
         
         <!-- Javascript -->
 <?php echo $this->headScript() . "\n"; ?>
@@ -23,16 +23,16 @@
         <header>
 <?php echo $this->partial( '_header.phtml' ) . "\n"; ?>
 
-            <!-- Menu container -->
-            <nav>
-                <!-- Login -->
-                <div id="Login">
-                    <?php echo $this->LoggedInAs() . "\n"; ?>
-                </div>
-
-<?php echo $this->partial( '_nav.phtml' ) . "\n"; ?>
-            </nav>
+            <!-- Login -->
+            <div id="Login">
+                <?php echo $this->LoggedInAs() . "\n"; ?>
+            </div>
         </header>
+
+        <!-- Menu container -->
+        <nav>
+<?php echo $this->partial( '_nav.phtml' ) . "\n"; ?>
+        </nav>
 
         <!-- Content container -->
         <div id="Contenido">
