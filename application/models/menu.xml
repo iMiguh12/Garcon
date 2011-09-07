@@ -25,13 +25,13 @@
             <order>20</order>
         </donar>
 
-        <clientes>
-            <label>clientes</label>
-            <controller>clientes</controller>
+        <usuarios>
+            <label>usuarios</label>
+            <controller>usuarios</controller>
             <action>index</action>
-            <title>editar clientes</title>
+            <title>editar usuarios</title>
             <order>30</order>
-        </clientes>
+        </usuarios>
 
         <productos>
             <label>productos</label>

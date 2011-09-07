@@ -1,9 +1,9 @@
 set names utf8;
 use garcon;
 
-DROP TABLE IF EXISTS clientes;
+DROP TABLE IF EXISTS usuarios;
 
-CREATE TABLE `clientes` (
+CREATE TABLE `usuarios` (
       `id` int(4) unsigned NOT NULL AUTO_INCREMENT,
       `nombre` varchar(75) NOT NULL DEFAULT '',
       `email` varchar(100) NOT NULL DEFAULT '',

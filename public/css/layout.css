@@ -1,15 +1,56 @@
 /* General */
+body {
+}
+
 header {
+    margin-top: .0em;
+    margin:0px;
+    padding:0px;
+}
+
+header hgroup {
+    display: inline-block;
+}
+
+header hgroup h1 {
+	display: inline-block;
+}
+
+header hgroup h2 {
+	display: inline-block;
+	font-size: 10pt;
+}
+
+header hgroup h3 {
+	font-size: 10pt;
+	margin-left: 1em;
+}
+
+nav {
+    float: right;
+}
+
+header div#Login {
+    display: block;
+    float: right;
 }
 
 div#Contenido {
     min-height: 400px;
+    margin-top: 1em;
+}
+
+div#Contenido h1 {
+	font-size: 14pt;
 }
 
 footer {
     margin-top: 2em;
     text-align: right;
 }
+
+
+/*   */
 
 /* Productos */
 table#ProductosTabla {

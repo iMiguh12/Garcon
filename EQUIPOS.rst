@@ -23,7 +23,7 @@ Responsables: Beto y Sergio
 
 Movimientos
 ===========
-Control de las operaciones realizadas en la aplicación. Donaciones, inventario, status de clientes, reportes,  etc.
+Control de las operaciones realizadas en la aplicación. Donaciones, inventario, status de usuarios, reportes,  etc.
 
 Responsables: Jacobo, Iván y Renich
 

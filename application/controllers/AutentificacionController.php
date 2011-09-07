@@ -10,7 +10,7 @@ class AutentificacionController extends Zend_Controller_Action
 
     public function indexAction()
     {
-    	$forma = new Application_Form_Login();
+        $forma = new Application_Form_Login();
         $request = $this->getRequest();
 
         if ( $request->isPost() ) {
@@ -20,9 +20,9 @@ class AutentificacionController extends Zend_Controller_Action
                     $this->_helper->redirector('index', 'index');
                 }
             }
+        } else {
+            $this->_helper->redirector('index', 'index');
         }
-
-    	$this->view->forma = $forma;
     }
 
     protected function _process($values)
@@ -49,7 +49,7 @@ class AutentificacionController extends Zend_Controller_Action
         $dbAdapter = Zend_Db_Table::getDefaultAdapter();
         $authAdapter = new Zend_Auth_Adapter_DbTable( $dbAdapter );
 
-        $authAdapter->setTableName( 'clientes' )
+        $authAdapter->setTableName( 'usuarios' )
                     ->setIdentityColumn( 'email' )
                     ->setCredentialColumn( 'clave' )
                     ->setCredentialTreatment( 'SHA1( CONCAT( ?, condimento ) )' );

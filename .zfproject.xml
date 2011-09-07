@@ -120,7 +120,9 @@
       <publicIndexFile filesystemName="index.php"/>
       <htaccessFile filesystemName=".htaccess"/>
     </publicDirectory>
-    <projectProvidersDirectory enabled="false"/>
+    <projectProvidersDirectory>
+      <projectProviderFile projectProviderName="garcon" actionNames="instalar,desinstalar"/>
+    </projectProvidersDirectory>
     <temporaryDirectory enabled="false"/>
     <testsDirectory>
       <testPHPUnitConfigFile filesystemName="phpunit.xml"/>

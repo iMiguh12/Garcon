@@ -1,13 +1,13 @@
 set names utf8;
 use garcon;
 
-TRUNCATE clientes;
+TRUNCATE usuarios;
 
 ;SET @salt = SHA1( 'LinuxCabal y PHP rulean, esos' );
 
-INSERT 
-    INTO clientes (nombre, email, telefono, clave, condimento)
-VALUES 
+INSERT
+    INTO usuarios (nombre, email, telefono, clave, condimento)
+VALUES
     ('Carlos A. Gonzalez', 'betology@gmail.com', '523333333333', sha1( CONCAT( 'password', @salt ) ), @salt ),
     ('Renich Bon Ciric', 'renich@woralelandia.com', '523315894554', sha1( CONCAT( 'password', @salt ) ), @salt ),
     ('Jacobo Salomón Preciado Preciado', 'jacsalomon@yahoo.com', '523333313425', sha1( CONCAT( 'password', @salt ) ), @salt ),
