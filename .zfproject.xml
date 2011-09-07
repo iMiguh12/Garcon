@@ -12,7 +12,7 @@
           <actionMethod actionName="index"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
-        <controllerFile controllerName="Clientes">
+        <controllerFile controllerName="Usuarios">
           <actionMethod actionName="index"/>
           <actionMethod actionName="add"/>
           <actionMethod actionName="edit"/>
@@ -54,7 +54,7 @@
           <viewControllerScriptsDirectory forControllerName="Error">
             <viewScriptFile forActionName="error"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Clientes">
+          <viewControllerScriptsDirectory forControllerName="Usuarios">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Productos">
@@ -69,13 +69,13 @@
           <viewControllerScriptsDirectory forControllerName="Productos">
             <viewScriptFile forActionName="add"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Clientes">
+          <viewControllerScriptsDirectory forControllerName="Usuarios">
             <viewScriptFile forActionName="add"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Clientes">
+          <viewControllerScriptsDirectory forControllerName="Usuarios">
             <viewScriptFile forActionName="edit"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Clientes">
+          <viewControllerScriptsDirectory forControllerName="Usuarios">
             <viewScriptFile forActionName="delete"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Autentificacion">
@@ -132,7 +132,7 @@
           <testApplicationControllerFile forControllerName="Index">
             <testApplicationActionMethod forActionName="index"/>
           </testApplicationControllerFile>
-          <testApplicationControllerFile forControllerName="Clientes">
+          <testApplicationControllerFile forControllerName="Usuarios">
             <testApplicationActionMethod forActionName="index"/>
             <testApplicationActionMethod forActionName="add"/>
             <testApplicationActionMethod forActionName="edit"/>

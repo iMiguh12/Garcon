@@ -83,8 +83,8 @@ class AutentificacionController extends Zend_Controller_Action
                 $condimento = $forma->getValue( 'condimento' );
 
                 //Guardar información en la DB
-                $clientes   = new Application_Model_DbTable_Clientes();
-                $clientes->addCliente( $nombre, $email, $telefono, $clave, $condimento );
+                $usuarios   = new Application_Model_DbTable_Usuarios();
+                $usuarios->addUsuario( $nombre, $email, $telefono, $clave, $condimento );
 
                 //Iniciar seción
                 $this->_process( $login->getValues() );
