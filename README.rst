@@ -2,8 +2,7 @@ Descripción
 ===========
 
 Éste es un proyecto de aprendizaje para PHPCabal.
-Selecciona las branches en las que quieres participar y haz push directamente en ellas, prueba
-allí los resultados antes de pasarlos a master.
+Selecciona las branches en las que quieres participar y haz push directamente en ellas, prueba allí los resultados antes de pasarlos a master.
 
 
 Procedimiento
