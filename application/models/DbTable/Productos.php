@@ -16,26 +16,28 @@ class Application_Model_DbTable_Productos extends Zend_Db_Table_Abstract
         return $row->toArray();
     }
 
-    public function addProducto( $nombre, $descripcion, $precio, $existencia )
+    public function addProducto( $nombre, $descripcion, $precio, $existencia, $imagen )
     {
         $data = array(
             'nombre' => $nombre,
             'descripcion' => $descripcion,
             'precio' => $precio,
             'existencia' => $existencia, 
-        );
+            'imagen' => $imagen,
+ 	 );
               	    
         $this->insert($data);
     }
 
-    public function updateProducto( $id, $nombre, $descripcion, $precio, $existencia )
+    public function updateProducto( $id, $nombre, $descripcion, $precio, $existencia, $imagen )
     {
         $data = array(
             'nombre' => $nombre,
             'descripcion' => $descripcion, 
             'precio' => $precio,
             'existencia' => $existencia,
-        );
+            'imagen' => $imagen
+         );
 
         $this->update( $data, 'id = '. (int) $id );
     }
