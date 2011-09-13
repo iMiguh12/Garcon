@@ -1,6 +1,11 @@
 /* General */
+body {
+}
+
 header {
-	margin-top: .5em;
+    margin-top: .0em;
+    margin:0px;
+    padding:0px;
 }
 
 header hgroup {
@@ -21,12 +26,13 @@ header hgroup h3 {
 	margin-left: 1em;
 }
 
-header nav {
-	float: right;
+nav {
+    float: right;
 }
 
-header nav div#Login {
-	display: block;
+header div#Login {
+    display: block;
+    float: right;
 }
 
 div#Contenido {
