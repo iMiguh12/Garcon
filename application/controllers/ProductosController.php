@@ -46,10 +46,10 @@ class ProductosController extends Zend_Controller_Action
     			$descripcion = $forma->getValue( 'descripcion' );
     			$precio = $forma->getValue( 'precio' );
     			$existencia = $forma->getValue( 'existencia' );
-
+			$imagen =$forma->imagen->getValue ( 'imagen');	
     			// actualizar los datos
     			$productos = new Application_Model_DbTable_Productos();
-    			$productos->updateProducto( $id, $nombre, $descripcion, $precio, $existencia );
+    			$productos->updateProducto( $id, $nombre, $descripcion, $precio, $existencia, $imagen );
 
     			// redirigir al index
     			$this->_helper->redirector( 'index' );
@@ -113,11 +113,12 @@ class ProductosController extends Zend_Controller_Action
     			$nombre = $forma->getValue( 'nombre' );
     			$descripcion = $forma->getValue( 'descripcion' );
     			$precio = $forma->getValue( 'precio' );
-    			$existencia = $forma->getValue( 'existencia' );
+    			$existencia = $forma->getValue( 'existencia' )
+			$imagen = $forma->imagen->getvalue ('imagen');
 
     			// actualizar los datos
     			$productos = new Application_Model_DbTable_Productos();
-    			$productos->addProducto( $nombre, $descripcion, $precio, $existencia );
+    			$productos->addProducto( $nombre, $descripcion, $precio, $existencia, $imagen );
 
     			// redirigir al index
     			$this->_helper->redirector( 'index' );
