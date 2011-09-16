@@ -12,6 +12,7 @@ Procedimiento
 * Clona tu fork
 * Agrega a PHP/Cabal como remote "upstream"
 * Elige una de los siguientes "branches" de trabajo:
+
     - administracion
     - autentificacion
     - development
@@ -33,6 +34,6 @@ Links
 
 * http://linuxcabal.org/
 
-* http://wiki.cabal.mx/wiki/Gar%C3%A7on
+* http://wiki.linuxcabal.org/wiki/Gar%C3%A7on
 
 * http://groups.google.com/group/PHPCabal/
