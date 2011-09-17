@@ -50,7 +50,17 @@ footer {
 }
 
 
-/*   */
+/* Adquirir  */
+section#productos {
+    margin: auto;
+    text-align: center;
+}
+
+section#productos section section figure {
+    height: 300px;
+    display: inline-block;
+    width: 23%;
+}
 
 /* Productos */
 table#ProductosTabla {
