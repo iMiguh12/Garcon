@@ -4,7 +4,8 @@ class Application_Form_Productos extends Zend_Form
 {
     public function init()
     {
-    	$this->setName('producto');
+    	$this->setName( 'producto' );
+    	$this->setAttrib( Zend_Form::ENCTYPE_MULTIPART );
 
     	$id = new Zend_Form_Element_Hidden( 'id' );
     	$id->addFilter( 'Int' );
@@ -45,11 +46,12 @@ class Application_Form_Productos extends Zend_Form
     	           ->addValidator( 'Int' )
                    ->addValidator( 'stringLength', true, array( 1, 3 ) );
     	
-	$imagen = new Zend_Form_Element_File ('imagen');
-        $imagen->setLabel ('Imagen')
-	       ->setRequired ('false')
-	       ->addValidator('IsImage')
-               ->addValidator('Size', false, '300kb');
+	    $imagen = new Zend_Form_Element_File( 'imagen' );
+        $imagen->setLabel ( 'Imagen' )
+	           ->setRequired ( 'true' )
+	           ->addValidator( 'IsImage' )
+	           ->addValidator( 'NotEmpty' )
+               ->addValidator( 'Size', false, '300kb' );
                
     	$enviar = new Zend_Form_Element_Submit( 'enviar' );
     	$enviar->setAttrib( 'id', 'botonEnviar' );
