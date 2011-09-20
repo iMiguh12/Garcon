@@ -7,13 +7,13 @@ class GarconProvider extends Zend_Tool_Project_Provider_Abstract
 {
     public function instalar( $db = 'garcon', $host = 'localhost', $user = 'root', $password = null, $guser = 'garcon', $gpassword = 'somecoolpassword', $datos = 'no' )
     {    
-        $db = $this->getAnswer( 'Db?', $db );
-        $host = $this->getAnswer( 'Host?', $host );
-        $user = $this->getAnswer( 'Root User?', $user );
-        $password = $this->getAnswer( 'Root Password?', $password );
-        $guser = $this->getAnswer( 'Garcon User?', $guser );
-        $gpassword = $this->getAnswer( 'Garcon Password?', $gpassword );
-        $datos = $this->getAnswer( 'Quieres datos de prueba?', $datos );
+        $db = $this->_getAnswer( 'Db?', $db );
+        $host = $this->_getAnswer( 'Host?', $host );
+        $user = $this->_getAnswer( 'Root User?', $user );
+        $password = $this->_getAnswer( 'Root Password?', $password );
+        $guser = $this->_getAnswer( 'Garcon User?', $guser );
+        $gpassword = $this->_getAnswer( 'Garcon Password?', $gpassword );
+        $datos = $this->_getAnswer( 'Quieres datos de prueba?', $datos );
         
         $confirmacion = <<<EOF
 
@@ -52,12 +52,12 @@ EOF;
 
     public function desinstalar( $host = 'localhost', $root = 'root', $password = null, $db = 'no', $user = 'no', $files = 'si' )
     {
-        $host = $this->getAnswer( 'Host?', $host);
-        $root = $this->getAnswer( 'Root User?', $root );
-        $password = $this->getAnswer( 'Root Password?', $password );
-        $db = $this->getAnswer( 'Eliminar Db?', $db );
-        $user = $this->getAnswer( 'Eliminar User?', $user );
-        $files = $this->getAnswer( 'Eliminar archivos?', $files );
+        $host = $this->_getAnswer( 'Host?', $host);
+        $root = $this->_getAnswer( 'Root User?', $root );
+        $password = $this->_getAnswer( 'Root Password?', $password );
+        $db = $this->_getAnswer( 'Eliminar Db?', $db );
+        $user = $this->_getAnswer( 'Eliminar User?', $user );
+        $files = $this->_getAnswer( 'Eliminar archivos?', $files );
         
         $confirmacion = <<<EOF
 
@@ -93,7 +93,7 @@ EOF;
         }
     }
     
-    private function getAnswer( $pregunta, $default )
+    private function _getAnswer( $pregunta, $default )
     {
         $respuesta = $this->_registry
                           ->getClient()
