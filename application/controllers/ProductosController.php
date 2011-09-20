@@ -46,10 +46,11 @@ class ProductosController extends Zend_Controller_Action
     			$descripcion = $forma->getValue( 'descripcion' );
     			$precio = $forma->getValue( 'precio' );
     			$existencia = $forma->getValue( 'existencia' );
-			$imagen =$forma->imagen->getValue ( 'imagen');	
+			$imagen =$forma->imagen->getValue ( 'imagen' );	
+    			$mime =$forma->imagen->getMimeType ( 'imagen' );
     			// actualizar los datos
     			$productos = new Application_Model_DbTable_Productos();
-    			$productos->updateProducto( $id, $nombre, $descripcion, $precio, $existencia, $imagen );
+    			$productos->updateProducto( $id, $nombre, $descripcion, $precio, $existencia, $imagen, $mime );
 
     			// redirigir al index
     			$this->_helper->redirector( 'index' );
@@ -113,12 +114,12 @@ class ProductosController extends Zend_Controller_Action
     			$nombre = $forma->getValue( 'nombre' );
     			$descripcion = $forma->getValue( 'descripcion' );
     			$precio = $forma->getValue( 'precio' );
-    			$existencia = $forma->getValue( 'existencia' )
-			$imagen = $forma->imagen->getvalue ('imagen');
-
+    			$existencia = $forma->getValue( 'existencia' );
+			$imagen = $forma->imagen->getvalue ( 'imagen' );
+                        $mime = $forma->imagen->getMimeType ( 'imagen' );
     			// actualizar los datos
     			$productos = new Application_Model_DbTable_Productos();
-    			$productos->addProducto( $nombre, $descripcion, $precio, $existencia, $imagen );
+    			$productos->addProducto( $nombre, $descripcion, $precio, $existencia, $imagen, $mime );
 
     			// redirigir al index
     			$this->_helper->redirector( 'index' );
