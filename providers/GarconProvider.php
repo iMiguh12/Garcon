@@ -5,15 +5,15 @@ require_once 'Zend/Tool/Project/Provider/Exception.php';
 
 class GarconProvider extends Zend_Tool_Project_Provider_Abstract
 {
-    public function instalar( $db = 'garcon', $host = 'localhost', $user = 'root', $password = null, $guser = 'garcon', $gpassword = 'somecoolpassword', $datos = 'no' )
+    public function instalar( $db = 'garcon', $host = 'localhost', $root = 'root', $password = null, $guser = 'garcon', $gpassword = 'somecoolpassword', $data = 'no' )
     {    
-        $db = $this->_getAnswer( 'Db?', $db );
-        $host = $this->_getAnswer( 'Host?', $host );
-        $user = $this->_getAnswer( 'Root User?', $user );
-        $password = $this->_getAnswer( 'Root Password?', $password );
-        $guser = $this->_getAnswer( 'Garcon User?', $guser );
-        $gpassword = $this->_getAnswer( 'Garcon Password?', $gpassword );
-        $datos = $this->_getAnswer( 'Quieres datos de prueba?', $datos );
+        $answers['db']          = $this->_getAnswer( 'Db?', $db );
+        $answers['host']        = $this->_getAnswer( 'Host?', $host );
+        $answers['root']        = $this->_getAnswer( 'Root User?', $root );
+        $answers['password']    = $this->_getAnswer( 'Root Password?', $password );
+        $answers['guser']       = $this->_getAnswer( 'Garcon User?', $guser );
+        $answers['gpassword']   = $this->_getAnswer( 'Garcon Password?', $gpassword );
+        $answers['data']        = $this->_getAnswer( 'Quieres datos de prueba?', $data );
         
         $confirmacion = <<<EOF
 
@@ -21,13 +21,13 @@ Confirmación
 ================================================================================
 
 Las respuestas dadas fueron:
-    DB              = $db
-    Host            = $host
-    Root User       = $user
+    DB              = {$answers['db']}
+    Host            = {$answers['host']}
+    Root User       = {$answers['root']}
     Root Password   = ++++++++
-    Garcon User     = $guser
+    Garcon User     = {$answers['guser']}
     Garcon Password = ++++++++
-    Datos de prueba = $datos
+    Datos de prueba = {$answers['data']}
 EOF;
     
         $this->_registry
@@ -43,6 +43,9 @@ EOF;
             $this->_registry
                  ->getResponse()
                  ->appendContent( 'Ya vas! Instlando...' );
+            
+            // instalar
+            $this->_install( $answers );
         } else {
             $this->_registry
                  ->getResponse()
@@ -52,12 +55,12 @@ EOF;
 
     public function desinstalar( $host = 'localhost', $root = 'root', $password = null, $db = 'no', $user = 'no', $files = 'si' )
     {
-        $host = $this->_getAnswer( 'Host?', $host);
-        $root = $this->_getAnswer( 'Root User?', $root );
-        $password = $this->_getAnswer( 'Root Password?', $password );
-        $db = $this->_getAnswer( 'Eliminar Db?', $db );
-        $user = $this->_getAnswer( 'Eliminar User?', $user );
-        $files = $this->_getAnswer( 'Eliminar archivos?', $files );
+        $answers['host']        = $this->_getAnswer( 'Host?', $host);
+        $answers['root']        = $this->_getAnswer( 'Root User?', $root );
+        $answers['password']    = $this->_getAnswer( 'Root Password?', $password );
+        $answers['db']          = $this->_getAnswer( 'Eliminar Db?', $db );
+        $answers['user']        = $this->_getAnswer( 'Eliminar User?', $user );
+        $answers['files']       = $this->_getAnswer( 'Eliminar archivos?', $files );
         
         $confirmacion = <<<EOF
 
@@ -65,12 +68,12 @@ Confirmación
 ================================================================================
 
 Las respuestas dadas fueron:
-    Host                = $host
-    Root user           = $root
+    Host                = {$answers['host']}
+    Root user           = {$answers['root']}
     Root password       = ++++++++
-    Eliminar Db?        = $db
-    Eliminar user?      = $user
-    Eliminar archivos?  = $files
+    Eliminar Db?        = {$answers['db']}
+    Eliminar user?      = {$answers['user']}
+    Eliminar archivos?  = {$answers['files']}
 EOF;
     
         $this->_registry
@@ -86,6 +89,9 @@ EOF;
             $this->_registry
                  ->getResponse()
                  ->appendContent( 'Ya vas! Desinstalando...' );
+            
+            // uninstall
+            $this->_uninstall( $answers );
         } else {
             $this->_registry
                  ->getResponse()
@@ -104,5 +110,37 @@ EOF;
         } else {
             return $respuesta->getContent();
         }
+    }
+    
+    private function _install( $answers = array() )
+    {
+        // obtener conexión a DB
+        $this->_registry
+             ->getResponse()
+             ->appendContent( 'Instalación no implementada...' );
+        
+        // escribir archivo de conexión a DB
+        
+        // instalar el usuario y la DB
+        
+        // instalar las tablas
+        
+        // instalar los datos de prueba
+        
+    }
+    
+    private function _uninstall( $answers = array() )
+    {
+        // obtener conexión a DB
+        $this->_registry
+             ->getResponse()
+             ->appendContent( 'Desinstalación no implementada...' );
+        
+        // borrar la DB
+        
+        // borrar al usuario
+        
+        // borrar archivos
+        
     }
 }
