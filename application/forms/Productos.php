@@ -48,6 +48,7 @@ class Application_Form_Productos extends Zend_Form
 	$imagen = new Zend_Form_Element_File ('imagen');
         $imagen->setLabel ('Imagen')
 	       ->setRequired ('false')
+	       ->addValidator('IsImage')
                ->addValidator('Size', false, '300kb');
                
     	$enviar = new Zend_Form_Element_Submit( 'enviar' );
