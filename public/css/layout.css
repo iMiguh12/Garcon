@@ -1,11 +1,12 @@
 /* General */
+* {
+    font-family: verdana;
+}
+
 body {
 }
 
 header {
-    margin-top: .0em;
-    margin:0px;
-    padding:0px;
 }
 
 header hgroup {
@@ -52,14 +53,29 @@ footer {
 
 /* Adquirir  */
 section#productos {
-    margin: auto;
+    height: 200px;
+    margin: none;
     text-align: center;
+    width: 70%;
+}
+
+section#productos section {
+	height: 80%;
+}
+
+section#productos section section {
+	height: 80%;
 }
 
 section#productos section section figure {
-    height: 300px;
     display: inline-block;
-    width: 23%;
+    height: 100px;
+    width: 24%;
+}
+
+section#productos section section figure img {
+	height: 50%;
+	margin-top: 10%;
 }
 
 /* Productos */
