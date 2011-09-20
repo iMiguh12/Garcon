@@ -24,9 +24,9 @@ Las respuestas dadas fueron:
     DB              = $db
     Host            = $host
     Root User       = $user
-    Root Password   = $password
+    Root Password   = ++++++++
     Garcon User     = $guser
-    Garcon Password = $gpassword
+    Garcon Password = ++++++++
     Datos de prueba = $datos
 EOF;
     
@@ -35,8 +35,8 @@ EOF;
              ->appendContent( $confirmacion );
 
         $respuesta = $this->_registry
-                             ->getClient()
-                             ->promptInteractiveInput( 'Es esta información correcta? (si o no)');
+                          ->getClient()
+                          ->promptInteractiveInput( 'Es esta información correcta? (si o no)');
         $confirmacion = $respuesta->getContent();
         
         if( $confirmacion === 'si' ) {
@@ -50,12 +50,47 @@ EOF;
         }
     }
 
-    public function desinstalar()
+    public function desinstalar( $host = 'localhost', $root = 'root', $password = null, $db = 'no', $user = 'no', $files = 'si' )
     {
-        /** @todo Implementation */
+        $host = $this->getAnswer( 'Host?', $host);
+        $root = $this->getAnswer( 'Root User?', $root );
+        $password = $this->getAnswer( 'Root Password?', $password );
+        $db = $this->getAnswer( 'Eliminar Db?', $db );
+        $user = $this->getAnswer( 'Eliminar User?', $user );
+        $files = $this->getAnswer( 'Eliminar archivos?', $files );
+        
+        $confirmacion = <<<EOF
+
+Confirmación
+================================================================================
+
+Las respuestas dadas fueron:
+    Host                = $host
+    Root user           = $root
+    Root password       = ++++++++
+    Eliminar Db?        = $db
+    Eliminar user?      = $user
+    Eliminar archivos?  = $files
+EOF;
+    
         $this->_registry
              ->getResponse()
-             ->appendContent("No implementado");
+             ->appendContent( $confirmacion );
+
+        $respuesta = $this->_registry
+                          ->getClient()
+                          ->promptInteractiveInput( 'Es esta información correcta? (si o no)');
+        $confirmacion = $respuesta->getContent();
+        
+        if( $confirmacion === 'si' ) {
+            $this->_registry
+                 ->getResponse()
+                 ->appendContent( 'Ya vas! Desinstalando...' );
+        } else {
+            $this->_registry
+                 ->getResponse()
+                 ->appendContent( 'Proceso Abortado, inténtalo de nuevo.' );
+        }
     }
     
     private function getAnswer( $pregunta, $default )
