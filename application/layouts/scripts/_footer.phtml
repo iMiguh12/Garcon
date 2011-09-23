@@ -4,6 +4,43 @@ $sitio = new Zend_Config_Ini( APPLICATION_PATH . '/configs/sitio.ini', APPLICATI
 
 ?>
 <?php $this->placeholder('footer')->captureStart();?>
+
+<!-- Logooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooos -->
+<div id="footerLinksLogos">
+<?php 
+    echo $this->img('/images/html5_logo.png', 
+        array(
+            'id' => 'logo', 
+            'title' => 'HTML5', 
+            'alt' => 'HTML5'
+        )
+    ); 
+
+    echo $this->img('/images/css3-logo-large.png', 
+        array(
+            'id' => 'logo', 
+            'title' => 'CSS3',
+            'alt' => 'CSS3')
+        );
+
+    echo $this->img('/images/ZendFramework-logo.png', 
+        array(
+            'id' => 'logo', 
+            'title' => 'Powered by: ZendFramework', 
+            'alt' => 'Powered by: ZendFramework')
+        );
+
+    echo $this->img('/images/gpl3-logo.png', 
+        array(
+            'id' => 'logo',
+            'title' => 'GPLv3 2011', 
+            'alt' => 'GPLv3 2011')
+    );
+?>
+</div>
+<!-- Logooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooos-->
+
+
 <div id="footerLinks">
     <small id="footerW3CDoctypeValidator">
         <a href="http://validator.w3.org/check?uri=http://<?php echo $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']; ?>"><?php echo $sitio->doctype; ?></a>
@@ -28,5 +65,7 @@ $sitio = new Zend_Config_Ini( APPLICATION_PATH . '/configs/sitio.ini', APPLICATI
     </small>
 
     <small> | </small>
-</div><?php $this->placeholder('footer')->captureEnd(); ?>
+</div>
+
+<?php $this->placeholder('footer')->captureEnd(); ?>
 <?php echo $this->placeholder('footer')->setIndent(12); ?>
