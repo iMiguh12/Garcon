@@ -14,7 +14,14 @@
     <tbody>
 <?php foreach ( $this->productos as $producto ) : ?>
         <tr>
-            <td><?php echo $this->escape($producto->imagen); ?></td>
+            <td><?php echo $this->displayBlobImage( 
+                $producto->mime, 
+                $producto->imagen,  
+                'imagen' . $producto->id,
+                'ImagenesDeProducto',
+                $producto->descripcion,
+                $producto->nombre
+            ); ?></td>
             <td><?php echo $this->escape($producto->nombre); ?></td>
             <td><?php echo $this->escape($producto->descripcion); ?></td>
             <td><?php echo $this->escape($producto->precio); ?></td>
