@@ -59,5 +59,14 @@ table#ProductosTabla {
 }
 
 table#ProductosTabla thead th {
-    width: 20%;
+    text-align: center;
+    width: 15%;
+}
+
+table#ProductosTabla tbody td:first-child {
+    text-align: center;
+}
+
+table#ProductosTabla tbody td:first-child img {
+    vertical-align: middle;
 }
