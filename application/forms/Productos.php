@@ -5,7 +5,7 @@ class Application_Form_Productos extends Zend_Form
     public function init()
     {
     	$this->setName( 'producto' );
-    	$this->setAttrib( Zend_Form::ENCTYPE_MULTIPART );
+    	$this->setAttrib( Zend_Form::ENCTYPE_MULTIPART, true );
 
     	$id = new Zend_Form_Element_Hidden( 'id' );
     	$id->addFilter( 'Int' );
