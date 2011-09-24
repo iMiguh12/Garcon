@@ -48,7 +48,7 @@ class ProductosController extends Zend_Controller_Action
                 $precio = $forma->getValue( 'precio' );
                 $existencia = $forma->getValue( 'existencia' );
                 $carga = $forma->imagen->getFileName ( 'imagen' );
-                $imagen = file_get_contents($carga);
+                $imagen = file_get_contents( $carga );
                 $mime =$forma->imagen->getMimeType ( 'imagen' );
                 
                 // actualizar los datos
@@ -120,7 +120,7 @@ class ProductosController extends Zend_Controller_Action
                 $precio = $forma->getValue( 'precio' );
                 $existencia = $forma->getValue( 'existencia' );
                 $carga = $forma->imagen->getFileName ( 'imagen' );
-                $imagen = file_get_contents($carga)
+                $imagen = file_get_contents( $carga );
                 $mime = $forma->imagen->getMimeType ( 'imagen' );
                 
                 // actualizar los datos
