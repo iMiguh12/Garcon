@@ -69,7 +69,7 @@ class ProductosController extends Zend_Controller_Action
     {
     	// checar si hay un post
     	if ( $this->getRequest()->isPost() ) {
-    		// verificar si el post proviene de un botón de borrado; llamado borrar.
+    		// verificar si el post proviene de un botón de borrado; llamado borrar
     		$borrar = $this->getRequest()->getPost('borrar');
 
     		// si el botón es afirmativo, borra el producto
