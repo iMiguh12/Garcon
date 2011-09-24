@@ -44,7 +44,7 @@ class Zend_View_Helper_Img extends Zend_View_Helper_Abstract
         }
         
         $paramstr = ' ' . join(' ', $plist);
-        
+
         return '<img src="' .
                 ( ( $this->_exists[$path] )
                     ? $this->_baseurl . ltrim($path, '/')
