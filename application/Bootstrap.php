@@ -59,6 +59,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                          ->appendAlternate( '/feed/', 'application/rss+xml', 'News' )
                          ->setIndent( 8 );
 
+        // fonts
+        $view->headLink()->appendStylesheet( 'http://fonts.googleapis.com/css?family=Julee', 'all' );
+
         // jQuery y Javascript
         $view->addHelperPath( "ZendX/JQuery/View/Helper", "ZendX_JQuery_View_Helper" );
         $view->jQuery()->enable()
