@@ -47,7 +47,8 @@ class ProductosController extends Zend_Controller_Action
                 $descripcion = $forma->getValue( 'descripcion' );
                 $precio = $forma->getValue( 'precio' );
                 $existencia = $forma->getValue( 'existencia' );
-                $imagen =$forma->imagen->getValue ( 'imagen' );    
+                $carga =$forma->imagen->getFileName ( 'imagen' );
+                $imagen = file_get_contents($carga);
                 $mime =$forma->imagen->getMimeType ( 'imagen' );
                 
                 // actualizar los datos
