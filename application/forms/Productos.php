@@ -53,7 +53,7 @@ class Application_Form_Productos extends Zend_Form
 	           ->addValidator( 'NotEmpty' )
                    ->addValidator( 'Size', false, '102400')
                    ->addValidator( 'Extension', false, 'jpg, png')
-                   ->addValidator( 'ImageSize', false, array( 'maxheight' => 250, 'maxwidht' =>250 ) )
+                   ->addValidator( 'ImageSize', false, array( 'maxheight' => 250, 'maxwidth' =>250 ) )
                    ->setMaxFileSize( 102400 );
                
     	$enviar = new Zend_Form_Element_Submit( 'enviar' );
