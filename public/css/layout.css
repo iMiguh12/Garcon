@@ -6,7 +6,7 @@
 body {
 }
 
-header {
+header {margin: 1em;
 }
 
 header hgroup {
@@ -46,8 +46,8 @@ div#Contenido h1 {
 }
 
 footer {
-    margin-top: 2em;
-    text-align: right;
+    margin: 2em;
+    text-align: center;
 }
 
 
