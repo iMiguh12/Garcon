@@ -1,1 +1,11 @@
-<?php echo $this->forma->setAction( $this->url() ); ?>
+<?php
+echo $this->forma->setAction( $this->url() );
+$crear =  $this->url(
+    array(
+        'controller'    => 'autentificacion',
+        'action'        => 'Crear'
+    )
+);
+
+echo "<span><a href='$crear'> Crear una cuenta </a></span>";
+?>

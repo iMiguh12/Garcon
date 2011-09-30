@@ -4,15 +4,16 @@ class ProductosController extends Zend_Controller_Action
 {
     public function init()
     {
-    $translator = new Zend_Translate(
-        array(
-        'adapter' => 'array',
-        'content' => APPLICATION_PATH.'/../resources/languages',
-        'locale'  => 'es',
-        'scan' => Zend_Translate::LOCALE_DIRECTORY
-        )
-    );
-    Zend_Validate_Abstract::setDefaultTranslator($translator);
+        $translator = new Zend_Translate(
+            array(
+            'adapter' => 'array',
+            'content' => APPLICATION_PATH.'/../resources/languages',
+            'locale'  => 'es',
+            'scan' => Zend_Translate::LOCALE_DIRECTORY
+            )
+        );
+
+        Zend_Validate_Abstract::setDefaultTranslator($translator);
     }
 
     public function indexAction()
@@ -31,10 +32,12 @@ class ProductosController extends Zend_Controller_Action
 
     public function editAction()
     {
-        // Agregar forma y ponerle un botón de guardar.
+        // agregar forma
         $forma = new Application_Form_Productos();
+        $forma->addElement( 'submit', 'enviar' );
         $forma->enviar->setLabel( 'Guardar' );
         
+        // asignar forma a la vista
         $this->view->forma = $forma;
 
         if ( $this->getRequest()->isPost() ) {
@@ -47,9 +50,13 @@ class ProductosController extends Zend_Controller_Action
                 $descripcion = $forma->getValue( 'descripcion' );
                 $precio = $forma->getValue( 'precio' );
                 $existencia = $forma->getValue( 'existencia' );
-                $carga = $forma->imagen->getFileName ( 'imagen' );
-                $imagen = file_get_contents( $carga );
-                $mime =$forma->imagen->getMimeType ( 'imagen' );
+                
+                // recibir la imágen
+                if ( $forma->imagen->receive() ) {
+                    $imagen_nombre = $forma->imagen->getFileName();
+                    $imagen = file_get_contents( $imagen_nombre );
+                    $mime = $forma->imagen->getMimeType();
+                }
                 
                 // actualizar los datos
                 $productos = new Application_Model_DbTable_Productos();
@@ -113,15 +120,19 @@ class ProductosController extends Zend_Controller_Action
         if ( $this->getRequest()->isPost() ) {
             $datos = $this->getRequest()->getPost();
 
-            if ( $forma->isValid($datos) ) {
+            if ( $forma->isValid( $datos ) ) {
                 // asignar los valores de la forma a variables
                 $nombre = $forma->getValue( 'nombre' );
                 $descripcion = $forma->getValue( 'descripcion' );
                 $precio = $forma->getValue( 'precio' );
                 $existencia = $forma->getValue( 'existencia' );
-                $carga = $forma->imagen->getFileName ( 'imagen' );
-                $imagen = file_get_contents( $carga );
-                $mime = $forma->imagen->getMimeType ( 'imagen' );
+                
+                // recibir la imágen
+                if ( $forma->imagen->receive() ) {
+                    $imagen_nombre = $forma->imagen->getFileName();
+                    $imagen = file_get_contents( $imagen_nombre );
+                    $mime = $forma->imagen->getMimeType();
+                }
                 
                 // actualizar los datos
                 $productos = new Application_Model_DbTable_Productos();

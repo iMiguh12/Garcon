@@ -18,10 +18,11 @@ class Application_Model_DbTable_Usuarios extends Zend_Db_Table_Abstract
     public function addUsuario($nombre, $email, $telefono, $clave)
     {
         $data = array(
-            'nombre' => $nombre,
-            'email' => $email,
-            'telefono' => $telefono,
-            'clave' => $clave,
+            'nombre'    => $nombre,
+            'email'     => $email,
+            'telefono'  => $telefono,
+            'clave'     => sha1( $clave . sha1( $condimento ) ),
+            'condimento' => sha1( $condimento ),
             );
             $this->insert($data);
     }

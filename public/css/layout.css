@@ -4,9 +4,12 @@
 }
 
 body {
+    background-color: #ddd0bf;
 }
 
 header {
+	margin: 1em;
+    background-color: #ddd0bf; 
 }
 
 header hgroup {
@@ -28,12 +31,25 @@ header hgroup h3 {
 }
 
 nav {
+    height: 25px;
+    width: 100%;
+    border-bottom: 4px solid #b9111e;
     float: right;
+    background-color: #1E1D1B;
+    font-size: 14px;
+    font-weight: bold;
+    color: #C3C3C3;    
+    text-transform: uppercase;
+    font-size: 100%;
 }
 
 header div#Login {
-    display: block;
+	display: block;
     float: right;
+    font-size: 12px;
+    margin: 0;
+    padding: 0px 30px 4px 20px !important;
+    vertical-align: top;
 }
 
 div#Contenido {
@@ -46,8 +62,8 @@ div#Contenido h1 {
 }
 
 footer {
-    margin-top: 2em;
-    text-align: right;
+    margin: 2em;
+    text-align: center;
 }
 
 

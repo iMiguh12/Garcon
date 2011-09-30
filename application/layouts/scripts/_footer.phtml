@@ -1,42 +1,16 @@
 <?php
 // get it's configuration file
 $sitio = new Zend_Config_Ini( APPLICATION_PATH . '/configs/sitio.ini', APPLICATION_ENV );
-
 ?>
+
 <?php $this->placeholder('footer')->captureStart();?>
 
 <!-- Logos -->
 <div id="footerLinksLogos">
-<?php 
-    echo $this->img('/images/html5_logo.png', 
-        array(
-            'id' => 'logo', 
-            'title' => 'HTML5', 
-            'alt' => 'HTML5'
-        )
-    ); 
-
-    echo $this->img('/images/css3-logo-large.png', 
-        array(
-            'id' => 'logo', 
-            'title' => 'CSS3',
-            'alt' => 'CSS3')
-        );
-
-    echo $this->img('/images/ZendFramework-logo.png', 
-        array(
-            'id' => 'logo', 
-            'title' => 'Powered by: ZendFramework', 
-            'alt' => 'Powered by: ZendFramework')
-        );
-
-    echo $this->img('/images/gpl3-logo.png', 
-        array(
-            'id' => 'logo',
-            'title' => 'GPLv3 2011', 
-            'alt' => 'GPLv3 2011')
-    );
-?>
+<img alt="HTML5" src="/images/html5_logo.png">
+<img alt="CSS3" src="/images/css3-logo-large.png">
+<img alt="Powered by: ZendFramework" src="/images/ZendFramework-logo.png">
+<img alt="GPLv3 2011" src="/images/gpl3-logo.png">
 </div>
 
 <?php $this->placeholder('footer')->captureEnd(); ?>
