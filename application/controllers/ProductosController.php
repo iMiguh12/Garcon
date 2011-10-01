@@ -34,6 +34,8 @@ class ProductosController extends Zend_Controller_Action
         // Agregar forma y ponerle un botón de guardar.
         $forma = new Application_Form_Productos();
         $forma->enviar->setLabel( 'Guardar' );
+
+        $forma->addElement( new Zend_Form_Element_Hidden( 'imagen_db' ) );
         
         $this->view->forma = $forma;
 
@@ -48,7 +50,7 @@ class ProductosController extends Zend_Controller_Action
                 $precio = $forma->getValue( 'precio' );
                 $existencia = $forma->getValue( 'existencia' );
                 $carga = $forma->imagen->getFileName ( 'imagen' );
-                $imagen = file_get_contents( $carga );
+                $imagen = file_get_contents( $carga )  ? file_get_contents( $carga) : $forma->getValue( 'imagen_db' );
                 $mime =$forma->imagen->getMimeType ( 'imagen' );
                 
                 // actualizar los datos
@@ -64,7 +66,16 @@ class ProductosController extends Zend_Controller_Action
             $id = $this->_getParam( 'id', 0 );
             if ( $id > 0 ) {
                 $productos = new Application_Model_DbTable_Productos();
-                $forma->populate( $productos->getProducto( $id ) );
+                $datos = $productos->getProducto( $id );
+
+                if ( isset( $datos['imagen'] ) ) {
+                	$forma->addElement( new Zend_Form_Element_Hidden( 'imagen_db' ) );
+                	$forma->setDefault( 'imagen_db', $datos['imagen'] );
+                    $forma->populate( $datos  );
+                } else {
+                    $forma->populate( $datos  );
+                }
+
             }
         }
     }
