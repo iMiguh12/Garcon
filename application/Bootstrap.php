@@ -69,7 +69,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                        ->uiEnable()
                        ->setUiVersion( $sitio->jqueryUI );
 
-        $view->headScript()->appendFile( '/js/default.js', 'text/javascript', 
+        $view->headScript()->appendFile( '/js/garcon.js', 'text/javascript', 
             array(
                 'charset' => $sitio->encoding
             )
