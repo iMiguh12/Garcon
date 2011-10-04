@@ -45,8 +45,10 @@ class Application_Form_Productos extends Zend_Form
     	           ->addValidator( 'NotEmpty' )
     	           ->addValidator( 'Int' )
                    ->addValidator( 'stringLength', true, array( 1, 3 ) );
-    	
-	    $imagen = new Zend_Form_Element_File( 'imagen' );
+
+    	$imagenActual = new Zend_Form_Element_Image('imagenActual');
+
+		$imagen = new Zend_Form_Element_File( 'imagen' );
         $imagen->setLabel ( 'Imagen' )
 	           ->setRequired ( 'true' )
 	           ->addValidator( 'IsImage' )
@@ -60,7 +62,7 @@ class Application_Form_Productos extends Zend_Form
     	$enviar->setAttrib( 'id', 'botonEnviar' );
 
     	$this->addElements( 
-    	    array( $id, $nombre, $descripcion, $precio, $existencia, $imagen, $enviar ) 
+    	    array( $id, $nombre, $descripcion, $precio, $existencia, $imagenActual, $imagen, $enviar ) 
     	);
     }
 }

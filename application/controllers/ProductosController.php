@@ -41,7 +41,7 @@ class ProductosController extends Zend_Controller_Action
 
         if ( $this->getRequest()->isPost() ) {
             $datos = $this->getRequest()->getPost();
-
+	    	$forma->imagen->setRequired ( false );
             if ( $forma->isValid( $datos ) ) {
                 // asignar los valores de la forma a variables
                 $id = (int) $forma->getValue( 'id' );
@@ -51,7 +51,15 @@ class ProductosController extends Zend_Controller_Action
                 $existencia = $forma->getValue( 'existencia' );
                 $imagen = $forma->getValue( 'imagen');
                 $carga = $forma->imagen->getFileName ( 'imagen' );
-                $imagen = file_get_contents( $carga )  ? file_get_contents( $carga) : $forma->getValue( 'imagen_db' );
+		if($forma->getValue( 'imagen' )!=null)
+                	$imagen = file_get_contents( $carga );
+		else{
+			$producto = new Application_Model_DbTable_Productos();
+                	$datos = $producto->getProducto( $this->_getParam( 'id') );
+			$imagen = $datos['imagen'];			
+			//$imagen = (new Application_Model_DbTable_Productos())->getProducto( $this->_getParam( 'id') )['imagen'];
+		}
+
                 $mime =$forma->imagen->getMimeType ( 'imagen' );
                 
                 // actualizar los datos
@@ -68,15 +76,12 @@ class ProductosController extends Zend_Controller_Action
             if ( $id > 0 ) {
                 $productos = new Application_Model_DbTable_Productos();
                 $datos = $productos->getProducto( $id );
-
-                if ( isset( $datos['imagen'] ) ) {
-                	$forma->addElement( new Zend_Form_Element_Hidden( 'imagen_db' ) );
-                	$forma->setDefault( 'imagen_db', $datos['imagen'] );
-                    $forma->populate( $datos  );
-                } else {
-                    $forma->populate( $datos  );
-                }
-
+				$this->view->datos = $datos;
+				$forma->imagen->setRequired ( false );
+                $forma->populate( $datos  );
+				$forma->imagenActual->setImage(( 'data:' . $datos['mime'] . ';base64,' . base64_encode($datos['imagen']) )
+			   
+		);
             }
         }
     }
