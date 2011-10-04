@@ -4,7 +4,7 @@ class Zend_View_Helper_DisplayBlobImage extends Zend_View_Helper_Abstract
 {
     public function displayBlobImage( $mime, $image, $id = null, $class = null, $alt = null, $title = '', $caption = null )
     {
-		$image = base64_encode( $image );
+      //  $image = base64_encode( $image );
     	$data_uri = ( 'data:' . $mime . ';base64,' . $image );
 
     	return <<<EOF
