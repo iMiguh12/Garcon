@@ -56,7 +56,7 @@ class ProductosController extends Zend_Controller_Action
                 $miniatura = PhpThumbFactory::create( $carga, $param_phpthumblib );
                 $miniatura->resize( 100, 100 );
                 $miniatura->save( $carga );
-                $imagen = file_get_contents( $carga )  
+                $imagen = base64_encode( file_get_contents( $carga ) );  
                 $mime =$forma->imagen->getMimeType ( 'imagen' );
                 
                 // actualizar los datos
@@ -138,7 +138,7 @@ class ProductosController extends Zend_Controller_Action
                 $miniatura = PhpThumbFactory::create( $imagen_nombre, $param_phpthumblib );
                 $miniatura->resize( 100, 100 );
                 $miniatura->save( $carga );
-                $imagen = file_get_contents( $imagen_nombre );
+                $imagen = base64_encode( file_get_contents( $imagen_nombre ) );
                 $mime = $forma->imagen->getMimeType ( 'imagen' );
                 
                 // actualizar los datos
