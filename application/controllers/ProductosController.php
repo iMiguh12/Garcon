@@ -4,6 +4,7 @@ class ProductosController extends Zend_Controller_Action
 {
     public function init()
     {
+    require_once 'Zend/PhpThumb/ThumbLib.inc.php';
     $translator = new Zend_Translate(
         array(
         'adapter' => 'array',
@@ -49,9 +50,13 @@ class ProductosController extends Zend_Controller_Action
                 $descripcion = $forma->getValue( 'descripcion' );
                 $precio = $forma->getValue( 'precio' );
                 $existencia = $forma->getValue( 'existencia' );
-                $imagen = $forma->getValue( 'imagen');
+                $imagen = $forma->getValue( 'imagen' );
                 $carga = $forma->imagen->getFileName ( 'imagen' );
-                $imagen = file_get_contents( $carga )  ? file_get_contents( $carga) : $forma->getValue( 'imagen_db' );
+                $param_phpthumblib = array( 'resizeUp' => true, 'jpegQuality' => 80 );
+                $miniatura = PhpThumbFactory::create( $carga, $param_phpthumblib );
+                $miniatura->resize( 100, 100 );
+                $miniatura->save( $carga );
+                $imagen = file_get_contents( $carga )  
                 $mime =$forma->imagen->getMimeType ( 'imagen' );
                 
                 // actualizar los datos
@@ -68,11 +73,7 @@ class ProductosController extends Zend_Controller_Action
             if ( $id > 0 ) {
                 $productos = new Application_Model_DbTable_Productos();
                 $datos = $productos->getProducto( $id );
-
-                if ( isset( $datos['imagen'] ) ) {
-                	$forma->addElement( new Zend_Form_Element_Hidden( 'imagen_db' ) );
-                	$forma->setDefault( 'imagen_db', $datos['imagen'] );
-                    $forma->populate( $datos  );
+        
                 } else {
                     $forma->populate( $datos  );
                 }
@@ -131,7 +132,12 @@ class ProductosController extends Zend_Controller_Action
                 $descripcion = $forma->getValue( 'descripcion' );
                 $precio = $forma->getValue( 'precio' );
                 $existencia = $forma->getValue( 'existencia' );
+                $imagen = $forma->getvalue ( 'imagen');
                 $imagen_nombre = $forma->imagen->getFileName ( 'imagen' );
+                $param_phpthumblib = array( 'resizeUp' => true, 'jpegQuality' => 80 );
+                $miniatura = PhpThumbFactory::create( $imagen_nombre, $param_phpthumblib );
+                $miniatura->resize( 100, 100 );
+                $miniatura->save( $carga );
                 $imagen = file_get_contents( $imagen_nombre );
                 $mime = $forma->imagen->getMimeType ( 'imagen' );
                 
