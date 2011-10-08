@@ -4,6 +4,7 @@ class ProductosController extends Zend_Controller_Action
 {
     public function init()
     {
+    require_once 'Zend/PhpThumb/ThumbLib.inc.php';
     $translator = new Zend_Translate(
         array(
         'adapter' => 'array',
@@ -51,7 +52,11 @@ class ProductosController extends Zend_Controller_Action
                 $existencia = $forma->getValue( 'existencia' );
                 $imagen = $forma->getValue( 'imagen');
                 $carga = $forma->imagen->getFileName ( 'imagen' );
+		$param_miniatura = array( 'resizeUp' => true, 'jpegQuality' => 80);
 		if($forma->getValue( 'imagen' )!=null)
+                	$dimension = PhpThumbFactory::create( $carga, $param_miniatura );
+                	$dimension->resize( 100, 100 );
+                	$dimension->save( $carga );
                 	$imagen = file_get_contents( $carga );
 		else{
 			$producto = new Application_Model_DbTable_Productos();
@@ -137,6 +142,10 @@ class ProductosController extends Zend_Controller_Action
                 $precio = $forma->getValue( 'precio' );
                 $existencia = $forma->getValue( 'existencia' );
                 $imagen_nombre = $forma->imagen->getFileName ( 'imagen' );
+                $param_miniatura = array( 'resizeUp' => true, 'jpegQuality' => 80);
+                $dimension = PhpThumbFactory::create( $imagen_nombre, $param_miniatura);
+                $dimension->resize( 100, 100 );
+                $dimension->save( $imagen_nombre );
                 $imagen = file_get_contents( $imagen_nombre );
                 $mime = $forma->imagen->getMimeType ( 'imagen' );
                 
