@@ -16,7 +16,7 @@ class Application_Form_Productos extends Zend_Form
                ->addFilter( 'StripTags' )
                ->addFilter( 'StringTrim' )
                ->addValidator( 'NotEmpty' )
-	           ->addValidator( 'Regex', false, array( '#^([a-z A-Z0-9ñÑáéíóúÁÉÍÓÚüÜ\(\)-]+$.*)#' ) )
+	       ->addValidator( 'Regex', false, array( '#^([a-z A-Z0-9ñÑáéíóúÁÉÍÓÚüÜ\(\)-]+$.*)#' ) )
                ->addValidator( 'stringLength', true, array(1, 255));
 
     	$descripcion = new Zend_Form_Element_Text( 'descripcion' );
@@ -25,7 +25,7 @@ class Application_Form_Productos extends Zend_Form
     	            ->addFilter( 'StripTags' )
     	            ->addFilter( 'StringTrim' )
     	            ->addValidator( 'NotEmpty' )
-	                ->addValidator( 'Regex', false, array( '#^([a-z A-Z0-9ñÑáéíóúÁÉÍÓÚüÜ\(\)-]+$.*)#' ) )
+	            ->addValidator( 'Regex', false, array( '#^([a-z A-Z0-9ñÑáéíóúÁÉÍÓÚüÜ\(\)-]+$.*)#' ) )
                     ->addValidator( 'stringLength', true, array( 1, 255 ) );
  		    	
     	$precio = new Zend_Form_Element_Text( 'precio' );
@@ -45,19 +45,23 @@ class Application_Form_Productos extends Zend_Form
     	           ->addValidator( 'NotEmpty' )
     	           ->addValidator( 'Int' )
                    ->addValidator( 'stringLength', true, array( 1, 3 ) );
-    	
-	    $imagen = new Zend_Form_Element_File( 'imagen' );
+
+    	$imagenActual = new Zend_Form_Element_Image('imagenActual');
+
+		$imagen = new Zend_Form_Element_File( 'imagen' );
         $imagen->setLabel ( 'Imagen' )
 	           ->addValidator( 'IsImage' )
 	           ->addValidator( 'NotEmpty' )
-	           ->addValidator('ImageSize', false, array( 'maxwidth' => 100, 'minheight' => 100, 'maxheight' => 100 ) )
-               ->addValidator( 'Size', false, '20kb' );
+                   ->addValidator( 'Size', false, '102400')
+                   ->addValidator( 'Extension', false, 'jpg, png')
+                   ->addValidator( 'ImageSize', false, array( 'maxheight' => 250, 'maxwidth' =>250 ) )
+                   ->setMaxFileSize( 102400 );
                
     	$enviar = new Zend_Form_Element_Submit( 'enviar' );
     	$enviar->setAttrib( 'id', 'botonEnviar' );
 
     	$this->addElements( 
-    	    array( $id, $nombre, $descripcion, $precio, $existencia, $imagen, $enviar ) 
+    	    array( $id, $nombre, $descripcion, $precio, $existencia, $imagenActual, $imagen, $enviar ) 
     	);
     }
 }

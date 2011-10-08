@@ -36,13 +36,15 @@ class ProductosController extends Zend_Controller_Action
         $forma = new Application_Form_Productos();
         $forma->addElement( 'submit', 'enviar' );
         $forma->enviar->setLabel( 'Guardar' );
+
+        $forma->addElement( new Zend_Form_Element_Hidden( 'imagen_db' ) );
         
         // asignar forma a la vista
         $this->view->forma = $forma;
 
         if ( $this->getRequest()->isPost() ) {
             $datos = $this->getRequest()->getPost();
-
+	    	$forma->imagen->setRequired ( false );
             if ( $forma->isValid( $datos ) ) {
                 // asignar los valores de la forma a variables
                 $id = (int) $forma->getValue( 'id' );
@@ -50,13 +52,18 @@ class ProductosController extends Zend_Controller_Action
                 $descripcion = $forma->getValue( 'descripcion' );
                 $precio = $forma->getValue( 'precio' );
                 $existencia = $forma->getValue( 'existencia' );
-                
-                // recibir la imágen
-                if ( $forma->imagen->receive() ) {
-                    $imagen_nombre = $forma->imagen->getFileName();
-                    $imagen = file_get_contents( $imagen_nombre );
-                    $mime = $forma->imagen->getMimeType();
-                }
+                $imagen = $forma->getValue( 'imagen');
+                $carga = $forma->imagen->getFileName ( 'imagen' );
+		if($forma->getValue( 'imagen' )!=null)
+                	$imagen = file_get_contents( $carga );
+		else{
+			$producto = new Application_Model_DbTable_Productos();
+                	$datos = $producto->getProducto( $this->_getParam( 'id') );
+			$imagen = $datos['imagen'];			
+			//$imagen = (new Application_Model_DbTable_Productos())->getProducto( $this->_getParam( 'id') )['imagen'];
+		}
+
+                $mime =$forma->imagen->getMimeType ( 'imagen' );
                 
                 // actualizar los datos
                 $productos = new Application_Model_DbTable_Productos();
@@ -71,7 +78,13 @@ class ProductosController extends Zend_Controller_Action
             $id = $this->_getParam( 'id', 0 );
             if ( $id > 0 ) {
                 $productos = new Application_Model_DbTable_Productos();
-                $forma->populate( $productos->getProducto( $id ) );
+                $datos = $productos->getProducto( $id );
+				$this->view->datos = $datos;
+				$forma->imagen->setRequired ( false );
+                $forma->populate( $datos  );
+				$forma->imagenActual->setImage(( 'data:' . $datos['mime'] . ';base64,' . base64_encode($datos['imagen']) )
+			   
+		);
             }
         }
     }
