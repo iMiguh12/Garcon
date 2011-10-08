@@ -52,10 +52,10 @@ class Application_Form_Productos extends Zend_Form
         $imagen->setLabel ( 'Imagen' )
 	           ->addValidator( 'IsImage' )
 	           ->addValidator( 'NotEmpty' )
-                   ->addValidator( 'Size', false, '102400')
+                   ->addValidator( 'Size', false, '1024000')
                    ->addValidator( 'Extension', false, 'jpg, png')
-                   ->addValidator( 'ImageSize', false, array( 'maxheight' => 250, 'maxwidth' =>250 ) )
-                   ->setMaxFileSize( 102400 );
+                   ->addValidator( 'ImageSize', false, array( 'maxheight' => 2500, 'maxwidth' =>2500 ) )
+                   ->setMaxFileSize( 1024000 );
                
     	$enviar = new Zend_Form_Element_Submit( 'enviar' );
     	$enviar->setAttrib( 'id', 'botonEnviar' );
