@@ -15,7 +15,7 @@ class Application_Form_Productos extends Zend_Form
                ->addFilter( 'StripTags' )
                ->addFilter( 'StringTrim' )
                ->addValidator( 'NotEmpty' )
-	           ->addValidator( 'Regex', false, array( '#^([a-z A-Z0-9ñÑáéíóúÁÉÍÓÚüÜ\(\)-]+$.*)#' ) )
+               ->addValidator( 'Regex', false, array( '#^([a-z A-Z0-9ñÑáéíóúÁÉÍÓÚüÜ\(\)-]+$.*)#' ) )
                ->addValidator( 'stringLength', true, array(1, 255));
 
     	$descripcion = new Zend_Form_Element_Text( 'descripcion' );
@@ -24,7 +24,7 @@ class Application_Form_Productos extends Zend_Form
     	            ->addFilter( 'StripTags' )
     	            ->addFilter( 'StringTrim' )
     	            ->addValidator( 'NotEmpty' )
-	                ->addValidator( 'Regex', false, array( '#^([a-z A-Z0-9ñÑáéíóúÁÉÍÓÚüÜ\(\)-]+$.*)#' ) )
+    	            ->addValidator( 'Regex', false, array( '#^([a-z A-Z0-9ñÑáéíóúÁÉÍÓÚüÜ\(\)-]+$.*)#' ) )
                     ->addValidator( 'stringLength', true, array( 1, 255 ) );
  		    	
     	$precio = new Zend_Form_Element_Text( 'precio' );
@@ -44,12 +44,22 @@ class Application_Form_Productos extends Zend_Form
     	           ->addValidator( 'NotEmpty' )
     	           ->addValidator( 'Int' )
                    ->addValidator( 'stringLength', true, array( 1, 3 ) );
+        
+        $imagen = new Zend_Form_Element_File( 'imagen' );
+        $imagen->setLabel ( 'Imagen' )
+               ->setRequired ( 'true' )
+               ->addValidator( 'IsImage' )
+               ->addValidator( 'NotEmpty' )
+                   ->addValidator( 'Size', false, '1024000' )
+                   ->addValidator( 'Extension', false, 'jpg, png' )
+                   ->addValidator( 'ImageSize', false, array( 'maxheight' => 2500, 'maxwidth' =>2500 ) )
+                   ->setMaxFileSize( 1024000 );
     	
     	$enviar = new Zend_Form_Element_Submit( 'enviar' );
     	$enviar->setAttrib( 'id', 'botonEnviar' );
 
     	$this->addElements( 
-    	    array( $id, $nombre, $descripcion, $precio, $existencia, $enviar ) 
+    	    array( $id, $nombre, $descripcion, $precio, $existencia, $imagen, $enviar ) 
     	);
     }
 }
