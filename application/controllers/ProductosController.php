@@ -4,16 +4,16 @@ class ProductosController extends Zend_Controller_Action
 {
     public function init()
     {
-        $translator = new Zend_Translate(
-            array(
-            'adapter' => 'array',
-            'content' => APPLICATION_PATH.'/../resources/languages',
-            'locale'  => 'es',
-            'scan' => Zend_Translate::LOCALE_DIRECTORY
-            )
-        );
-
-        Zend_Validate_Abstract::setDefaultTranslator($translator);
+    require_once 'Zend/PhpThumb/ThumbLib.inc.php';
+    $translator = new Zend_Translate(
+        array(
+        'adapter' => 'array',
+        'content' => APPLICATION_PATH.'/../resources/languages',
+        'locale'  => 'es',
+        'scan' => Zend_Translate::LOCALE_DIRECTORY
+        )
+    );
+    Zend_Validate_Abstract::setDefaultTranslator($translator);
     }
 
     public function indexAction()
@@ -36,13 +36,15 @@ class ProductosController extends Zend_Controller_Action
         $forma = new Application_Form_Productos();
         $forma->addElement( 'submit', 'enviar' );
         $forma->enviar->setLabel( 'Guardar' );
+
+        $forma->addElement( new Zend_Form_Element_Hidden( 'imagen_db' ) );
         
         // asignar forma a la vista
         $this->view->forma = $forma;
 
         if ( $this->getRequest()->isPost() ) {
             $datos = $this->getRequest()->getPost();
-
+	    	$forma->imagen->setRequired ( false );
             if ( $forma->isValid( $datos ) ) {
                 // asignar los valores de la forma a variables
                 $id = (int) $forma->getValue( 'id' );
@@ -50,13 +52,22 @@ class ProductosController extends Zend_Controller_Action
                 $descripcion = $forma->getValue( 'descripcion' );
                 $precio = $forma->getValue( 'precio' );
                 $existencia = $forma->getValue( 'existencia' );
-                
-                // recibir la imágen
-                if ( $forma->imagen->receive() ) {
-                    $imagen_nombre = $forma->imagen->getFileName();
-                    $imagen = file_get_contents( $imagen_nombre );
-                    $mime = $forma->imagen->getMimeType();
-                }
+                $imagen = $forma->getValue( 'imagen');
+                $carga = $forma->imagen->getFileName ( 'imagen' );
+		$param_miniatura = array( 'resizeUp' => true, 'jpegQuality' => 80);
+		if($forma->getValue( 'imagen' )!=null)
+                	$dimension = PhpThumbFactory::create( $carga, $param_miniatura );
+                	$dimension->resize( 100, 100 );
+                	$dimension->save( $carga );
+                	$imagen = file_get_contents( $carga );
+		else{
+			$producto = new Application_Model_DbTable_Productos();
+                	$datos = $producto->getProducto( $this->_getParam( 'id') );
+			$imagen = $datos['imagen'];			
+			//$imagen = (new Application_Model_DbTable_Productos())->getProducto( $this->_getParam( 'id') )['imagen'];
+		}
+
+                $mime =$forma->imagen->getMimeType ( 'imagen' );
                 
                 // actualizar los datos
                 $productos = new Application_Model_DbTable_Productos();
@@ -71,7 +82,13 @@ class ProductosController extends Zend_Controller_Action
             $id = $this->_getParam( 'id', 0 );
             if ( $id > 0 ) {
                 $productos = new Application_Model_DbTable_Productos();
-                $forma->populate( $productos->getProducto( $id ) );
+                $datos = $productos->getProducto( $id );
+				$this->view->datos = $datos;
+				$forma->imagen->setRequired ( false );
+                $forma->populate( $datos  );
+				$forma->imagenActual->setImage(( 'data:' . $datos['mime'] . ';base64,' . base64_encode($datos['imagen']) )
+			   
+		);
             }
         }
     }
@@ -126,13 +143,13 @@ class ProductosController extends Zend_Controller_Action
                 $descripcion = $forma->getValue( 'descripcion' );
                 $precio = $forma->getValue( 'precio' );
                 $existencia = $forma->getValue( 'existencia' );
-                
-                // recibir la imágen
-                if ( $forma->imagen->receive() ) {
-                    $imagen_nombre = $forma->imagen->getFileName();
-                    $imagen = file_get_contents( $imagen_nombre );
-                    $mime = $forma->imagen->getMimeType();
-                }
+                $imagen_nombre = $forma->imagen->getFileName ( 'imagen' );
+                $param_miniatura = array( 'resizeUp' => true, 'jpegQuality' => 80);
+                $dimension = PhpThumbFactory::create( $imagen_nombre, $param_miniatura);
+                $dimension->resize( 100, 100 );
+                $dimension->save( $imagen_nombre );
+                $imagen = file_get_contents( $imagen_nombre );
+                $mime = $forma->imagen->getMimeType ( 'imagen' );
                 
                 // actualizar los datos
                 $productos = new Application_Model_DbTable_Productos();
