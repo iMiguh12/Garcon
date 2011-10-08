@@ -1,0 +1,77 @@
+commit d3c0734a49b5209b339819d34a743d7752366cb3
+Merge: 2d3097a 0203dab
+Author: Renich Bon Ciric <renich@woralelandia.com>
+Date:   Sat Sep 24 04:02:30 2011 -0500
+
+    Merge branch 'interfaz' of github.com:PHPCabal/Garcon into interfaz
+
+diff --cc public/css/layout.css
+index c6e6986,07042cf..8d13275
+--- a/public/css/layout.css
++++ b/public/css/layout.css
+@@@ -59,14 -85,55 +85,64 @@@ table#ProductosTabla 
+  }
+  
+  table#ProductosTabla thead th {
+ -    width: 20%;
+ +    text-align: center;
+ +    width: 15%;
+ +}
+ +
+ +table#ProductosTabla tbody td:first-child {
+ +    text-align: center;
+ +}
+ +
+ +table#ProductosTabla tbody td:first-child img {
+ +    vertical-align: middle;
+  }
++ 
++ /* Botones */
++ .button {
++     width: 20%;
++     /*height: 40%;*/
++     margin-left: 20%;
++     margin-top: 10%;
++     display: inline-block;
++     outline: none;
++     cursor: pointer;
++     text-align: center;
++     text-decoration: none;
++     font: 15px/100% Arial, Helvetica, sans-serif;
++     padding: 5em 2em .55em;
++     text-shadow: 0 1px 1px rgba(0,0,0,.3);
++     -webkit-border-radius: .5em; 
++     -moz-border-radius: .5em;
++     border-radius: .5em;
++     -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
++     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
++     box-shadow: 0 1px 2px rgba(0,0,0,.2);
++ }
++ .button:hover {
++     text-decoration: none;
++ }
++ .button:active {
++     position: relative;
++     top: 1px;
++ }
++ 
++ .orange {
++     color: #fef4e9;
++     border: solid 1px #da7c0c;
++     background: #f78d1d;
++     background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
++     background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
++     filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
++ }
++ .orange:hover {
++     background: #f47c20;
++     background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
++     background: -moz-linear-gradient(top,  #f88e11,  #f06015);
++     filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
++ }
++ .orange:active {
++     color: #fcd3a5;
++     background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
++     background: -moz-linear-gradient(top,  #f47a20,  #faa51a);
++     filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
++ }

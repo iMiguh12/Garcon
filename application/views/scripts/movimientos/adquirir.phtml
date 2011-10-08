@@ -1,44 +1,44 @@
-<section id='productos'>
-    <section id='bebidas'>
-        <section id="artículos">
-            <figure>
-                <img src='/images/producto.jpg' alt='' title='' />
-                
-                <figcaption>
-                    Producto 1
-                </figcaption>
-            </figure>
-            
-            <figure>
-                <img src='/images/producto.jpg' alt='' title='' />
-                
-                <figcaption>
-                    Producto 2
-                </figcaption>
-            </figure>
-            
-            <figure>
-                <img src='/images/producto.jpg' alt='' title='' />
-                
-                <figcaption>
-                    Producto 3
-                </figcaption>
-            </figure>
-            
-            <figure>
-                <img src='/images/producto.jpg' alt='' title='' />
-                
-                <figcaption>
-                    Producto 4
-                </figcaption>
-            </figure>
-        </section>
-        
-        <nav>
+<section id="content">
+    <section id="wrapper">
+        <section id="prod-list">
+            <h4>Lista de productos</h4>
             <ul>
-                <li>-atrás</li>
-                <li>-adelante</li>
+            <?php 
+                foreach($this->movimientos as $producto)
+                {
+                    $image = base64_encode( $producto->imagen );
+                    $data_uri = ( 'data:' . $producto->mime . ';base64,' . $image );
+                    echo "
+                      <li class=\"prod-item\">
+                        <figure id=\"$producto->id\">
+                            <img src='$data_uri' alt='img-$producto->nombre' title=' ' / class=\"img-Prod\">
+
+                            <figcaption>
+                                <span class=\"nombre\">$producto->nombre</span> $<span class=\"precio\">".intval($producto->precio)."</span>
+			  <a class=\"compra\">Comprar</a>
+                            </figcaption>
+                        </figure>
+                      </li>";
+                }
+                
+             ?>
             </ul>
-        </nav>
+        </section>        
+        <section id="der-wrap">
+            
+            <section id="prod-select">
+                <h4>Tu orden</h4>
+                <ul>
+                    
+                </ul>
+            </section>
+            <section id="prod-orden">
+                <h4>Ordena ya!</h4>
+                <p>Total a pagar: $<span id="total">0</span></p>
+            </section>
+        
+        </section>
     </section>
+    
 </section>
+  

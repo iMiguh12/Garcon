@@ -4,9 +4,12 @@
 }
 
 body {
+    background-color: #ddd0bf;
 }
 
 header {
+	margin: 1em;
+    background-color: #ddd0bf; 
 }
 
 header hgroup {
@@ -28,12 +31,25 @@ header hgroup h3 {
 }
 
 nav {
+    height: 25px;
+    width: 100%;
+    border-bottom: 4px solid #b9111e;
     float: right;
+    background-color: #1E1D1B;
+    font-size: 14px;
+    font-weight: bold;
+    color: #C3C3C3;    
+    text-transform: uppercase;
+    font-size: 100%;
 }
 
 header div#Login {
-    display: block;
+	display: block;
     float: right;
+    font-size: 12px;
+    margin: 0;
+    padding: 0px 30px 4px 20px !important;
+    vertical-align: top;
 }
 
 div#Contenido {
@@ -46,37 +62,81 @@ div#Contenido h1 {
 }
 
 footer {
-    margin-top: 2em;
-    text-align: right;
+    margin: 2em;
+    text-align: center;
 }
-
+/*Fin General*/
 
 /* Adquirir  */
-section#productos {
-    height: 200px;
-    margin: none;
-    text-align: center;
-    width: 70%;
-}
+section#content{
+    height:550px;
+    float: left;
+    width:100%;
 
-section#productos section {
-	height: 80%;
+    padding:40px 0;
 }
-
-section#productos section section {
-	height: 80%;
+section#wrapper{
+    width: 1000px;
+    margin:0 auto;
 }
-
-section#productos section section figure {
-    display: inline-block;
-    height: 100px;
-    width: 24%;
+section#prod-list{
+    float:left;
+    width:705px;;
+    height:510px;
+    padding:5px 5px;
+    background-color: #fff;
 }
-
-section#productos section section figure img {
-	height: 50%;
-	margin-top: 10%;
+.prod-item{
+    width: 200px;
+    height: 90px;
+    margin:5px;
+    border: 2px solid rgba(0,0,0,0.3);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px; 
 }
+section#prod-list ul{
+   margin: 0 auto;
+    padding: 0; 
+}
+section#prod-list ul li{
+    text-align: left;
+        float: left;
+        list-style: none;
+        padding: 10px;
+}
+section#der-wrap{
+    height:540px;
+    width:270px;
+    margin: -20px 0 0 15px;
+    float:left;
+}
+section#prod-select{
+    height:450px;
+}
+section#prod-orden{
+    height:55px;
+}
+section#prod-select, #prod-orden{
+    margin: 5px auto;
+    width:260px;
+    padding: 5px 5px;
+    background-color: #fff;
+}
+.img-Prod {
+  float:left;
+}
+figure figcaption{
+    position:relative;
+    
+}
+.compra{
+    font-size: 15px;
+	text-decoration: underline;
+	margin: 0 10px;
+	cursor: pointer;
+}
+/*fin Adquirir*/
 
 /* Productos */
 table#ProductosTabla {
@@ -96,7 +156,7 @@ table#ProductosTabla tbody td:first-child {
 table#ProductosTabla tbody td:first-child img {
     vertical-align: middle;
 }
-
+/*Fin productos*/
 /* Botones */
 .button {
     width: 20%;
@@ -108,7 +168,7 @@ table#ProductosTabla tbody td:first-child img {
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    font: 15px/100% Arial, Helvetica, sans-serif;
+    /*font: 15px/100% Arial, Helvetica, sans-serif;*/
     padding: 5em 2em .55em;
     text-shadow: 0 1px 1px rgba(0,0,0,.3);
     -webkit-border-radius: .5em; 
@@ -146,3 +206,4 @@ table#ProductosTabla tbody td:first-child img {
     background: -moz-linear-gradient(top,  #f47a20,  #faa51a);
     filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
 }
+/*fin Botones*/

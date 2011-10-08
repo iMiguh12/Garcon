@@ -65,9 +65,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         // jQuery y Javascript
         $view->addHelperPath( "ZendX/JQuery/View/Helper", "ZendX_JQuery_View_Helper" );
         $view->jQuery()->enable()
-                       ->uiEnable();
+                       ->setVersion( $sitio->jquery )
+                       ->uiEnable()
+                       ->setUiVersion( $sitio->jqueryUI );
 
-        $view->headScript()->appendFile( '/js/default.js', 'text/javascript', 
+        $view->headScript()->appendFile( '/js/garcon.js', 'text/javascript', 
             array(
                 'charset' => $sitio->encoding
             )
