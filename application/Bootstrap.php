@@ -119,6 +119,21 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Zend_Registry::set( 'Zend_Locale', $locale );
     }
 
+    // Init translator 
+    protected function _initL18n()
+    {
+        $translator = new Zend_Translate ( 
+            array(
+                'adapter' => 'array',
+                'content' => APPLICATION_PATH .'/../resources/languages',
+                'locale' => 'es',
+                'scan' => Zend_Translate::LOCALE_DIRECTORY
+            )
+        );
+        
+        Zend_Validate_Abstract::setDefaultTranslator( $translator );
+    }
+
     // feed (rss)
     protected function _initFeed()
     {
