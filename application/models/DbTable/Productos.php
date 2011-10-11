@@ -48,4 +48,19 @@ class Application_Model_DbTable_Productos extends Zend_Db_Table_Abstract
     {
         $this->delete( 'id =' . (int) $id );
     }
+
+    public function getTableMeta()
+    {
+        return $this->info(self::METADATA);
+    }
+
+    public function getEnumValues( $column ) 
+    {
+        $column = $column;
+        $meta = $this->getTableMeta();
+
+        $meta = explode( "',", $meta[$column]['DATA_TYPE'] );
+
+        return $meta;
+    }
 }

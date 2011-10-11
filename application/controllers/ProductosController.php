@@ -121,6 +121,9 @@ class ProductosController extends Zend_Controller_Action
         $forma = new Application_Form_Productos();
         $forma->enviar->setLabel( 'Agregar' );
 
+        // Obtener metadatos para categoría
+
+
         $this->view->forma = $forma;
 
         if ( $this->getRequest()->isPost() ) {
@@ -149,6 +152,11 @@ class ProductosController extends Zend_Controller_Action
             } else {
                 $forma->populate( $datos );
             }
+        } else {
+            $productos = new Application_Model_DbTable_Productos();
+            $meta = $productos->getEnumValues( 'categoria' );
+            
+            print_r( $meta ); exit;
         }
     }
 }
