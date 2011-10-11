@@ -2,6 +2,7 @@ USE garcon;
 
 CREATE TABLE productos (
     id int(3) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    categoria enum('bebidas','comidas','postres') NOT NULL,
     nombre VARCHAR(255) NOT NULL,
     descripcion TEXT NOT NULL,
 <<<<<<< Updated upstream
