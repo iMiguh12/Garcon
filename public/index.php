@@ -22,5 +22,18 @@ $application = new Zend_Application(
     APPLICATION_ENV,
     APPLICATION_PATH . '/configs/application.ini'
 );
+
+//Init translator 
+$translator = new Zend_Translate(
+    array(
+    'adapter' => 'array',
+    'content' => APPLICATION_PATH .'/../resources/languages',
+    'locale' => 'es',
+    'scan' => Zend_Translate::LOCALE_DIRECTORY
+    );
+        
+    Zend_Validate_Abstract::setDefaultTranslator( $translator )
+);    
+
 $application->bootstrap()
             ->run();
