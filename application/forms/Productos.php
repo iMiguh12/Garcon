@@ -46,30 +46,42 @@ class Application_Form_Productos extends Zend_Form
     	           ->addValidator( 'Int' )
                    ->addValidator( 'stringLength', true, array( 1, 3 ) );
 
-    	$imagenActual = new Zend_Form_Element_Image('imagenActual');
+	$categoria = new Zend_Form_Element_Select('categoria');
+	$categoria->setLabel('Categoria')
+         	  ->setRequired(true);
+		
+	$productos = new Application_Model_DbTable_Productos();
+        $meta = $productos->getEnumValues( 'categoria' );
 
-	     $imagen = new Zend_Form_Element_File( 'imagen' );
-             $imagen->setLabel ( 'Imagen' )
-	            ->setRequired ( 'true' )
-	            ->addValidator( 'IsImage' )
-	            ->addValidator( 'NotEmpty' )
-                    ->addValidator( 'Size', false, '1024000')
-                    ->addValidator( 'Extension', false, 'jpg, png')
-                    ->addValidator( 'ImageSize', false, array( 'maxheight' => 2500, 'maxwidth' =>2500 ) )
-                    ->setMaxFileSize( 1024000 );
+	foreach($meta as $cat){
+		$categoria->addMultiOption($cat, $cat);
+	}
+	
+
+
+    	$imagenActual = new Zend_Form_Element_Image('imagenActual');
+	$imagen = new Zend_Form_Element_File( 'imagen' );
+        $imagen->setLabel ( 'Imagen' )
+	           ->setRequired ( 'true' )
+	           ->addValidator( 'IsImage' )
+	           ->addValidator( 'NotEmpty' )
+                   ->addValidator( 'Size', false, '1024000')
+                   ->addValidator( 'Extension', false, 'jpg, png')
+                   ->addValidator( 'ImageSize', false, array( 'maxheight' => 2500, 'maxwidth' =>2500 ) )
+                   ->setMaxFileSize( 1024000 );
                
     	$enum = new Application_Model_DbTable_Productos;
-    	$categoria = $enum->getEnumValues( 'categoria' );
-    	print_r( $categoria );
-    	$selector = new Zend_Form_Element_Select( 'categoria' );
-    	$selector->setLabel ( 'Clasificación' ) 
-    	         ->addMultiOptions( $categoria );
+    	//$categoria = $enum->getEnumValues( 'categoria' );
+    	
+    	//$selector = new Zend_Form_Element_Select( 'categoria' );
+    	//$selector->setLabel ( 'Clasificación' ) 
+    	 //        ->addMultiOptions( $categoria );
     	
     	$enviar = new Zend_Form_Element_Submit( 'enviar' );
     	$enviar->setAttrib( 'id', 'botonEnviar' );
 
     	$this->addElements( 
-    	    array( $id, $nombre, $descripcion, $precio, $existencia, $imagenActual, $imagen, $categoria, $enviar ) 
+    	    array( $id, $nombre, $descripcion, $precio, $existencia, $categoria, $imagenActual, $imagen, $enviar ) 
     	);
     }
 }
