@@ -59,10 +59,11 @@ class Application_Form_Productos extends Zend_Form
                     ->setMaxFileSize( 1024000 );
                
     	$enum = new Application_Model_DbTable_Productos;
-    	$enum = $enum->getEnumValue( 'categoria' );
+    	$categoria = $enum->getEnumValues( 'categoria' );
+    	print_r( $categoria );
     	$selector = new Zend_Form_Element_Select( 'categoria' );
     	$selector->setLabel ( 'Clasificación' ) 
-    	         ->addMultiOptions($enum);
+    	         ->addMultiOptions( $categoria );
     	
     	$enviar = new Zend_Form_Element_Submit( 'enviar' );
     	$enviar->setAttrib( 'id', 'botonEnviar' );
