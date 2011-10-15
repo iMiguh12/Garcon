@@ -5,17 +5,6 @@ class ProductosController extends Zend_Controller_Action
     public function init()
     {
         require_once 'PHPThumb/ThumbLib.inc.php';
-
-        $translator = new Zend_Translate(
-            array(
-            'adapter' => 'array',
-            'content' => APPLICATION_PATH.'/../resources/languages',
-            'locale'  => 'es',
-            'scan' => Zend_Translate::LOCALE_DIRECTORY
-            )
-        );
-        
-        Zend_Validate_Abstract::setDefaultTranslator( $translator );
     }
 
     public function indexAction()
@@ -54,6 +43,7 @@ class ProductosController extends Zend_Controller_Action
                 $descripcion = $forma->getValue( 'descripcion' );
                 $precio = $forma->getValue( 'precio' );
                 $existencia = $forma->getValue( 'existencia' );
+		$categoria =  $forma->getValue( 'categoria' );
                 $imagen = $forma->getValue( 'imagen');
                 $carga = $forma->imagen->getFileName ( 'imagen' );
         
@@ -67,32 +57,40 @@ class ProductosController extends Zend_Controller_Action
                 } else {
                     $producto = new Application_Model_DbTable_Productos();
                     $datos = $producto->getProducto( $this->_getParam( 'id' ) );
-                    $imagen = $datos['imagen'];         
-                    //$imagen = new Application_Model_DbTable_Productos()->getProducto( $this->_getParam( 'id') )['imagen'];
+                    $imagen = $datos['imagen'];
                 }
                 
                 $mime =$forma->imagen->getMimeType ( 'imagen' );
                 
                 // actualizar los datos
                 $productos = new Application_Model_DbTable_Productos();
-                $productos->updateProducto( $id, $nombre, $descripcion, $precio, $existencia, $imagen, $mime );
+                $productos->updateProducto( $id, $nombre, $descripcion, $precio, $existencia, $categoria, $imagen, $mime );
 
                 // redirigir al index
                 $this->_helper->redirector( 'index' );
             } else {
-                $forma->populate( $datos );
+                $id = $this->_getParam( 'id', 0 );
+		if ( $id > 0 ) {
+			$this->llenarForma($forma, $id);
+		}
+		
             }
         } else {
             $id = $this->_getParam( 'id', 0 );
             if ( $id > 0 ) {
-                $productos = new Application_Model_DbTable_Productos();
-                $datos = $productos->getProducto( $id );
-                $this->view->datos = $datos;
-                $forma->imagen->setRequired ( false );
-                $forma->populate( $datos  );
-                $forma->imagenActual->setImage( 'data:' . $datos['mime'] . ';base64,' . base64_encode( $datos['imagen'] ) );
+                $this->llenarForma($forma, $id);
             }
         }
+    }
+
+    public function llenarForma( $forma, $id )
+    {
+	$productos = new Application_Model_DbTable_Productos();
+        $datos = $productos->getProducto( $id );
+        $this->view->datos = $datos;
+        $forma->imagen->setRequired ( false );
+        $forma->populate( $datos  );
+        $forma->imagenActual->setImage( 'data:' . $datos['mime'] . ';base64,' . base64_encode( $datos['imagen'] ) );
     }
 
     public function deleteAction()
@@ -134,6 +132,9 @@ class ProductosController extends Zend_Controller_Action
         $forma = new Application_Form_Productos();
         $forma->enviar->setLabel( 'Agregar' );
 
+        // Obtener metadatos para categoría
+
+
         $this->view->forma = $forma;
 
         if ( $this->getRequest()->isPost() ) {
@@ -145,6 +146,7 @@ class ProductosController extends Zend_Controller_Action
                 $descripcion = $forma->getValue( 'descripcion' );
                 $precio = $forma->getValue( 'precio' );
                 $existencia = $forma->getValue( 'existencia' );
+		$categoria =  $forma->getValue( 'categoria' );
                 $imagen_nombre = $forma->imagen->getFileName ( 'imagen' );
                 $param_miniatura = array( 'resizeUp' => true, 'jpegQuality' => 80);
                 $dimension = PhpThumbFactory::create( $imagen_nombre, $param_miniatura);
@@ -155,7 +157,7 @@ class ProductosController extends Zend_Controller_Action
                 
                 // actualizar los datos
                 $productos = new Application_Model_DbTable_Productos();
-                $productos->addProducto( $nombre, $descripcion, $precio, $existencia, $imagen, $mime );
+                $productos->addProducto( $nombre, $descripcion, $precio, $existencia, $categoria, $imagen, $mime );
 
                 // redirigir al index
                 $this->_helper->redirector( 'index' );
