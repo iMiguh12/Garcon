@@ -16,13 +16,14 @@ class Application_Model_DbTable_Productos extends Zend_Db_Table_Abstract
         return $row->toArray();
     }
 
-    public function addProducto( $nombre, $descripcion, $precio, $existencia, $imagen, $mime )
+    public function addProducto( $nombre, $descripcion, $precio, $existencia, $categoria, $imagen, $mime )
     {
         $data = array(
             'nombre' => $nombre,
             'descripcion' => $descripcion,
             'precio' => $precio,
             'existencia' => $existencia, 
+	    'categoria' => $categoria, 
             'imagen' => $imagen,
             'mime' => $mime,
  	 );
@@ -30,13 +31,14 @@ class Application_Model_DbTable_Productos extends Zend_Db_Table_Abstract
         $this->insert($data);
     }
 
-    public function updateProducto( $id, $nombre, $descripcion, $precio, $existencia, $imagen, $mime )
+    public function updateProducto( $id, $nombre, $descripcion, $precio, $existencia, $categoria, $imagen, $mime )
     {
         $data = array(
             'nombre' => $nombre,
             'descripcion' => $descripcion, 
             'precio' => $precio,
             'existencia' => $existencia,
+	    'categoria' => $categoria,
             'imagen' => $imagen,
             'mime' => $mime,
          );
@@ -58,9 +60,7 @@ class Application_Model_DbTable_Productos extends Zend_Db_Table_Abstract
     {
         $column = $column;
         $meta = $this->getTableMeta();
-
-        $meta = explode( "',", $meta[$column]['DATA_TYPE'] );
-
-        return $meta;
+	preg_match_all( "/'(.*?)'/" , $meta[$column]['DATA_TYPE'], $arreglo);
+        return $arreglo[1];
     }
 }

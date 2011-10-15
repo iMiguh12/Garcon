@@ -46,9 +46,22 @@ class Application_Form_Productos extends Zend_Form
     	           ->addValidator( 'Int' )
                    ->addValidator( 'stringLength', true, array( 1, 3 ) );
 
+	$categoria = new Zend_Form_Element_Select('categoria');
+	$categoria->setLabel('Categoria')
+         	  ->setRequired(true);
+		
+	$productos = new Application_Model_DbTable_Productos();
+        $meta = $productos->getEnumValues( 'categoria' );
+
+	foreach($meta as $cat){
+		$categoria->addMultiOption($cat, $cat);
+	}
+	
+
+
     	$imagenActual = new Zend_Form_Element_Image('imagenActual');
 
-		$imagen = new Zend_Form_Element_File( 'imagen' );
+	$imagen = new Zend_Form_Element_File( 'imagen' );
         $imagen->setLabel ( 'Imagen' )
 	           ->setRequired ( 'true' )
 	           ->addValidator( 'IsImage' )
@@ -62,7 +75,7 @@ class Application_Form_Productos extends Zend_Form
     	$enviar->setAttrib( 'id', 'botonEnviar' );
 
     	$this->addElements( 
-    	    array( $id, $nombre, $descripcion, $precio, $existencia, $imagenActual, $imagen, $enviar ) 
+    	    array( $id, $nombre, $descripcion, $precio, $existencia, $categoria, $imagenActual, $imagen, $enviar ) 
     	);
     }
 }
