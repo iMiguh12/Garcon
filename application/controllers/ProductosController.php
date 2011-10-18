@@ -19,6 +19,9 @@ class ProductosController extends Zend_Controller_Action
 
         // asignar resultado a una variable de la vista
         $this->view->productos = $productos->fetchAll( $select );
+
+        // asignar el nombre del key a usar para el objeto del partial
+        $this->view->partial()->setObjectKey('productos');
     }
 
     public function editAction()

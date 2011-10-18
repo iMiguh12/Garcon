@@ -1,34 +1,5 @@
 <p>
     <a href="<?php echo $this->url( array( 'controller' => 'productos', 'action' =>     'add' ) ); ?>" >agregar producto</a>
 </p>
-<table id="ProductosTabla" >
-    <thead>
-        <th>Imagen</th>
-        <th>Nombre</th>
-        <th>Descripción</th>
-        <th>Precio</th>
-        <th>Existencia</th>
-        <th colspan="2">Comandos</th>
-    </thead>
 
-    <tbody>
-<?php foreach ( $this->productos as $producto ) : ?>
-        <tr>
-            <td><?php echo $this->displayBlobImage( 
-                $producto->mime, 
-                $producto->imagen,  
-                'imagen' . $producto->id,
-                'ImagenesDeProducto',
-                $producto->descripcion,
-                $producto->nombre
-            ); ?></td>
-            <td><?php echo $this->escape($producto->nombre); ?></td>
-            <td><?php echo $this->escape($producto->descripcion); ?></td>
-            <td><?php echo $this->escape($producto->precio); ?></td>
-            <td><?php echo $this->escape($producto->existencia); ?></td>
-            <td><a href="<?php echo $this->url( array( 'controller' => 'productos', 'action' => 'edit', 'id' => $producto->id) ); ?>" >editar</a></td>
-            <td><a href="<?php echo $this->url( array( 'controller' => 'productos', 'action' => 'delete', 'id' => $producto->id) ); ?>" >borrar</a></td>
-        </tr>
-<?php endforeach; ?>
-    </tbody>
-</table>
+<?php echo $this->partial( 'tabla_de_productos.phtml', $this->productos ); ?>
