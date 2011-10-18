@@ -23,7 +23,7 @@ class Application_Model_DbTable_Productos extends Zend_Db_Table_Abstract
             'descripcion' => $descripcion,
             'precio' => $precio,
             'existencia' => $existencia, 
-        'categoria' => $categoria, 
+            'categoria' => $categoria, 
             'imagen' => $imagen,
             'mime' => $mime,
      );
@@ -38,7 +38,7 @@ class Application_Model_DbTable_Productos extends Zend_Db_Table_Abstract
             'descripcion' => $descripcion, 
             'precio' => $precio,
             'existencia' => $existencia,
-        'categoria' => $categoria,
+            'categoria' => $categoria,
             'imagen' => $imagen,
             'mime' => $mime,
          );
@@ -60,7 +60,7 @@ class Application_Model_DbTable_Productos extends Zend_Db_Table_Abstract
     {
         $column = $column;
         $meta = $this->getTableMeta();
-    preg_match_all( "/'(.*?)'/" , $meta[$column]['DATA_TYPE'], $arreglo);
+        preg_match_all( "/'(.*?)'/" , $meta[$column]['DATA_TYPE'], $arreglo);
         return $arreglo[1];
     }
 }
