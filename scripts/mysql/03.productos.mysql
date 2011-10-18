@@ -9,6 +9,6 @@ CREATE TABLE productos (
     descripcion TEXT NOT NULL,
     precio FLOAT(4,2) UNSIGNED NOT NULL,
     existencia INT(3) UNSIGNED NOT NULL,
-    imagen BLOB,
+    imagen BLOB NOT NULL,
     mime VARCHAR(20)
 );

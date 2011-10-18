@@ -19,6 +19,9 @@ class ProductosController extends Zend_Controller_Action
 
         // asignar resultado a una variable de la vista
         $this->view->productos = $productos->fetchAll( $select );
+
+        // asignar el nombre del key a usar para el objeto del partial
+        $this->view->partial()->setObjectKey('productos');
     }
 
     public function editAction()
@@ -33,23 +36,26 @@ class ProductosController extends Zend_Controller_Action
         // asignar forma a la vista
         $this->view->forma = $forma;
 
-        if ( $this->getRequest()->isPost() ) {
+        if ( $this->getRequest()->isPost() ) 
+        {
             $datos = $this->getRequest()->getPost();
             $forma->imagen->setRequired ( false );
-            if ( $forma->isValid( $datos ) ) {
+            if ( $forma->isValid( $datos ) ) 
+            {
                 // asignar los valores de la forma a variables
                 $id = (int) $forma->getValue( 'id' );
                 $nombre = $forma->getValue( 'nombre' );
                 $descripcion = $forma->getValue( 'descripcion' );
                 $precio = $forma->getValue( 'precio' );
                 $existencia = $forma->getValue( 'existencia' );
-        $categoria =  $forma->getValue( 'categoria' );
+                $categoria =  $forma->getValue( 'categorias' );
                 $imagen = $forma->getValue( 'imagen');
                 $carga = $forma->imagen->getFileName ( 'imagen' );
         
                 $param_miniatura = array( 'resizeUp' => true, 'jpegQuality' => 80);
             
-                if ( $forma->getValue( 'imagen' ) != null ) {
+                if ( $forma->getValue( 'imagen' ) != null ) 
+                {
                     $dimension = PhpThumbFactory::create( $carga, $param_miniatura );
                     $dimension->resize( 100, 100 );
                     $dimension->save( $carga );
@@ -70,22 +76,21 @@ class ProductosController extends Zend_Controller_Action
                 $this->_helper->redirector( 'index' );
             } else {
                 $id = $this->_getParam( 'id', 0 );
-        if ( $id > 0 ) {
-            $this->llenarForma($forma, $id);
-        }
-        
+                if ( $id > 0 ) {
+                    $this->_llenarForma( $forma , $id );
+                }
             }
         } else {
             $id = $this->_getParam( 'id', 0 );
             if ( $id > 0 ) {
-                $this->llenarForma($forma, $id);
+                $this->_llenarForma( $forma , $id );
             }
         }
     }
 
-    public function llenarForma( $forma, $id )
+    private function _llenarForma( $forma, $id )
     {
-    $productos = new Application_Model_DbTable_Productos();
+        $productos = new Application_Model_DbTable_Productos();
         $datos = $productos->getProducto( $id );
         $this->view->datos = $datos;
         $forma->imagen->setRequired ( false );
@@ -146,7 +151,7 @@ class ProductosController extends Zend_Controller_Action
                 $descripcion = $forma->getValue( 'descripcion' );
                 $precio = $forma->getValue( 'precio' );
                 $existencia = $forma->getValue( 'existencia' );
-        $categoria =  $forma->getValue( 'categoria' );
+                $categoria =  $forma->getValue( 'categorias' );
                 $imagen_nombre = $forma->imagen->getFileName ( 'imagen' );
                 $param_miniatura = array( 'resizeUp' => true, 'jpegQuality' => 80);
                 $dimension = PhpThumbFactory::create( $imagen_nombre, $param_miniatura);
