@@ -2,8 +2,17 @@ USE garcon;
 
 CREATE TABLE productos (
     id int(3) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    categoria enum('bebidas','comidas','postres') NOT NULL,
     nombre VARCHAR(255) NOT NULL,
     descripcion TEXT NOT NULL,
+<<<<<<< Updated upstream
     precio FLOAT(4,2) UNSIGNED NOT NULL ,
     existencia INT(3) UNSIGNED NOT NULL
 )
+=======
+    precio FLOAT(4,2) UNSIGNED NOT NULL,
+    existencia INT(3) UNSIGNED NOT NULL,
+    imagen BLOB,
+    mime VARCHAR(20)
+);
+>>>>>>> Stashed changes
