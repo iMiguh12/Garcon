@@ -1,17 +1,14 @@
 /* Menu */
 nav {
     display: inline-block;
-    height: 18px;
+    height: 1em;
     padding: .5em;
     text-align: right;
 }
 
 nav a {
-    font-size: 14px;
-    font-weight: bold;
-	color: white;
+    font-size: 14pt;
     margin-right: 3em;
-    text-decoration: none !important;	
 }
 
 div#Login,
