@@ -7,13 +7,13 @@ Autenticacion
 =============
 Incluye la autentificación, registro y utilerías de los usuarios; así como de el sistema de permisos y roles (ACL) de la aplicación.
 
-Responsables: Rodolfo, Perla, Steven y Sergio 
+Responsables: Rodolfo y Renich
 
 Administración
 ==============
 Sección desde la cual, el admin o admins, podrá(n) realizar las tareas administrativas.
 
-Responsables: Steven y Perla
+Responsables: Armando, Renich, ?
 
 Interfaz
 ========
@@ -21,20 +21,14 @@ HTML5, CSS3 y Javascript 100% validados y correctos. Es la parte visual de la ap
 
 Responsables: Beto y Sergio
 
-Movimientos
-===========
-Control de las operaciones realizadas en la aplicación. Donaciones, inventario, status de usuarios, reportes,  etc.
-
-Responsables: Jacobo, Iván y Renich
-
 Master
 ======
 Quality assurance y merges de la aplicación. Releases oficiales.
 
-Responsables: Renich y Esteban
+Responsables: Renich
 
 Documentación
 =============
 Documentación para usuarios; así como documentación técnica de la aplicación. Screencasts, howtos, manuales, etc.
 
-Responsables: Perla, Renich, Esteban y Juan
+Responsables: ^(.*)$
