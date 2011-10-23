@@ -1,21 +1,11 @@
 /* Menu */
 nav {
     display: inline-block;
-    height: 1em;
-    padding: .5em;
-    text-align: right;
 }
 
 nav a {
+    text-decoration: none;
     font-size: 14pt;
-    margin-right: 3em;
-}
-
-div#Login,
-div#Login dl dt,
-div#Login dl dd {
-    display: inline-block;
-    margin: 0;
 }
 
 ul.nav {
@@ -26,6 +16,7 @@ ul.nav {
 
 ul.nav li {
     display: inline-block;
-    margin: 0 0 0 1em;
-    text-decoration: none;
+    text-align: center;
+    width: 12ex;
 }
+

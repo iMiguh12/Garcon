@@ -1,11 +1,29 @@
 /* header */
 header {
-    height: 5em;
+    min-height: 5em;
 }
+
+nav {
+    position: absolute;
+    right: 2ex;
+    top: 2em;
+}
+
+div#Login {
+    position: absolute;
+    right: 1.75em;
+    top: .2em;
+}
+
+div#Login dt, div#Login dd {
+    display: inline-block;
+}
+
+div#l
 
 /* content */
 div#Contenido {
-
+    min-height: 20em;
 }
 
 /* footer */
