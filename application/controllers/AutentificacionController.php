@@ -2,10 +2,8 @@
 
 class AutentificacionController extends Zend_Controller_Action
 {
-
     public function init()
     {
-        /* Initialize action controller here */
     }
 
     public function indexAction()
@@ -29,7 +27,7 @@ class AutentificacionController extends Zend_Controller_Action
         $this->view->forma = $forma;
     }
 
-    protected function _process($values)
+    private function _process($values)
     {
         // Get our authentication adapter and check credentials
         $adapter = $this->_getAuthAdapter();
@@ -48,7 +46,7 @@ class AutentificacionController extends Zend_Controller_Action
         return false;
     }
 
-    protected function _getAuthAdapter()
+    private function _getAuthAdapter()
     {
         $dbAdapter = Zend_Db_Table::getDefaultAdapter();
         $authAdapter = new Zend_Auth_Adapter_DbTable( $dbAdapter );
@@ -98,7 +96,4 @@ class AutentificacionController extends Zend_Controller_Action
 
         $this->view->forma = $forma;
     }
-
-
 }
-
