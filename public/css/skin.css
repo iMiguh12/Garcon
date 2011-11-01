@@ -1,3 +1,19 @@
+/* General */
+a, a:visited, a:active {
+    color: #93c;
+}
+
+/* Menu */
+ul.nav li {
+    border: 2px ridge #fff;
+}
+
+ul.nav li:hover {
+    border-radius: 10px;
+    border: 2px ridge #3ac;
+}
+
+
 /* Productos */
 table#ProductosTabla thead tr {
 	background: #aaf;
