@@ -45,7 +45,10 @@ class Application_Form_Usuarios extends Zend_Form
                  ->addFilter( 'StripTags' )
                  ->addFilter( 'StringTrim' )
                  ->addValidator( 'NotEmpty' )
-                 ->addValidator( 'Regex', false, array( '/^[+]?[-\d() .]*$/i' ) ) ;
+                 // hace lo mismo que la linea de abajo, pero es un poco mas largo 
+                 //->addValidator( new Zend_Validate_Digits())
+                 ->addValidator( 'Digits' )
+                 ->addValidator( 'stringLength', true, array( 12, 12 ) );
 
         $enviar = new Zend_Form_Element_Submit( 'enviar' );
         $enviar->setAttrib( 'id', 'botonEnviar' );
