@@ -16,7 +16,7 @@ class Application_Form_Usuarios extends Zend_Form
                ->addFilter( 'StripTags' )
                ->addFilter( 'StringTrim' )
                ->addValidator( 'NotEmpty' )
-               ->addValidator( 'Regex', false, array( '#^([a-z A-Z0-9ñÑáéíóúÁÉÍÓÚüÜ\(\)-]+$.*)#' ) )
+               ->addValidator( 'Regex', false, array( '#^([a-z A-Z0-9ñÑáéíóúÁÉÍÓÚüÜ\.]+$.*)#' ) )
                ->addValidator( 'stringLength', true, array(1, 255));
 
         $estados = new Zend_Form_Element_Select('estados');
