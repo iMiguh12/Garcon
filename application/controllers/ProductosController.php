@@ -95,6 +95,7 @@ class ProductosController extends Zend_Controller_Action
         $this->view->datos = $datos;
         $forma->imagen->setRequired ( false );
         $forma->populate( $datos  );
+        $forma->categorias->setValue($datos['categoria']);
         $forma->imagenActual->setImage( 'data:' . $datos['mime'] . ';base64,' . base64_encode( $datos['imagen'] ) );
     }
 
