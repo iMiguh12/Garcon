@@ -1,9 +1,15 @@
-/* General */
+/* general */
 a, a:visited, a:active {
-    color: #93c;
+    text-decoration: none;
 }
 
-/* Menu */
+/* header */
+header h1 {
+    font: 20pt Verdana;
+    color: #0d0;
+}
+
+/* menu */
 ul.nav li {
     border: 2px ridge #fff;
 }
@@ -13,13 +19,18 @@ ul.nav li:hover {
     border: 2px ridge #3ac;
 }
 
+/* contenido */
+div#Contenido h1 {
+    font: 16pt Verdana;
+    color: #0d0;
+}
 
-/* Productos */
-table#ProductosTabla thead tr {
+/* productos */
+table thead tr {
 	background: #aaf;
 }
 
-table#ProductosTabla tbody tr:hover {
+table tbody tr:hover {
 	background: #ffa;
 	cursor:     default;
 }
