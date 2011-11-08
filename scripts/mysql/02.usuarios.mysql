@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS usuarios;
 
 CREATE TABLE `usuarios` (
       `id` int(4) unsigned NOT NULL AUTO_INCREMENT,
+      `estado` enum('preregistrado','activado','amonestado','expulsado','expirado') NOT NULL default 'preregistrado',
       `nombre` varchar(75) NOT NULL DEFAULT '',
       `email` varchar(100) NOT NULL DEFAULT '',
       `telefono` varchar(12) NOT NULL DEFAULT '',

@@ -1,0 +1,21 @@
+<table id="ProductosTabla" >
+    <thead>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th colspan="2">Comandos</th>
+    </thead>
+
+    <tbody>
+<?php foreach ( $this->usuarios as $usuario ) : ?>
+        <tr>
+            <td><?php echo $this->escape($usuario->nombre); ?></td>
+            <td><?php echo $this->escape($usuario->email); ?></td>
+            <td><?php echo $this->escape($usuario->telefono); ?></td>
+             <td><a href="<?php echo $this->url( array( 'controller' => 'usuarios', 'action' => 'edit', 'id' => $usuario->id) ); ?>" >editar</a></td>
+            <td><a href="<?php echo $this->url( array( 'controller' => 'usuarios', 'action' => 'delete', 'id' => $usuario->id) ); ?>" >borrar</a></td>
+        </tr>
+<?php endforeach; ?>
+    </tbody>
+</table>
+

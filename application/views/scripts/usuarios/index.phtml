@@ -1,21 +1,7 @@
-<table id="UsuariosTabla" >
-    <thead>
-        <th>Nombre</th>
-        <th>Email</th>
-        <th>Teléfono</th>
-        <th colspan="2">Comandos</th>
-    </thead>
+<p>
+    <a href="<?php echo $this->url( array( 'controller' => 'usuarios', 'action' =>     'add' ) ); ?>" >agregar usuario</a>
+</p>
 
-    <tbody>
-<?php foreach ( $this->usuarios as $usuario ) : ?>
-        <tr>
-            <td><?php echo $this->escape($usuario->nombre); ?></td>
-            <td><?php echo $this->escape($usuario->email); ?></td>
-            <td><?php echo $this->escape($usuario->telefono); ?></td>
-            <td>editar</td>
-            <td>borrar</td>
-        </tr>
-<?php endforeach; ?>
-    </tbody>
-</table>
+<?php echo $this->partial( 'tabla_de_usuarios.phtml', $this->usuarios ); ?>
+
 
