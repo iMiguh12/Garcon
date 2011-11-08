@@ -22,6 +22,7 @@ class AutentificacionController extends Zend_Controller_Action
             }
         } else {
             $this->_helper->redirector('index', 'index');
+        
         }
 
         $this->view->forma = $forma;
@@ -46,12 +47,12 @@ class AutentificacionController extends Zend_Controller_Action
         return false;
     }
 
-    private function _getAuthAdapter()
+    function _getAuthAdapter()
     {
         $dbAdapter = Zend_Db_Table::getDefaultAdapter();
         $authAdapter = new Zend_Auth_Adapter_DbTable( $dbAdapter );
 
-        $authAdapter->setTableName( 'usuarios' )
+        $authAdapter->setTableName( 'nombre' )
                     ->setIdentityColumn( 'email' )
                     ->setCredentialColumn( 'clave' )
                     ->setCredentialTreatment( 'SHA1( CONCAT( ?, condimento ) )' );
@@ -59,7 +60,7 @@ class AutentificacionController extends Zend_Controller_Action
         return $authAdapter;
     }
 
-    public function logoutAction()
+    function logoutAction()
     {
         Zend_Auth::getInstance()->clearIdentity();
         $this->_helper->redirector( 'index', 'index' );

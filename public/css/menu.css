@@ -1,24 +1,11 @@
 /* Menu */
 nav {
     display: inline-block;
-    height: 18px;
-    padding: .5em;
-    text-align: right;
 }
 
 nav a {
-    font-size: 14px;
-    font-weight: bold;
-	color: white;
-    margin-right: 3em;
-    text-decoration: none !important;	
-}
-
-div#Login,
-div#Login dl dt,
-div#Login dl dd {
-    display: inline-block;
-    margin: 0;
+    text-decoration: none;
+    font-size: 14pt;
 }
 
 ul.nav {
@@ -29,6 +16,7 @@ ul.nav {
 
 ul.nav li {
     display: inline-block;
-    margin: 0 0 0 1em;
-    text-decoration: none;
+    text-align: center;
+    width: 12ex;
 }
+
