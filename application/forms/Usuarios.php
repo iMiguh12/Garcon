@@ -49,12 +49,24 @@ class Application_Form_Usuarios extends Zend_Form
                  //->addValidator( new Zend_Validate_Digits())
                  ->addValidator( 'Digits' )
                  ->addValidator( 'stringLength', true, array( 12, 12 ) );
+        $clave = new Zend_Form_Element_Password( 'clave' );
+        $clave->setLabel('Clave')
+              ->addFilter('StringTrim')
+              ->addValidator( 'NotEmpty' )
+              ->addValidator('Identical', false, array('claveConfirma', 'Confirm Password'));
+        $claveConfirma = new Zend_Form_Element_Password( 'claveConfirma' );
+        $claveConfirma->setLabel('Corroborar clave')
+                      ->addFilter('StringTrim')
+                      ->addValidator( 'NotEmpty' );
+        $condimento = new Zend_Form_Element_Text( 'condimento' );
+        $condimento->setLabel('Condimento')
+                   ->addValidator( 'StringLength', true , array( 5, 40)  );
 
         $enviar = new Zend_Form_Element_Submit( 'enviar' );
         $enviar->setAttrib( 'id', 'botonEnviar' );
 
         $this->addElements( 
-            array( $id, $nombre, $estados, $email, $telefono, $enviar ) 
+            array( $id, $nombre, $estados, $email, $telefono, $clave, $claveConfirma, $condimento, $enviar ) 
         );
     }
 }

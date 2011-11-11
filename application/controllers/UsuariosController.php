@@ -34,8 +34,10 @@ class UsuariosController extends Zend_Controller_Action
                 $email = $forma->getValue('email');
                 $telefono = $forma->getValue('telefono');
                 $estado = $forma->getValue('estados');
+                $clave = $forma->getValue('clave');
+                $condimento = $forma->getValue('condimento');
 
-                $usuarios->addUsuario( $nombre, $email, $telefono, $estado);
+                $usuarios->addUsuario( $nombre, $email, $telefono, $estado, $clave, $condimento);
                 // redirigir al index
                 $this->_helper->redirector( 'index' );
             } else {
@@ -54,7 +56,8 @@ class UsuariosController extends Zend_Controller_Action
         
         // asignar forma a la vista
         $this->view->forma = $forma;
-
+        $forma->getElement('clave')->setLabel('Clave (dejar vacio si no se desea cambiar el password)');
+        $forma->getElement('condimento')->setLabel('Condimento (dejar vacio si no se desea cambiar el condimento)');
         if ( $this->getRequest()->isPost() ) 
         {
             $datos = $this->getRequest()->getPost();
@@ -66,11 +69,12 @@ class UsuariosController extends Zend_Controller_Action
                 $email = $forma->getValue( 'email' );
                 $telefono = $forma->getValue( 'telefono' );
                 $estado = $forma->getValue( 'estados' );
-                                  
+                $clave = $forma->getValue('clave');
+                $condimento = $forma->getValue('condimento');
                 
                 // actualizar los datos
                 $usuarios = new Application_Model_DbTable_Usuarios();
-                $usuarios->updateUsuario( $id, $nombre, $email, $telefono, $estado );
+                $usuarios->updateUsuario( $id, $nombre, $email, $telefono, $estado, $clave, $condimento );
 
                 // redirigir al index
                 $this->_helper->redirector( 'index' );
@@ -88,6 +92,9 @@ class UsuariosController extends Zend_Controller_Action
                 $this->view->datos = $datos;
                 $forma->populate( $datos  );
                 $forma->estados->setValue($datos['estado']);
+//                $forma->condimento->setValue('');
+
+
             }
         }
     }
