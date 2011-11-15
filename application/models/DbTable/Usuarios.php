@@ -53,10 +53,20 @@ class Application_Model_DbTable_Usuarios extends Zend_Db_Table_Abstract
 
     public function getEnumValues( $column ) 
     {
-        $column = $column;
         $meta = $this->getTableMeta();
         preg_match_all( "/'(.*?)'/" , $meta[$column]['DATA_TYPE'], $arreglo);
         return $arreglo[1];
+    }
+
+    public function isDuplicate( $value )
+    {
+        $row = $this->fetchRow( "email = '$value'" ); 
+
+        if ( $row ) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
