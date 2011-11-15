@@ -31,8 +31,6 @@ class ProductosController extends Zend_Controller_Action
         $forma->addElement( 'submit', 'enviar' );
         $forma->enviar->setLabel( 'Guardar' );
 
-        $forma->addElement( new Zend_Form_Element_Hidden( 'imagen_db' ) );
-        
         // asignar forma a la vista
         $this->view->forma = $forma;
 
