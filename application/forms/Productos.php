@@ -57,8 +57,6 @@ class Application_Form_Productos extends Zend_Form
             $categorias->addMultiOption($cat, $cat);
         }
 
-        // @TODO: mover la imagen a mostrar fuera de la forma.
-        $imagenActual = new Zend_Form_Element_Image('imagenActual');
         $imagen = new Zend_Form_Element_File( 'imagen' );
         $imagen->setLabel ( 'Imagen' )
                ->setRequired ( 'true' )
@@ -73,7 +71,7 @@ class Application_Form_Productos extends Zend_Form
         $enviar->setAttrib( 'id', 'botonEnviar' );
 
         $this->addElements( 
-            array( $id, $nombre, $descripcion, $precio, $existencia, $categorias, $imagenActual, $imagen, $enviar ) 
+            array( $id, $nombre, $descripcion, $precio, $existencia, $categorias, $imagen, $enviar ) 
         );
     }
 }

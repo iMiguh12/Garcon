@@ -48,7 +48,8 @@ class ProductosController extends Zend_Controller_Action
                 $categoria =  $forma->getValue( 'categorias' );
                 $imagen = $forma->getValue( 'imagen');
                 $carga = $forma->imagen->getFileName ( 'imagen' );
-        
+                
+                // @TODO: quitar la dependencia de PhpThumbFactory
                 $param_miniatura = array( 'resizeUp' => true, 'jpegQuality' => 80);
             
                 if ( $forma->getValue( 'imagen' ) != null ) {
@@ -60,6 +61,9 @@ class ProductosController extends Zend_Controller_Action
                     $producto = new Application_Model_DbTable_Productos();
                     $datos = $producto->getProducto( $this->_getParam( 'id' ) );
                     $imagen = $datos['imagen'];
+                    
+                    // dibujar la imagen
+                    //$forma->imagenActual->setImage( 'data:' . $datos['mime'] . ';base64,' . base64_encode( $datos['imagen'] ) );
                 }
                 
                 $mime =$forma->imagen->getMimeType( 'imagen' );
@@ -91,6 +95,7 @@ class ProductosController extends Zend_Controller_Action
 
         // obtener el producto con la ID provista
         $datos = $productos->getProducto( $id );
+        $this->view->imagen = 'data:' . $datos['mime'] . ';base64,' . base64_encode( $datos['imagen'] );
 
         // popular la forma con los datos del producto
         $forma->populate( $datos  );
@@ -100,9 +105,6 @@ class ProductosController extends Zend_Controller_Action
 
         // no requerir la imagen
         $forma->imagen->setRequired ( false );
-
-        // dibujar la imagen
-        $forma->imagenActual->setImage( 'data:' . $datos['mime'] . ';base64,' . base64_encode( $datos['imagen'] ) );
     }
 
     public function deleteAction()
