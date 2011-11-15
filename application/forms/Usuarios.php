@@ -30,6 +30,7 @@ class Application_Form_Usuarios extends Zend_Form
             $estados->addMultiOption($cat, $cat);
         }
 
+        // @TODO: agregar validador de duplicados por correo. Ver si vamos a usar nuestro modelo ( Usuario->isDuplicate() )
         $email = new Zend_Form_Element_Text( 'email' );
         $email->setLabel( 'Email' )
               ->setRequired( 'true' )
