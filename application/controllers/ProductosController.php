@@ -34,12 +34,11 @@ class ProductosController extends Zend_Controller_Action
         // asignar forma a la vista
         $this->view->forma = $forma;
 
-        if ( $this->getRequest()->isPost() ) 
-        {
+        if ( $this->getRequest()->isPost() ) {
             $datos = $this->getRequest()->getPost();
             $forma->imagen->setRequired ( false );
-            if ( $forma->isValid( $datos ) ) 
-            {
+
+            if ( $forma->isValid( $datos ) ) {
                 // asignar los valores de la forma a variables
                 $id = (int) $forma->getValue( 'id' );
                 $nombre = $forma->getValue( 'nombre' );
@@ -52,8 +51,7 @@ class ProductosController extends Zend_Controller_Action
         
                 $param_miniatura = array( 'resizeUp' => true, 'jpegQuality' => 80);
             
-                if ( $forma->getValue( 'imagen' ) != null ) 
-                {
+                if ( $forma->getValue( 'imagen' ) != null ) {
                     $dimension = PhpThumbFactory::create( $carga, $param_miniatura );
                     $dimension->resize( 100, 100 );
                     $dimension->save( $carga );
@@ -64,7 +62,7 @@ class ProductosController extends Zend_Controller_Action
                     $imagen = $datos['imagen'];
                 }
                 
-                $mime =$forma->imagen->getMimeType ( 'imagen' );
+                $mime =$forma->imagen->getMimeType( 'imagen' );
                 
                 // actualizar los datos
                 $productos = new Application_Model_DbTable_Productos();
@@ -88,12 +86,22 @@ class ProductosController extends Zend_Controller_Action
 
     private function _llenarForma( $forma, $id )
     {
+        // obtener DbTable de productos
         $productos = new Application_Model_DbTable_Productos();
+
+        // obtener el producto con la ID provista
         $datos = $productos->getProducto( $id );
-        $this->view->datos = $datos;
-        $forma->imagen->setRequired ( false );
+
+        // popular la forma con los datos del producto
         $forma->populate( $datos  );
+
+        // configurar la categoría default
         $forma->categorias->setValue($datos['categoria']);
+
+        // no requerir la imagen
+        $forma->imagen->setRequired ( false );
+
+        // dibujar la imagen
         $forma->imagenActual->setImage( 'data:' . $datos['mime'] . ';base64,' . base64_encode( $datos['imagen'] ) );
     }
 

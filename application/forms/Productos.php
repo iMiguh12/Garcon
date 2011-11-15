@@ -53,12 +53,11 @@ class Application_Form_Productos extends Zend_Form
         $productos = new Application_Model_DbTable_Productos();
         $meta = $productos->getEnumValues( 'categoria' );
 
-        foreach($meta as $cat){
+        foreach($meta as $cat) {
             $categorias->addMultiOption($cat, $cat);
         }
-    
 
-
+        // @TODO: mover la imagen a mostrar fuera de la forma.
         $imagenActual = new Zend_Form_Element_Image('imagenActual');
         $imagen = new Zend_Form_Element_File( 'imagen' );
         $imagen->setLabel ( 'Imagen' )
