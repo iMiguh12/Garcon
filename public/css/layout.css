@@ -21,6 +21,7 @@ header > hgroup:first-child {
 }
 
 div#Login {
+    margin-bottom: .25em;
 }
 
 div#Login dt, div#Login dd {
