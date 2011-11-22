@@ -2,4 +2,19 @@
     <a href="<?php echo $this->url( array( 'controller' => 'productos', 'action' =>     'add' ) ); ?>" >agregar producto</a>
 </p>
 
-<?php echo $this->partial( 'tabla_de_productos.phtml', $this->productos ); ?>
+<?php // echo $this->partial( 'tabla_de_productos.phtml', $this->productos ); ?>
+<?php echo <<<EOF
+
+<figure style="display: inline-block;" >
+    <img src="/bla.png" alt="bla" style="width: 160px; height: 90px;" />
+    <figcaption>price</figcaption>
+    <figcaption style="max-width: 160px">some kind of descriptionll for the product</figcaption>
+</figure>
+
+<figure style="display: inline-block;" >
+    <img src="/bla.png" alt="bla" style="width: 160px; height: 90px;" />
+    <figcaption>price</figcaption>
+    <figcaption style="max-width: 160px">some kind of description for the product</figcaption>
+</figure>
+
+EOF;
