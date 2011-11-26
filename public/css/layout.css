@@ -40,19 +40,17 @@ footer {
 }
 
 /* productos */
-table {
-    margin: 1em auto auto auto;
+section#productos figure {
+    display: inline-block;
+    margin: 1em auto 0 auto;
+    max-width: 180px;
 }
 
-table a {
-    margin: 1ex;
+section#productos figure img {
+    width: 160px;
+    height: 90px;
 }
 
-table#ProductosTabla tbody tr td {
-    padding: 1ex;
-    vertical-align: middle;
-}
-
-table#ProductosTabla tbody tr > td:first-child {
-    text-align: center;
+section#productos figure figcaption.precio {
+    font-weight: bold;
 }
