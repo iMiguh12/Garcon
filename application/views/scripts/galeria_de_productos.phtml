@@ -1,14 +1,19 @@
 <section id='productos'>
 <?php foreach ( $this->productos as $producto ) : ?>
-    <?php echo $this->displayProducto( 
+    <?php $image = $this->displayProducto( 
         $producto->mime, 
         $producto->imagen,  
         'imagen' . $producto->id,
-        'ImagenesDeProducto',
-        $producto->nombre,
-        $producto->nombre,
-        $producto->precio,
-        $producto->descripcion
+        'ImagenesDeProducto'
     ); ?>
+
+<figure class='imagen' id='producto-<?php echo $producto->id; ?>'>
+    <?php echo $image; ?>
+    <a src='<?php $this->url( array( 'controller' => 'productos', 'action' => 'edit', 'id' => $producto->id) ); ?>'>edit</a></figcaption>
+    <a src='<?php $this->url( array( 'controller' => 'productos', 'action' => 'delete', 'id' => $producto->id) ); ?>'>delete</a></figcaption>
+    <figcaption class='precio'><?php echo $producto->precio; ?></figcaption>
+    <figcaption class='descripcion'><?php echo $producto->descripcion; ?></figcaption>
+</figure>
+
 <?php endforeach; ?>
 </section>
