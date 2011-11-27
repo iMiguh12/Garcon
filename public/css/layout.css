@@ -41,16 +41,26 @@ footer {
 
 /* productos */
 section#productos figure {
+    border-radius: 10px;
+    border: 1px solid #000;
     display: inline-block;
+    height: 160px;
     margin: 1em auto 0 auto;
-    max-width: 180px;
+    overflow: auto;
+    text-align: center;
+    vertical-align: top;
+    width: 160px;
+    padding: .5em;
 }
 
 section#productos figure img {
-    width: 160px;
-    height: 90px;
+}
+
+section#productos figure figcaption {
+    text-align: left;
 }
 
 section#productos figure figcaption.precio {
     font-weight: bold;
+    margin: .5em 0 0 0;
 }

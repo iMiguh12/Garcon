@@ -2,12 +2,4 @@
     <a href="<?php echo $this->url( array( 'controller' => 'productos', 'action' =>     'add' ) ); ?>" >agregar producto</a>
 </p>
 
-<?php // echo $this->partial( 'tabla_de_productos.phtml', $this->productos ); ?>
-
-<section id='productos'>
-    <figure>
-        <img class='imagen' src="/bla.png" alt="bla" />
-        <figcaption class='precio'>precio</figcaption>
-        <figcaption class='descripcion'>Algún tipo de descripción larga del artículo mostrado.</figcaption>
-    </figure>
-</section>
+<?php echo $this->partial( 'galeria_de_productos.phtml', $this->productos ); ?>
