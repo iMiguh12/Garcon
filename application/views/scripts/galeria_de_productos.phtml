@@ -1,0 +1,14 @@
+<section id='productos'>
+<?php foreach ( $this->productos as $producto ) : ?>
+    <?php echo $this->displayProducto( 
+        $producto->mime, 
+        $producto->imagen,  
+        'imagen' . $producto->id,
+        'ImagenesDeProducto',
+        $producto->nombre,
+        $producto->nombre,
+        $producto->precio,
+        $producto->descripcion
+    ); ?>
+<?php endforeach; ?>
+</section>
