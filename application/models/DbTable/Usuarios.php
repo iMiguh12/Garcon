@@ -23,9 +23,10 @@ class Application_Model_DbTable_Usuarios extends Zend_Db_Table_Abstract
             'telefono'  => $telefono,
             'estado'  => $estado,
             'clave'     => sha1( $clave . sha1( $condimento ) ),
-            'condimento' => sha1( $condimento )
-            );
-            $this->insert($data);
+            'condimento' => sha1( $condimento ),
+        );
+        
+        $this->insert($data);
     }
 
     public function updateUsuario($id, $nombre, $email, $telefono, $estado, $clave, $condimento)
@@ -36,9 +37,10 @@ class Application_Model_DbTable_Usuarios extends Zend_Db_Table_Abstract
             'telefono' => $telefono,
             'estado' => $estado,
             'clave'     => sha1( $clave . sha1( $condimento ) ),
-            'condimento' => sha1( $condimento )
-            );
-            $this->update($data, 'id = '. (int)$id);
+            'condimento' => sha1( $condimento ),
+        );
+            
+        $this->update($data, 'id = '. (int)$id);
     }
 
     public function deleteUsuario($id)
