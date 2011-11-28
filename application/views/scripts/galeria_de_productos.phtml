@@ -1,0 +1,24 @@
+<section id='productos'>
+<?php foreach ( $this->productos as $producto ) : ?>
+    <?php $image = $this->displayDbImage( 
+        $producto->mime, 
+        $producto->imagen,  
+        'imagen' . $producto->id,
+        'ImagenesDeProducto'
+    ); ?>
+
+<figure class='imagen' id='producto-<?php echo $producto->id; ?>'>
+    <div class='windowTop'>
+        <span class='edit'><a href="/productos/edit/id/<?php echo $producto->id; ?>">edit</a></span>
+        <span class='delete'><a href='/productos/delete/id/<?php echo $producto->id; ?>'>x</a></span>
+    </div>
+    
+    <?php echo $image; ?>
+    
+    <p class='precio'>$<?php echo $producto->precio; ?></p>
+    
+    <figcaption class='descripcion'><?php echo $producto->descripcion; ?></figcaption>
+</figure>
+
+<?php endforeach; ?>
+</section>
