@@ -4,20 +4,21 @@
         $producto->mime, 
         $producto->imagen,  
         'imagen' . $producto->id,
-        'ImagenesDeProducto'
+        null,
+        $producto->nombre
     ); ?>
 
-<figure class='imagen' id='producto-<?php echo $producto->id; ?>'>
+<figure class='producto' id='producto-<?php echo $producto->id; ?>' title='<?php echo $producto->descripcion; ?>'>
     <div class='windowTop'>
         <span class='edit'><a href="/productos/edit/id/<?php echo $producto->id; ?>">editar</a></span>
         <span class='delete'><a href='/productos/delete/id/<?php echo $producto->id; ?>'>borrar</a></span>
     </div>
+
+    <h1><?php echo $producto->nombre; ?></h1>
     
     <?php echo $image; ?>
     
     <p class='precio'>$<?php echo $producto->precio; ?></p>
-    
-    <figcaption class='descripcion'><?php echo $producto->descripcion; ?></figcaption>
 </figure>
 
 <?php endforeach; ?>
