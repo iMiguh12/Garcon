@@ -17,8 +17,15 @@ class MovimientosController extends Zend_Controller_Action
     {
         $productos = new Application_Model_DbTable_Productos();
         $select = $productos->select()
-                            ->from( $productos, //hacemos query sin pedir imagenes por el momento...
-                                    array('id','nombre','descripcion','precio','imagen','mime'));
+                            ->from( $productos, array(
+                                'id',
+                                'nombre',
+                                'descripcion',
+                                'precio',
+                                'imagen',
+                                'mime')
+                            );
+                                    
         $this->view->movimientos = $productos->fetchAll( $select );
     }
 
