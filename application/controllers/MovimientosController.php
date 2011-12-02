@@ -16,6 +16,7 @@ class MovimientosController extends Zend_Controller_Action
     public function adquirirAction()
     {
         $productos = new Application_Model_DbTable_Productos();
+        
         $select = $productos->select()
                             ->from( $productos, array(
                                 'id',
@@ -25,8 +26,12 @@ class MovimientosController extends Zend_Controller_Action
                                 'imagen',
                                 'mime')
                             );
-                                    
-        $this->view->movimientos = $productos->fetchAll( $select );
+
+        // asignar resultado a una variable de la vista                    
+        $this->view->productos = $productos->fetchAll( $select );
+
+        // asignar el nombre del key a usar para el objeto del partial
+        $this->view->partial()->setObjectKey('productos');
     }
 
     public function donarAction()
