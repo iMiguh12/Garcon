@@ -15,7 +15,7 @@ class ProductosController extends Zend_Controller_Action
         // generar el select
         $select = $productos->select()
                             ->from( $productos )
-                            ->order( 'categoria ASC', 'nombre ASC' );
+                            ->order( array( 'categoria ASC', 'nombre ASC' ) );
 
         // asignar resultado a una variable de la vista
         $this->view->productos = $productos->fetchAll( $select );
