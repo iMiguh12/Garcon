@@ -57,10 +57,18 @@ class UsuariosController extends Zend_Controller_Action
         // asignar forma a la vista
         $this->view->forma = $forma;
         $forma->getElement('clave')->setLabel('Clave (dejar vacio si no se desea cambiar el password)');
-        $forma->getElement('condimento')->setLabel('Condimento (dejar vacio si no se desea cambiar el condimento)');
+        $forma->getElement('condimento')->setLabel('Condimento (dejar vacio si no se desea cambiar el condimento)');        
+                
         if ( $this->getRequest()->isPost() ) 
-        {
+        {                        
             $datos = $this->getRequest()->getPost();
+            
+            if($datos['clave']=='' && $datos['condimento']==''){
+                $forma->clave->setRequired(false);
+                $forma->claveConfirma->setRequired(false);
+                $forma->condimento->setRequired(false);
+            }
+            
             if ( $forma->isValid( $datos ) ) 
             {
                 // asignar los valores de la forma a variables
@@ -74,7 +82,11 @@ class UsuariosController extends Zend_Controller_Action
                 
                 // actualizar los datos
                 $usuarios = new Application_Model_DbTable_Usuarios();
-                $usuarios->updateUsuario( $id, $nombre, $email, $telefono, $estado, $clave, $condimento );
+                
+                if($clave=='' && $condimento=='')
+                    $usuarios->updateUsuario( $id, $nombre, $email, $telefono, $estado);
+                else
+                    $usuarios->updateUsuario( $id, $nombre, $email, $telefono, $estado, $clave, $condimento );
 
                 // redirigir al index
                 $this->_helper->redirector( 'index' );
@@ -92,9 +104,8 @@ class UsuariosController extends Zend_Controller_Action
                 $this->view->datos = $datos;
                 $forma->populate( $datos  );
                 $forma->estados->setValue($datos['estado']);
-//                $forma->condimento->setValue('');
-
-
+                $forma->condimento->setValue('');
+                
             }
         }
     }

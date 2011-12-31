@@ -38,7 +38,8 @@ class Application_Form_Usuarios extends Zend_Form
               ->addFilter( 'StringTrim' )
               ->addValidator( 'NotEmpty' )
               ->addValidator( 'EmailAddress' )
-              ->addValidator( 'stringLength', true, array( 1, 255 ) );
+              ->addValidator( 'stringLength', true, array( 1, 255 ) )              
+              ->addValidator('campoUnico', true, array( "tabla"=>"usuarios", "campoTabla"=>"email", "campoIdTabla"=>"id", "campoIdForma"=>"id", "mensaje"=>"Ya existe otro usuario con el mismo email" ) );
                 
         $telefono = new Zend_Form_Element_Text( 'telefono' );
         $telefono->setLabel( 'Telefono' )
@@ -52,15 +53,18 @@ class Application_Form_Usuarios extends Zend_Form
                  ->addValidator( 'stringLength', true, array( 12, 12 ) );
         $clave = new Zend_Form_Element_Password( 'clave' );
         $clave->setLabel('Clave')
+              ->setRequired( 'true' )
               ->addFilter('StringTrim')
               ->addValidator( 'NotEmpty' )
               ->addValidator('Identical', false, array('claveConfirma', 'Confirm Password'));
         $claveConfirma = new Zend_Form_Element_Password( 'claveConfirma' );
         $claveConfirma->setLabel('Corroborar clave')
+                      ->setRequired( 'true' )
                       ->addFilter('StringTrim')
                       ->addValidator( 'NotEmpty' );
         $condimento = new Zend_Form_Element_Text( 'condimento' );
         $condimento->setLabel('Condimento')
+                   ->setRequired( 'true' )
                    ->addValidator( 'StringLength', true , array( 5, 40)  );
 
         $enviar = new Zend_Form_Element_Submit( 'enviar' );
