@@ -2,7 +2,6 @@
 
 class UsuariosController extends Zend_Controller_Action
 {
-
     public function init()
     {
         /* Initialize action controller here */
@@ -56,17 +55,17 @@ class UsuariosController extends Zend_Controller_Action
         
         // asignar forma a la vista
         $this->view->forma = $forma;
-        $forma->getElement('clave')->setLabel('Clave (dejar vacio si no se desea cambiar el password)');
-        $forma->getElement('condimento')->setLabel('Condimento (dejar vacio si no se desea cambiar el condimento)');        
+        $forma->getElement( 'clave' )->setLabel( 'Clave (dejar vacio si no se desea cambiar el password)' );
+        $forma->getElement( 'condimento' )->setLabel( 'Condimento (dejar vacio si no se desea cambiar el condimento)' );        
                 
         if ( $this->getRequest()->isPost() ) 
         {                        
             $datos = $this->getRequest()->getPost();
             
-            if($datos['clave']=='' && $datos['condimento']==''){
-                $forma->clave->setRequired(false);
-                $forma->claveConfirma->setRequired(false);
-                $forma->condimento->setRequired(false);
+            if( null == $datos['clave'] && null == $datos['condimento'] ) {
+                $forma->clave->setRequired( false );
+                $forma->claveConfirma->setRequired( false );
+                $forma->condimento->setRequired( false );
             }
             
             if ( $forma->isValid( $datos ) ) 
@@ -103,8 +102,8 @@ class UsuariosController extends Zend_Controller_Action
                 $datos = $usuarios->getUsuario( $id );
                 $this->view->datos = $datos;
                 $forma->populate( $datos  );
-                $forma->estados->setValue($datos['estado']);
-                $forma->condimento->setValue('');
+                $forma->estados->setValue( $datos['estado'] );
+                $forma->condimento->setValue( null );
                 
             }
         }
@@ -115,7 +114,7 @@ class UsuariosController extends Zend_Controller_Action
         // checar si hay un post
         if ( $this->getRequest()->isPost() ) {
             // verificar si el post proviene de un botón de borrado; llamado borrar.
-            $borrar = $this->getRequest()->getPost('borrar');
+            $borrar = $this->getRequest()->getPost( 'borrar' );
 
             // si el botón es afirmativo, borra el producto
             if ( $borrar == 'Sí' ) {
@@ -141,9 +140,5 @@ class UsuariosController extends Zend_Controller_Action
             // Asignar a la variable productos, los datos del producto con la id determinada
             $this->view->usuario = $usuarios->getUsuario( $id );
         }
-
     }
-
-
 }
-
