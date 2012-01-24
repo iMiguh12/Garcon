@@ -18,7 +18,6 @@ require_once 'Zend/Validate/Abstract.php';
 
 class Zend_Validate_CampoUnico extends Zend_Validate_Abstract
 {
-    
     /**
      * Error codes
      * @const string
@@ -43,92 +42,85 @@ class Zend_Validate_CampoUnico extends Zend_Validate_Abstract
     protected $_mensaje;
     
     
-    public function __construct($options = array())
+    public function __construct( $options = array() )
     {           
-        $this->setTabla($options['tabla']);
-        $this->setCampoTabla($options['campoTabla']);
-        $this->setCampoIdTabla($options['campoIdTabla']);
-        $this->setCampoIdForma($options['campoIdForma']);
-        $this->setMensaje($options['mensaje']);        
+        $this->setTabla( $options['tabla'] );
+        $this->setCampoTabla( $options['campoTabla'] );
+        $this->setCampoIdTabla( $options['campoIdTabla'] );
+        $this->setCampoIdForma( $options['campoIdForma'] );
+        $this->setMensaje( $options['mensaje'] );        
         
-        //print_r(array_keys($options));
-        $arrayDeLlaves = array_keys($options);
-        //echo "res = ".array_search("tabla", $arrayDeLlaves);
+        $arrayDeLlaves = array_keys( $options );
     }
 
-
-    public function isValid($value, $context = null)
+    public function isValid( $value, $context = null )
     {
         require_once 'funcionesComunes.php';
         $db = getObjetoConexionBD();
-        $query = "select count(1) num from ".$this->getTabla()." where ".$this->getCampoTabla()." = '".$value."'";
-        if($context[$this->getCampoIdForma()]!=''){//Si es edicion de un registro
-            $query = $query." and ".$this->getCampoIdTabla()." != ".$context[$this->getCampoIdForma()];
+        $query = "select count(1) num from " . $this->getTabla() . " where " . $this->getCampoTabla() . " = '" . $value . "'";
+        if( null !== $context[$this->getCampoIdForma()] ) {
+            $query = $query . " and " . $this->getCampoIdTabla() . " != " . $context[$this->getCampoIdForma()];
         }
-        //echo "query = ".$query;        
              
-        $res = $db->query($query);
+        $res = $db->query( $query );
         $filas = $res->fetchAll();
         
-        if($filas[0]['num']=='0')
+        if( $filas[0]['num'] == 0 ) {
             return true;
-        else{
-            if($this->getMensaje()!=null && $this->getMensaje()!=''){                
+        } else {
+            if( null !== $this->getMensaje() ) {                
                 $this->_messageTemplates[self::MENSAJE_COSTUMIZADO] = $this->getMensaje();
-                $this->_error(self::MENSAJE_COSTUMIZADO);
-            }else
+                $this->_error( self::MENSAJE_COSTUMIZADO );
+            } else {
                 $this->_error(self::ESTA_REPETIDO);
+            }
+            
             return false;
         }
     }
     
-    
-    
-    public function setCampoIdTabla($campoIdTabla){
+    public function setCampoIdTabla( $campoIdTabla ) {
         $this->_campoIdTabla = $campoIdTabla;
         return $this;
     }
     
-    public function getCampoIdTabla(){
+    public function getCampoIdTabla() {
         return $this->_campoIdTabla;
     }
     
-    public function setCampoTabla($campoTabla){        
+    public function setCampoTabla( $campoTabla ) {        
         $this->_campoTabla = $campoTabla;        
         return $this;
     }
     
-    public function getCampoTabla(){
+    public function getCampoTabla() {
         return $this->_campoTabla;
     }
     
-    public function setTabla($tabla){
+    public function setTabla( $tabla ) {
         $this->_tabla = $tabla;
         return $this;
     }
     
-    public function getTabla(){
+    public function getTabla() {
         return $this->_tabla;
     }
     
-    public function setCampoIdForma($campoIdForma){
+    public function setCampoIdForma( $campoIdForma ) {
         $this->_campoIdForma = $campoIdForma;
         return $this;
     }
     
-    public function getCampoIdForma(){
+    public function getCampoIdForma() {
         return $this->_campoIdForma;
     }
     
-    public function setMensaje($mensaje){
+    public function setMensaje( $mensaje ) {
         $this->_mensaje = $mensaje;
         return $this;
     }
     
-    public function getMensaje(){
+    public function getMensaje() {
         return $this->_mensaje;
     }
-            
 }
-
-?>

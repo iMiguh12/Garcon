@@ -1,8 +1,8 @@
 <?php
 
-    function getObjetoConexionBD(){
+    function getObjetoConexionBD() {
         $front = Zend_Controller_Front::getInstance();
-        $bootstrap = $front->getParam("bootstrap");        
+        $bootstrap = $front->getParam( "bootstrap" );        
         $opcionesDelApplicationIni =  $bootstrap->getOptions();
         
         $parameters = array(
@@ -12,8 +12,7 @@
             'dbname'   => $opcionesDelApplicationIni['resources']['db']['params']['dbname']
         );
 
-        $db = Zend_Db::factory('Pdo_Mysql', $parameters);
+        $db = Zend_Db::factory( 'Pdo_Mysql', $parameters );
         $db->getConnection();
         return $db;
     }
-?>
