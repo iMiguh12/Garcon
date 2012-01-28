@@ -1,10 +1,14 @@
+USE garcon;
+
+DROP TABLE IF EXISTS caracteristicas;
+
 CREATE TABLE `caracteristicas` { 
     id int(3) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nombre varchar(32) NOT NULL,
     descripcion varchar(255) NOT NULL,
     precio float(4,2) SIGNED NOT NULL,
     grupo enum( 'A', 'B', 'C', 'D' ),
-    tipo enum( 'radio', 'text', 'textarea', 'select', 'checkbox' ),
+    tipo enum( 'radio', 'text', 'select', 'checkbox' ),
     CONSTRAINT FOREIGN KEY
         productos id
     ON DELETE
