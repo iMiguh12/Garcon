@@ -7,12 +7,57 @@ CREATE TABLE `caracteristicas` {
     nombre varchar(32) NOT NULL,
     descripcion varchar(255) NOT NULL,
     precio float(4,2) SIGNED NOT NULL,
-    grupo enum( 'A', 'B', 'C', 'D' ),
     tipo enum( 'radio', 'text', 'select', 'checkbox' ),
-    CONSTRAINT FOREIGN KEY
-        productos id
-    ON DELETE
-        CASCADE
+}
+
+CREATE TABLE `grupos` {
+    id int(3) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nombre varchar(32) NOT NULL,
+    descripcion varchar(255) NOT NULL
+}
+
+CREATE TABLE `productos_caracteristicas` {
+    id_productos int(3) UNSIGNED NOT NULL,
+    id_caracteristicas int(3) UNSIGNED NOT NULL,
+    FOREIGN KEY 
+        ( id_productos )
+    REFERENCES
+        productos( id )
     ON UPDATE
         CASCADE
+    ON DELETE
+        CASCADE,
+    INDEX( id_productos ),
+    FOREIGN KEY
+        ( id_caracteristicas )
+    REFERENCES
+        caracteristicas( id )
+    ON UPDATE
+        CASCADE
+    ON DELETE
+        CASCADE,
+    INDEX( id_caracteristicas ) 
+}
+
+CREATE TABLE`grupos_caracteristicas` {
+    id_grupo int(3) UNSIGNED NOT NULL,
+    id_caracteristicas int(3) UNSIGNED NOT NULL,
+    FOREIGN KEY
+        ( id_grupo )
+    REFERENCES
+        grupos( id )
+    ON UPDATE
+        CASCADE
+    ON DELETE
+        CASCADE,
+    INDEX( id_grupos ),
+    FOREIGN KEY
+        ( id_caracteristicas )
+    REFERENCES
+        caracteristicas( id )
+    ON UPDATE
+        CASCADE
+    ON DELETE
+        CASCADE,
+    INDEX( id_caracteristicas )
 }
