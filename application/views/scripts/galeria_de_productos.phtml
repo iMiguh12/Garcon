@@ -1,12 +1,17 @@
 <section id='productos'>
-<?php foreach ( $this->productos as $producto ) : ?>
-    <?php $image = $this->displayDbImage( 
+<?php 
+
+foreach ( $this->productos as $producto ) :
+    $image = $this->displayDbImage( 
         $producto->mime, 
         $producto->imagen,  
         'imagen' . $producto->id,
         null,
         $producto->nombre
-    ); ?>
+    );
+
+
+?>
 
 <figure class='producto' id='producto-<?php echo $producto->id; ?>' title='<?php echo $producto->descripcion; ?>'>
     <div class='windowTop'>
