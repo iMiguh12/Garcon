@@ -1,5 +1,5 @@
-set names utf8;
-use garcon;
+SET NAMES utf8;
+USE garcon;
 
 DROP TABLE IF EXISTS usuarios;
 

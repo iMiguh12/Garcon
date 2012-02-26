@@ -1,6 +1,6 @@
-use garcon;
+SET NAMES utf8;
+USE garcon;
 
-set names utf8;
 truncate productos;
 
 INSERT INTO 
