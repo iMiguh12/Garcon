@@ -1,7 +1,6 @@
 SET NAMES utf8;
 
 DROP DATABASE IF EXISTS garcon;
-DROP USER 'garcon'@'localhost';
 
 CREATE DATABASE garcon DEFAULT CHARACTER SET UTF8;
 
