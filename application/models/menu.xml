@@ -31,6 +31,7 @@
             <action>index</action>
             <title>editar usuarios</title>
             <order>30</order>
+            <resource>admin:usuarios</resource>
         </usuarios>
 
         <productos>
@@ -39,6 +40,7 @@
             <action>index</action>
             <title>editar productos</title>
             <order>40</order>
+            <resource>admin:productos</resource>
         </productos>
     </nav>
 </config>

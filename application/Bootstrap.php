@@ -85,6 +85,27 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         // return it, so that it can be stored by the bootstrap
         return $view;
     }
+    
+    // configuración de las ACLs
+    protected function _initAcl()
+    {
+    	$acl = new Zend_Acl();
+    	
+    	$acl->addRole( 'invitado' );
+    	$acl->addRole( 'usuario' );
+    	$acl->addRole( 'administrador' );
+		
+		$acl->add( new Zend_Acl_Resource( 'admin:productos' ) );
+		$acl->add( new Zend_Acl_Resource( 'admin:usuarios' ) );
+		
+		$acl->allow('administrador', 'admin:productos' );
+		$acl->allow('administrador', 'admin:usuarios' );
+
+ 
+		// Store ACL and role in the proxy helper
+		$view = $this->view;
+		$view->navigation()->setAcl($acl)->setRole( 'invitado' );
+    }
 
     // configuración del menú
     protected function _initMenu()
