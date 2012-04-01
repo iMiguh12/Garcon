@@ -22,7 +22,7 @@ class Application_Form_Usuarios extends Zend_Form
         $estados = new Zend_Form_Element_Select( 'estados' );
         $estados->setLabel( 'Estado' )
                 ->setRequired(true);
-        
+
         $usuarios = new Application_Model_DbTable_Usuarios();
         $meta = $usuarios->getEnumValues( 'estado' );
 
@@ -38,16 +38,16 @@ class Application_Form_Usuarios extends Zend_Form
               ->addFilter( 'StringTrim' )
               ->addValidator( 'NotEmpty' )
               ->addValidator( 'EmailAddress' )
-              ->addValidator( 'stringLength', true, array( 1, 255 ) )              
+              ->addValidator( 'stringLength', true, array( 1, 255 ) )
               ->addValidator( 'campoUnico', true, array( "tabla"=>"usuarios", "campoTabla"=>"email", "campoIdTabla"=>"id", "campoIdForma"=>"id", "mensaje"=>"Ya existe otro usuario con el mismo email" ) );
-                
+
         $telefono = new Zend_Form_Element_Text( 'telefono' );
         $telefono->setLabel( 'Telefono' )
                  ->setRequired( 'true' )
                  ->addFilter( 'StripTags' )
                  ->addFilter( 'StringTrim' )
                  ->addValidator( 'NotEmpty' )
-                 // hace lo mismo que la linea de abajo, pero es un poco mas largo 
+                 // hace lo mismo que la linea de abajo, pero es un poco mas largo
                  //->addValidator( new Zend_Validate_Digits())
                  ->addValidator( 'Digits' )
                  ->addValidator( 'stringLength', true, array( 12, 12 ) );
@@ -70,8 +70,8 @@ class Application_Form_Usuarios extends Zend_Form
         $enviar = new Zend_Form_Element_Submit( 'enviar' );
         $enviar->setAttrib( 'id', 'botonEnviar' );
 
-        $this->addElements( 
-            array( $id, $nombre, $estados, $email, $telefono, $clave, $claveConfirma, $condimento, $enviar ) 
+        $this->addElements(
+            array( $id, $nombre, $estados, $email, $telefono, $clave, $claveConfirma, $condimento, $enviar )
         );
     }
 }

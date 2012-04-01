@@ -1,6 +1,6 @@
 <?php
 
-class Zend_View_Helper_DisplayDbImage extends Zend_View_Helper_Abstract 
+class Zend_View_Helper_DisplayDbImage extends Zend_View_Helper_Abstract
 {
     public function displayDbImage( $mime, $image, $id = null, $class = null, $alt = null, $title = null )
     {

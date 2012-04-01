@@ -48,10 +48,10 @@ class ProductosController extends Zend_Controller_Action
                 $categoria =  $forma->getValue( 'categorias' );
                 $imagen = $forma->getValue( 'imagen');
                 $carga = $forma->imagen->getFileName ( 'imagen' );
-                
+
                 // @TODO: quitar la dependencia de PhpThumbFactory
                 $param_miniatura = array( 'resizeUp' => true, 'jpegQuality' => 80);
-            
+
                 if ( $forma->getValue( 'imagen' ) != null ) {
                     $dimension = PhpThumbFactory::create( $carga, $param_miniatura );
                     $dimension->resize( 100, 100 );
@@ -62,9 +62,9 @@ class ProductosController extends Zend_Controller_Action
                     $datos = $producto->getProducto( $this->_getParam( 'id' ) );
                     $imagen = $datos['imagen'];
                 }
-                
+
                 $mime =$forma->imagen->getMimeType( 'imagen' );
-                
+
                 // actualizar los datos
                 $productos = new Application_Model_DbTable_Productos();
                 $productos->updateProducto( $id, $nombre, $descripcion, $precio, $existencia, $categoria, $imagen, $mime );
@@ -128,7 +128,7 @@ class ProductosController extends Zend_Controller_Action
         } else {
             // obtener el parámetro de id
             $id = (int) $this->_getParam( 'id', 0 );
-            
+
             // obtener una instancia del modelo de la tabla productos
             $productos = new Application_Model_DbTable_Productos();
 
@@ -158,17 +158,17 @@ class ProductosController extends Zend_Controller_Action
                 $categoria =  $forma->getValue( 'categorias' );
                 $imagen = $forma->getValue( 'imagen' );
                 $carga = $forma->imagen->getFileName ( 'imagen' );
-                
+
                 // generar thumbnail
                 $param_miniatura = array( 'resizeUp' => true, 'jpegQuality' => 80 );
                 $dimension = PhpThumbFactory::create( $carga, $param_miniatura);
                 $dimension->resize( 100, 100 );
                 $dimension->save( "{$carga}_thumb" );
-                
+
                 // obtener imagen y mime-type
                 $imagen = file_get_contents( "{$carga}_thumb" );
                 $mime = $forma->imagen->getMimeType ( 'imagen' );
-                
+
                 // introducir los datos
                 $productos = new Application_Model_DbTable_Productos();
                 $productos->addProducto( $nombre, $descripcion, $precio, $existencia, $categoria, $imagen, $mime );

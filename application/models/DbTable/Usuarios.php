@@ -25,7 +25,7 @@ class Application_Model_DbTable_Usuarios extends Zend_Db_Table_Abstract
             'clave'     => sha1( $clave . sha1( $condimento ) ),
             'condimento' => sha1( $condimento ),
         );
-        
+
         $this->insert( $data );
     }
 
@@ -48,10 +48,10 @@ class Application_Model_DbTable_Usuarios extends Zend_Db_Table_Abstract
                 'condimento' => sha1( $condimento ),
             );
         }
-            
+
         $this->update( $data, 'id = '. (int)$id );
     }
-        
+
 
     public function deleteUsuario( $id )
     {
@@ -63,7 +63,7 @@ class Application_Model_DbTable_Usuarios extends Zend_Db_Table_Abstract
         return $this->info( self::METADATA );
     }
 
-    public function getEnumValues( $column ) 
+    public function getEnumValues( $column )
     {
         $meta = $this->getTableMeta();
         preg_match_all( "/'(.*?)'/" , $meta[$column]['DATA_TYPE'], $arreglo );
@@ -72,7 +72,7 @@ class Application_Model_DbTable_Usuarios extends Zend_Db_Table_Abstract
 
     public function isDuplicate( $value )
     {
-        $row = $this->fetchRow( "email = '$value'" ); 
+        $row = $this->fetchRow( "email = '$value'" );
 
         if ( $row ) {
             return true;
