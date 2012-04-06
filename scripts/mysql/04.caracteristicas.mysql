@@ -1,18 +1,66 @@
+SET NAMES utf8;
 USE garcon;
 
-DROP TABLE IF EXISTS caracteristicas;
-
-CREATE TABLE `caracteristicas` { 
+DROP TABLE IF EXISTS `caracteristicas`;
+CREATE TABLE `caracteristicas` (
     id int(3) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nombre varchar(32) NOT NULL,
     descripcion varchar(255) NOT NULL,
     precio float(4,2) SIGNED NOT NULL,
-    grupo enum( 'A', 'B', 'C', 'D' ),
-    tipo enum( 'radio', 'text', 'select', 'checkbox' ),
-    CONSTRAINT FOREIGN KEY
-        productos id
-    ON DELETE
-        CASCADE
+    tipo enum( 'radio', 'text', 'select', 'checkbox' )
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DROP TABLE IF EXISTS `grupos`;
+CREATE TABLE `grupos` (
+    id int(3) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nombre varchar(32) NOT NULL,
+    descripcion varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DROP TABLE IF EXISTS `productos_caracteristicas`;
+CREATE TABLE `productos_caracteristicas` (
+    id_productos int(3) UNSIGNED NOT NULL,
+    id_caracteristicas int(3) UNSIGNED NOT NULL,
+    FOREIGN KEY
+        ( id_productos )
+    REFERENCES
+        productos( id )
     ON UPDATE
         CASCADE
-}
+    ON DELETE
+        CASCADE,
+    INDEX( id_productos ),
+    FOREIGN KEY
+        ( id_caracteristicas )
+    REFERENCES
+        caracteristicas( id )
+    ON UPDATE
+        CASCADE
+    ON DELETE
+        CASCADE,
+    INDEX( id_caracteristicas )
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DROP TABLE IF EXISTS `grupos_caracteristicas`;
+CREATE TABLE`grupos_caracteristicas` (
+    id_grupo int(3) UNSIGNED NOT NULL,
+    id_caracteristicas int(3) UNSIGNED NOT NULL,
+    FOREIGN KEY
+        ( id_grupo )
+    REFERENCES
+        grupos( id )
+    ON UPDATE
+        CASCADE
+    ON DELETE
+        CASCADE,
+    INDEX( id_grupo ),
+    FOREIGN KEY
+        ( id_caracteristicas )
+    REFERENCES
+        caracteristicas( id )
+    ON UPDATE
+        CASCADE
+    ON DELETE
+        CASCADE,
+    INDEX( id_caracteristicas )
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
