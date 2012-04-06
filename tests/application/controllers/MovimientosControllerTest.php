@@ -15,7 +15,7 @@ class MovimientosControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
-        
+
         // assertions
         $this->assertModule($urlParams['module']);
         $this->assertController($urlParams['controller']);
@@ -32,7 +32,7 @@ class MovimientosControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
-        
+
         // assertions
         $this->assertModule($urlParams['module']);
         $this->assertController($urlParams['controller']);
@@ -49,7 +49,7 @@ class MovimientosControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
-        
+
         // assertions
         $this->assertModule($urlParams['module']);
         $this->assertController($urlParams['controller']);

@@ -15,7 +15,7 @@ header hgroup {
     float: right;
 }
 
-header > hgroup:first-child {
+header>hgroup:first-child {
     float: left;
     width: 40%;
 }
@@ -24,8 +24,22 @@ div#Login {
     margin-bottom: .25em;
 }
 
-div#Login dt, div#Login dd {
+div#Login dt,div#Login dd {
     display: inline-block;
+}
+
+/* messages */
+aside#Mensajes {
+    position: absolute;
+    max-width: 200px;
+    right: 0;
+    top: 4em;
+    background: #DFD;
+    border-radius: 10px 0 0 0;
+}
+
+p.mensaje {
+    margin: .5em 1em;
 }
 
 /* content */
@@ -81,8 +95,7 @@ section#productos figure img {
     margin: .5em 0 0 0;
 }
 
-section#productos figure figcaption,
-section#productos figure p {
+section#productos figure figcaption,section#productos figure p {
     text-align: left;
     margin: 0 .5em 0 .5em;
 }
@@ -90,8 +103,9 @@ section#productos figure p {
 section#productos figure.producto figcaption {
     max-height: 4em;
     font: 8pt/8pt verdana;
-};
+}
 
+;
 section#productos figure p.precio {
     font-weight: bold;
     margin-top: .5em;

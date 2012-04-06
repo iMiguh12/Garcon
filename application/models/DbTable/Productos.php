@@ -1,7 +1,7 @@
 <?php
 
-class Application_Model_DbTable_Productos extends Zend_Db_Table_Abstract 
-{  
+class Application_Model_DbTable_Productos extends Zend_Db_Table_Abstract
+{
     protected $_name = 'productos';
 
     public function getProducto( $id )
@@ -12,7 +12,7 @@ class Application_Model_DbTable_Productos extends Zend_Db_Table_Abstract
         if ( !$row ) {
             throw new Exception( "No puede encontrar el registro $id" );
         }
-        
+
         return $row->toArray();
     }
 
@@ -22,12 +22,12 @@ class Application_Model_DbTable_Productos extends Zend_Db_Table_Abstract
             'nombre' => $nombre,
             'descripcion' => $descripcion,
             'precio' => $precio,
-            'existencia' => $existencia, 
-            'categoria' => $categoria, 
+            'existencia' => $existencia,
+            'categoria' => $categoria,
             'imagen' => $imagen,
             'mime' => $mime,
      );
-                    
+
         $this->insert($data);
     }
 
@@ -35,7 +35,7 @@ class Application_Model_DbTable_Productos extends Zend_Db_Table_Abstract
     {
         $data = array(
             'nombre' => $nombre,
-            'descripcion' => $descripcion, 
+            'descripcion' => $descripcion,
             'precio' => $precio,
             'existencia' => $existencia,
             'categoria' => $categoria,
@@ -56,7 +56,7 @@ class Application_Model_DbTable_Productos extends Zend_Db_Table_Abstract
         return $this->info(self::METADATA);
     }
 
-    public function getEnumValues( $column ) 
+    public function getEnumValues( $column )
     {
         $column = $column;
         $meta = $this->getTableMeta();
