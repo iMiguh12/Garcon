@@ -2,41 +2,41 @@
 
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
-    // obtener configuraciones específicas del sitio
+    // Get site-wide configuration
     private static function getConfig( $config )
     {
         return new Zend_Config_Ini( APPLICATION_PATH . "/configs/{$config}.ini", APPLICATION_ENV );
     }
 
-    // vista
+    // View
     protected function _initView()
-    {    
+    {
         // inicializar vista
         $view = new Zend_View();
-        
+
         // obtener configuración global
         $sitio = $this::getConfig( 'sitio' );
-        
+
         // hacer $sitio disponible a la vista
         $view->sitio = $sitio;
 
         // doctype
         $view->doctype( $sitio->doctype );
-        
+
         // encoding
         $view->setEncoding( $sitio->encoding );
-        
+
         // title
         $view->headTitle( $sitio->name )
              ->setSeparator(' | ')
              ->setIndent(8);
-        
+
         // meta tags
         $view->headMeta()->setName( 'keywords', $sitio->keywords )
                          ->appendName( 'description', $sitio->description )
                          ->appendName( 'google-site-verification', $sitio->googleVerification )
                          ->setIndent( 8 );
-        
+
         // stylesheets & feeds (headLinks)
         $view->headLink()->setStylesheet( '/css/reset.css', 'all' )
                          ->appendStylesheet( '/css/layout.css', 'all' )
@@ -69,16 +69,16 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                        ->uiEnable()
                        ->setUiVersion( $sitio->jqueryUI );
 
-        $view->headScript()->appendFile( '/js/garcon.js', 'text/javascript', 
+        $view->headScript()->appendFile( '/js/garcon.js', 'text/javascript',
             array(
                 'charset' => $sitio->encoding
             )
         )->setIndent( 8 );
-        
+
         // agregarlo al ViewRenderer
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper( 'ViewRenderer' );
         $viewRenderer->setView( $view );
-        
+
         // registrar viewRenderer
         Zend_Controller_Action_HelperBroker::addHelper( $viewRenderer );
 
@@ -107,7 +107,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$view->navigation()->setAcl($acl)->setRole( 'invitado' );
     }
 
-    // configuración del menú
+    // Menu
     protected function _initMenu()
     {
         // obtener la configuración del menú (xml)
@@ -120,35 +120,36 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Zend_Registry::set( 'Zend_Navigation', $container );
     }
 
+    // Sessions
     protected function _initSession()
     {
         // obtener configuraciones específicas del sitio
         $config = $this::getConfig( 'sessions' );
- 
+
         Zend_Session::setOptions( $config->toArray() );
-        
+
         // iniciar sesión
         Zend_Session::start();
     }
-    
-    // locale
+
+    // Locale
     protected function _initLocale()
     {
         // obtener configuraciones específicas del sitio
         $config = $this::getConfig( 'sitio' );
-        
+
         // definir el locale por default
         Zend_Locale::setDefault( $config->locale );
-        
+
         // ponerlo en el registro
         $locale = new Zend_Locale( $config->locale );
         Zend_Registry::set( 'Zend_Locale', $locale );
     }
 
-    // Init translator 
+    // Translator
     protected function _initL18n()
     {
-        $translator = new Zend_Translate ( 
+        $translator = new Zend_Translate (
             array(
                 'adapter' => 'array',
                 'content' => APPLICATION_PATH .'/../resources/languages',
@@ -156,11 +157,17 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 'scan' => Zend_Translate::LOCALE_DIRECTORY
             )
         );
-        
+
         Zend_Validate_Abstract::setDefaultTranslator( $translator );
     }
 
-    // feed (rss)
+    // FlashMessenger
+    protected function _initMessages()
+    {
+        Zend_Controller_Action_HelperBroker::addHelper( new Zend_Controller_Action_Helper_FlashMessenger() );
+    }
+
+    // Feed (rss)
     protected function _initFeed()
     {
         // configurar las opciones de cache

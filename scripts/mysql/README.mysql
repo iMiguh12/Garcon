@@ -1,0 +1,10 @@
+Si quieres inicializar garcon, solo hay que correr el script init_sql. Para poder hacerlo:
+
+# ve al directorio
+cd /path/a/garcon/scripts
+
+# hazlo ejecutable
+chmod 700 init_sql
+
+# córrelo
+./init_sql

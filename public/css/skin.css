@@ -26,11 +26,7 @@ div#Contenido h1 {
 }
 
 /* productos */
-table thead tr {
-	background: #aaf;
-}
-
-table tbody tr:hover {
-	background: #ffa;
-	cursor:     default;
+section#productos figure.producto h1 {
+    color: #050;
+    font: 12pt/12pt verdana;
 }

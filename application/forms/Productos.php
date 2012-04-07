@@ -25,9 +25,9 @@ class Application_Form_Productos extends Zend_Form
                     ->addFilter( 'StripTags' )
                     ->addFilter( 'StringTrim' )
                     ->addValidator( 'NotEmpty' )
-                    ->addValidator( 'Regex', false, array( '#^([a-z A-Z0-9ñÑáéíóúÁÉÍÓÚüÜ\(\)-]+$.*)#' ) )
+                    ->addValidator( 'Regex', false, array( '#^([a-z A-Z0-9ñÑáéíóúÁÉÍÓÚüÜ\(\)-\.]+$.*)#' ) )
                     ->addValidator( 'stringLength', true, array( 1, 255 ) );
-                
+
         $precio = new Zend_Form_Element_Text( 'precio' );
         $precio->setLabel( 'Precio' )
                ->setRequired( 'true' )
@@ -49,7 +49,7 @@ class Application_Form_Productos extends Zend_Form
         $categorias = new Zend_Form_Element_Select('categorias');
         $categorias->setLabel('Categoria')
                    ->setRequired(true);
-        
+
         $productos = new Application_Model_DbTable_Productos();
         $meta = $productos->getEnumValues( 'categoria' );
 
@@ -70,8 +70,8 @@ class Application_Form_Productos extends Zend_Form
         $enviar = new Zend_Form_Element_Submit( 'enviar' );
         $enviar->setAttrib( 'id', 'botonEnviar' );
 
-        $this->addElements( 
-            array( $id, $nombre, $descripcion, $precio, $existencia, $categorias, $imagen, $enviar ) 
+        $this->addElements(
+            array( $id, $nombre, $descripcion, $precio, $existencia, $categorias, $imagen, $enviar )
         );
     }
 }
