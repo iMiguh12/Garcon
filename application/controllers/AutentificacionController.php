@@ -28,7 +28,6 @@ class AutentificacionController extends Zend_Controller_Action
             }
         } else {
             $this->_helper->redirector('index', 'index');
-
         }
 
         $this->view->forma = $forma;
