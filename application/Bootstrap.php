@@ -7,6 +7,18 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
         return new Zend_Config_Ini( APPLICATION_PATH . "/configs/{$config}.ini", APPLICATION_ENV );
     }
+    
+    protected function _initAutoload()
+	{
+		$moduleLoader = new Zend_Application_Module_Autoloader(array(
+			'namespace' => '',
+			'basePath' => APPLICATION_PATH));
+
+		$autoloader = Zend_Loader_Autoloader::getInstance();
+		$autoloader->registerNamespace(array('Plugins_'));
+		
+		return $moduleLoader;		
+	}
 
     // View
     protected function _initView()
@@ -95,16 +107,39 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     	$acl->addRole( 'usuario' );
     	$acl->addRole( 'administrador' );
 		
-		$acl->add( new Zend_Acl_Resource( 'admin:productos' ) );
-		$acl->add( new Zend_Acl_Resource( 'admin:usuarios' ) );
+    	$acl->add( new Zend_Acl_Resource( 'admin:productos' ) );
+    	$acl->add( new Zend_Acl_Resource( 'admin:usuarios' ) );
 		
-		$acl->allow('administrador', 'admin:productos' );
-		$acl->allow('administrador', 'admin:usuarios' );
-
- 
-		// Store ACL and role in the proxy helper
-		$view = $this->view;
-		$view->navigation()->setAcl($acl)->setRole( 'invitado' );
+    	$acl->allow('administrador', 'admin:productos' );
+    	$acl->allow('administrador', 'admin:usuarios' );
+    	
+    	
+    	//A continuacion se pondria las urls (como un resource cada una) que se quieren proteger para que usuarios que 
+    	//no tienen el permiso no puedan entrar, por lo pronto nomas puse una
+    	$acl->add( new Zend_Acl_Resource( 'movimientos/adquirir' ) );
+    	
+    	//Solamente los usuarios con el rol de administrador podran entrar a la direccion http://<contextoDeGarcon>/movimientos/adquirir
+    	$acl->allow('administrador', 'movimientos/adquirir');
+    	
+    	//ponemos el acl en Zend_Registry
+    	Zend_Registry::set('acl',$acl);
+    	
+    	
+    	// Store ACL and role in the proxy helper
+    	$view = $this->view;
+    	//Si no se ha logueado, se asigna por default el rol de invitado
+    	$autentificacion = Zend_Auth::getInstance();    
+    	$rol = 'invitado';
+    	if($autentificacion->hasIdentity() ){
+    		$rol = $autentificacion->getIdentity()->rol;
+    	}
+    	
+    	
+    	$view->navigation()->setAcl($acl)->setRole( $rol );
+    	
+    	//registramos el plugin que autentifica si el usuario puede ver la url
+    	$controller = Zend_Controller_Front::getInstance();		
+	$controller->registerPlugin(new Plugins_AuthPlugin());
     }
 
     // Menu
