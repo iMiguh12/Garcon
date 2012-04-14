@@ -18,7 +18,7 @@ class AutentificacionController extends Zend_Controller_Action
                     $this->_helper->FlashMessenger( 'Usuario autenticado!' );
 
                     // We're authenticated! Redirect to the home page
-                    $this->_helper->redirector('index', 'index');
+                    $this->_helper->redirector( 'index', 'index' );
                 } else {
                     // Failed auth message
                     $this->_helper->FlashMessenger( 'No, no le atinaste. Inténtalo de nuevo...' );
@@ -27,7 +27,7 @@ class AutentificacionController extends Zend_Controller_Action
                 $this->view->forma = $forma;
             }
         } else {
-            $this->_helper->redirector('index', 'index');
+            $this->_helper->redirector( 'index', 'index' );
         }
 
         $this->view->forma = $forma;
