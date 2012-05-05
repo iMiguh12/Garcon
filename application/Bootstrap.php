@@ -15,7 +15,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             'basePath' => APPLICATION_PATH));
 
         $autoloader = Zend_Loader_Autoloader::getInstance();
-        $autoloader->registerNamespace(array('Plugins_'));
+        $autoloader->registerNamespace(array('Garcon_Plugins_'));
         
         return $moduleLoader;       
     }
