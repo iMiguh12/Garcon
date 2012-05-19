@@ -105,8 +105,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         // Roles
         $acl->addRole( 'invitado' );
-        $acl->addRole( 'usuario', array('invitado') );
-        $acl->addRole( 'administrador', array('invitado','usuario') );
+        $acl->addRole( 'usuario', array( 'invitado' ) );
+        $acl->addRole( 'administrador', array( 'invitado', 'usuario' ) );
 
         // Resources
         $acl->addResource( 'index' );
@@ -155,11 +155,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $acl->allow( 'administrador', 'usuarios/add' );
         $acl->allow( 'administrador', 'usuarios/edit' );
         $acl->allow( 'administrador', 'usuarios/delete' );
-        
-        
-        
-        
-        
         
         // ponemos el acl en Zend_Registry
         Zend_Registry::set( 'acl', $acl );
