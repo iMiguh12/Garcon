@@ -1,0 +1,7 @@
+Configurando un Virtual Server en Cherokee
+==========================================
+Solo sigue los pasos del Wizard para configurar Zend Framework y apunta el DocumentRoot a la carpeta public de Cherokee.
+
+Como el configurador de Cherokee es muy gráfico, es mejor que leas la documentación ubicada en su página web: http://www.cherokee-project.com/doc/cookbook_zend.html.
+
+Te recomiendo que instales php-fpm primero para usarlo en conjunción con Cherokee. Es automático su uso una vez instalado.
