@@ -1,0 +1,9 @@
+Como instalar Zend Framework
+============================
+Tienes dos opciones: instalar los paquetes que fedora incluye o bajar Zend Framework y ponerlo en el directorio library. Nosotros favorecemos la primera.
+
+# instala Zend Framework
+yum install php-Zend*
+
+# instala PHPUnit
+yum install php-phpunit-PHPUnit
