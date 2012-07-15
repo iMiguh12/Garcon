@@ -7,6 +7,18 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
         return new Zend_Config_Ini( APPLICATION_PATH . "/configs/{$config}.ini", APPLICATION_ENV );
     }
+    
+    protected function _initAutoload()
+    {
+        $moduleLoader = new Zend_Application_Module_Autoloader(array(
+            'namespace' => '',
+            'basePath' => APPLICATION_PATH));
+
+        $autoloader = Zend_Loader_Autoloader::getInstance();
+        $autoloader->registerNamespace(array('Garcon_Plugins_'));
+        
+        return $moduleLoader;       
+    }
 
     // View
     protected function _initView()
@@ -84,6 +96,85 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         // return it, so that it can be stored by the bootstrap
         return $view;
+    }
+    
+    // configuración de las ACLs
+    protected function _initAcl()
+    {
+        $acl = new Zend_Acl();
+
+        // Roles
+        $acl->addRole( 'invitado' );
+        $acl->addRole( 'usuario', array( 'invitado' ) );
+        $acl->addRole( 'administrador', array( 'invitado', 'usuario' ) );
+
+        // Resources
+        $acl->addResource( 'index' );
+        $acl->addResource( 'index/index' );
+        $acl->addResource( 'autentificacion' );
+        $acl->addResource( 'autentificacion/index' );
+        $acl->addResource( 'autentificacion/logout' );
+        $acl->addResource( 'error' );
+        $acl->addResource( 'error/error' );
+        $acl->addResource( 'movimientos' );
+        $acl->addResource( 'movimientos/index' );
+        $acl->addResource( 'movimientos/adquirir' );
+        $acl->addResource( 'movimientos/donar' );
+        $acl->addResource( 'productos' );
+        $acl->addResource( 'productos/index' );
+        $acl->addResource( 'productos/edit' );
+        $acl->addResource( 'productos/delete' );
+        $acl->addResource( 'productos/add' );
+        $acl->addResource( 'usuarios' );
+        $acl->addResource( 'usuarios/index' );
+        $acl->addResource( 'usuarios/add' );
+        $acl->addResource( 'usuarios/edit' );
+        $acl->addResource( 'usuarios/delete' );
+        
+        // Permissions
+        $acl->allow( 'invitado', 'index' );
+        $acl->allow( 'invitado', 'index/index' );
+        $acl->allow( 'invitado', 'autentificacion' );
+        $acl->allow( 'invitado', 'autentificacion/index' );
+        $acl->allow( 'invitado', 'autentificacion/logout' );
+        $acl->allow( 'invitado', 'error' );
+        $acl->allow( 'invitado', 'error/error' );
+        
+        $acl->allow( 'usuario', 'movimientos' );
+        $acl->allow( 'usuario', 'movimientos/index' );
+        $acl->allow( 'usuario', 'movimientos/adquirir' );
+        $acl->allow( 'usuario', 'movimientos/donar' );
+        
+        $acl->allow( 'administrador', 'productos' );
+        $acl->allow( 'administrador', 'productos/index' );
+        $acl->allow( 'administrador', 'productos/edit' );
+        $acl->allow( 'administrador', 'productos/delete' );
+        $acl->allow( 'administrador', 'productos/add' );
+        $acl->allow( 'administrador', 'usuarios' );
+        $acl->allow( 'administrador', 'usuarios/index' );
+        $acl->allow( 'administrador', 'usuarios/add' );
+        $acl->allow( 'administrador', 'usuarios/edit' );
+        $acl->allow( 'administrador', 'usuarios/delete' );
+        
+        // ponemos el acl en Zend_Registry
+        Zend_Registry::set( 'acl', $acl );
+                
+        // Store ACL and role in the proxy helper
+        $view = $this->view;
+
+        // Si no se ha logueado, se asigna por default el rol de invitado
+        $autentificacion = Zend_Auth::getInstance();
+        
+        $rol = 'invitado';
+        if ( $autentificacion->hasIdentity() ) {
+            $rol = $autentificacion->getIdentity()->rol;
+        }
+        
+        $view->navigation()->setAcl( $acl )->setRole( $rol );
+        
+        // registramos el plugin que autentifica si el usuario puede ver la url
+        $controller = Zend_Controller_Front::getInstance();     
+        $controller->registerPlugin( new Garcon_Plugins_AuthPlugin() );
     }
 
     // Menu

@@ -1,0 +1,11 @@
+Como instalar MySQL
+===================
+# instálalo
+yum install mysql-server php-mysqlnd
+
+# configúralo
+mysql_secure_installation
+
+# actívalo y enciéndelo
+systemctl enable mysqld.service
+systemctl start mysqld.service

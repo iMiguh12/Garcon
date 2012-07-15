@@ -18,7 +18,7 @@ class AutentificacionController extends Zend_Controller_Action
                     $this->_helper->FlashMessenger( 'Usuario autenticado!' );
 
                     // We're authenticated! Redirect to the home page
-                    $this->_helper->redirector('index', 'index');
+                    $this->_helper->redirector( 'index', 'index' );
                 } else {
                     // Failed auth message
                     $this->_helper->FlashMessenger( 'No, no le atinaste. Inténtalo de nuevo...' );
@@ -27,7 +27,7 @@ class AutentificacionController extends Zend_Controller_Action
                 $this->view->forma = $forma;
             }
         } else {
-            $this->_helper->redirector('index', 'index');
+            $this->_helper->redirector( 'index', 'index' );
         }
 
         $this->view->forma = $forma;
@@ -45,6 +45,9 @@ class AutentificacionController extends Zend_Controller_Action
 
         if ( $result->isValid() ) {
             $user = $adapter->getResultRowObject();
+            // Aqui ponemos el rol del usuario que se loguea, como todavia no tenemos una columna en la tabla de usuarios que se llame rol, aqui estoy
+            // poniendo en codigo quemado el rol del usuario que se loguea, que puede ser 'administrador', 'usuario' o 'invitado'
+            $user->rol = "administrador";
             $auth->getStorage()->write( $user );
             return true;
         }
