@@ -3,7 +3,7 @@ $this->title = 'Borrar usuario';
 $this->headTitle( $this->title );
 ?>
 <p>
-    No mames! El usuario: '<?php echo $this->usuario['nombre']; ?>' va a morir! 
+    No mames! El usuario: '<?php echo $this->usuario['nombre']; ?>' va a morir!
     Estás seguro de cómo te llamas y porqué estás aquí?
 </p>
 <form action="<?php echo $this->url( array( 'action'=>'delete' ) ); ?>" method="post">

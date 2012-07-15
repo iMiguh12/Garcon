@@ -1,25 +1,27 @@
+SET NAMES utf8;
 USE garcon;
 
-DROP TABLE IF EXISTS caracteristicas;
-
-CREATE TABLE `caracteristicas` { 
+DROP TABLE IF EXISTS `caracteristicas`;
+CREATE TABLE `caracteristicas` (
     id int(3) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nombre varchar(32) NOT NULL,
     descripcion varchar(255) NOT NULL,
     precio float(4,2) SIGNED NOT NULL,
-    tipo enum( 'radio', 'text', 'select', 'checkbox' ),
-}
+    tipo enum( 'radio', 'text', 'select', 'checkbox' )
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE `grupos` {
+DROP TABLE IF EXISTS `grupos`;
+CREATE TABLE `grupos` (
     id int(3) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nombre varchar(32) NOT NULL,
     descripcion varchar(255) NOT NULL
-}
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE `productos_caracteristicas` {
+DROP TABLE IF EXISTS `productos_caracteristicas`;
+CREATE TABLE `productos_caracteristicas` (
     id_productos int(3) UNSIGNED NOT NULL,
     id_caracteristicas int(3) UNSIGNED NOT NULL,
-    FOREIGN KEY 
+    FOREIGN KEY
         ( id_productos )
     REFERENCES
         productos( id )
@@ -36,10 +38,11 @@ CREATE TABLE `productos_caracteristicas` {
         CASCADE
     ON DELETE
         CASCADE,
-    INDEX( id_caracteristicas ) 
-}
+    INDEX( id_caracteristicas )
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE`grupos_caracteristicas` {
+DROP TABLE IF EXISTS `grupos_caracteristicas`;
+CREATE TABLE`grupos_caracteristicas` (
     id_grupo int(3) UNSIGNED NOT NULL,
     id_caracteristicas int(3) UNSIGNED NOT NULL,
     FOREIGN KEY
@@ -50,7 +53,7 @@ CREATE TABLE`grupos_caracteristicas` {
         CASCADE
     ON DELETE
         CASCADE,
-    INDEX( id_grupos ),
+    INDEX( id_grupo ),
     FOREIGN KEY
         ( id_caracteristicas )
     REFERENCES
@@ -60,4 +63,4 @@ CREATE TABLE`grupos_caracteristicas` {
     ON DELETE
         CASCADE,
     INDEX( id_caracteristicas )
-}
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

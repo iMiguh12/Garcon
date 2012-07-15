@@ -1,9 +1,9 @@
-set names utf8;
-use garcon;
+SET NAMES utf8;
+USE garcon;
 
 TRUNCATE usuarios;
 
-;SET @salt = SHA1( 'LinuxCabal y PHP rulean, esos' );
+SET @salt = SHA1( 'LinuxCabal y PHP rulean, esos' );
 
 INSERT
     INTO usuarios (nombre, email, telefono, clave, condimento)

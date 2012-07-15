@@ -1,14 +1,14 @@
 <section id='productos'>
 <?php foreach ( $this->productos as $producto ) : ?>
-<?php 
+<?php
 
-$image = $this->displayDbImage( 
-            $producto->mime, 
-            $producto->imagen,  
+$image = $this->displayDbImage(
+            $producto->mime,
+            $producto->imagen,
             'imagen' . $producto->id,
             null,
             $producto->nombre
-); 
+);
 ?>
 
 <figure class='producto' id='producto-<?php echo $producto->id; ?>' title='<?php echo $producto->descripcion; ?>'>
@@ -16,9 +16,9 @@ $image = $this->displayDbImage(
     </div>
 
     <h1><?php echo $producto->nombre; ?></h1>
-    
+
     <?php echo $image; ?>
-    
+
     <p class='precio'>$<?php echo $producto->precio; ?></p>
 </figure>
 

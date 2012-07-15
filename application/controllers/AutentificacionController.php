@@ -14,15 +14,20 @@ class AutentificacionController extends Zend_Controller_Action
         if ( $request->isPost() ) {
             if ( $forma->isValid( $request->getPost() ) ) {
                 if ( $this->_process( $forma->getValues() ) ) {
+                    // Add a message of success
+                    $this->_helper->FlashMessenger( 'Usuario autenticado!' );
+
                     // We're authenticated! Redirect to the home page
-                    $this->_helper->redirector('index', 'index');
+                    $this->_helper->redirector( 'index', 'index' );
+                } else {
+                    // Failed auth message
+                    $this->_helper->FlashMessenger( 'No, no le atinaste. Inténtalo de nuevo...' );
                 }
             } else {
                 $this->view->forma = $forma;
             }
         } else {
-            $this->_helper->redirector('index', 'index');
-        
+            $this->_helper->redirector( 'index', 'index' );
         }
 
         $this->view->forma = $forma;
@@ -37,9 +42,12 @@ class AutentificacionController extends Zend_Controller_Action
 
         $auth = Zend_Auth::getInstance();
         $result = $auth->authenticate( $adapter );
-        
+
         if ( $result->isValid() ) {
             $user = $adapter->getResultRowObject();
+            // Aqui ponemos el rol del usuario que se loguea, como todavia no tenemos una columna en la tabla de usuarios que se llame rol, aqui estoy
+            // poniendo en codigo quemado el rol del usuario que se loguea, que puede ser 'administrador', 'usuario' o 'invitado'
+            $user->rol = "administrador";
             $auth->getStorage()->write( $user );
             return true;
         }
@@ -62,7 +70,13 @@ class AutentificacionController extends Zend_Controller_Action
 
     function logoutAction()
     {
+        // clear
         Zend_Auth::getInstance()->clearIdentity();
+
+        // add message
+        $this->_helper->FlashMessenger( 'Adios...' );
+
+        // redirect
         $this->_helper->redirector( 'index', 'index' );
     }
 }

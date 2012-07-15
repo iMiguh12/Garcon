@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+mysql -u root -p < <( cat 01.db.mysql 02.usuarios.mysql 02.1.usuarios_datos.mysql 03.productos.mysql 03.1.productos_de_prueba.mysql 04.caracteristicas.mysql )
+
+exit 0

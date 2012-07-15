@@ -6,34 +6,34 @@ class Application_Form_Login extends Zend_Form
     {
         $this->setName( "login" );
         $this->setMethod( 'post' );
-             
-        $this->addElement( 'text', 'email', 
+
+        $this->addElement( 'text', 'email',
             array(
                 'filters'    => array( 'StringTrim', 'StringToLower' ),
-                'validators' => 
+                'validators' =>
                     array(
                         array( 'StringLength', false, array( 0, 50) ),
                     ),
-            
+
                 'required'   => true,
                 'label'      => 'Email:',
             )
         );
 
-        $this->addElement( 'password', 'clave', 
+        $this->addElement( 'password', 'clave',
             array(
                 'filters'    => array( 'StringTrim' ),
-                'validators' => 
+                'validators' =>
                     array(
                         array( 'StringLength', false, array( 0, 50 ) ),
                     ),
-                
+
                 'required'   => true,
                 'label'      => 'Clave:',
             )
         );
 
-        $this->addElement( 'submit', 'entrar', 
+        $this->addElement( 'submit', 'entrar',
             array(
                 'required' => false,
                 'ignore'   => true,
