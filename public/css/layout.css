@@ -130,8 +130,6 @@ table#usuariosTabla tbody {
 }
 
 table#usuariosTabla th {
-    background: #0d0;
-    font-weight: bold;
     text-align: left;
     vertical-align: middle;
     width: 20%;
@@ -140,11 +138,6 @@ table#usuariosTabla th {
 table#usuariosTabla tr {
     height: 1.5em;
 
-}
-
-table#usuariosTabla tr:hover {
-    background: #ffa;
-    font-weight: bold;
 }
 
 table#usuariosTabla td {
