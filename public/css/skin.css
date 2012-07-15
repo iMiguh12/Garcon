@@ -3,11 +3,13 @@ a, a:visited, a:active {
     text-decoration: none;
 }
 
+
 /* header */
 header h1 {
     font: 20pt Verdana;
     color: #0d0;
 }
+
 
 /* menu */
 ul.nav li {
@@ -19,14 +21,39 @@ ul.nav li:hover {
     border: 2px ridge #3ac;
 }
 
+
 /* contenido */
 div#Contenido h1 {
     font: 16pt Verdana;
     color: #0d0;
 }
 
+
+/* footer */
+footer {
+
+}
+
+
+/* movimientos */
+
+
+
 /* productos */
 section#productos figure.producto h1 {
     color: #050;
     font: 12pt/12pt verdana;
 }
+
+
+/* usuarios */
+table#usuariosTabla th {
+    background: #0d0;
+    font-weight: bold;
+}
+
+table#usuariosTabla tr:hover {
+    background: #ffa;
+    font-weight: bold;
+}
+
