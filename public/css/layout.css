@@ -4,6 +4,7 @@ body {
     width: 125ex;
 }
 
+
 /* header */
 header {
     margin: auto;
@@ -28,6 +29,7 @@ div#Login dt,div#Login dd {
     display: inline-block;
 }
 
+
 /* messages */
 aside#Mensajes {
     position: absolute;
@@ -42,16 +44,19 @@ p.mensaje {
     margin: .5em 1em;
 }
 
+
 /* content */
 div#Contenido {
     margin: .5em auto auto auto;
     min-height: 20em;
 }
 
+
 /* footer */
 footer {
     margin: .5em auto auto auto;
 }
+
 
 /* productos */
 section#productos {
@@ -62,7 +67,7 @@ section#productos figure {
     border: 1px solid #000;
     border-radius: 10px;
     display: inline-block;
-    height: 180px;
+    height: 200px;
     margin: 1em auto 0 auto;
     overflow: hidden;
     position: relative;
@@ -105,8 +110,47 @@ section#productos figure.producto figcaption {
     font: 8pt/8pt verdana;
 }
 
-;
 section#productos figure p.precio {
     font-weight: bold;
     margin-top: .5em;
+}
+
+
+/* usuarios */
+table#usuariosTabla {
+    margin: 1.5em auto;
+}
+
+table#usuariosTabla thead {
+    
+}
+
+table#usuariosTabla tbody {
+
+}
+
+table#usuariosTabla th {
+    background: #0d0;
+    font-weight: bold;
+    text-align: left;
+    vertical-align: middle;
+    width: 20%;
+}
+
+table#usuariosTabla tr {
+    height: 1.5em;
+
+}
+
+table#usuariosTabla tr:hover {
+    background: #ffa;
+    font-weight: bold;
+}
+
+table#usuariosTabla td {
+    vertical-align: middle;
+}
+
+table#usuariosTabla td:last {
+    text-align: center;
 }
