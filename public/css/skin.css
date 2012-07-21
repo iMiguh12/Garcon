@@ -36,7 +36,10 @@ footer {
 
 
 /* movimientos */
-
+aside#cuenta {
+    border: 3px solid #000;
+    font: 10pt courier;
+}
 
 
 /* productos */
