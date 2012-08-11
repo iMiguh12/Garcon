@@ -33,10 +33,11 @@ class UsuariosController extends Zend_Controller_Action
                 $email = $forma->getValue('email');
                 $telefono = $forma->getValue('telefono');
                 $estado = $forma->getValue('estados');
+                $rol =  $forma->getValue( 'roles' );
                 $clave = $forma->getValue('clave');
                 $condimento = $forma->getValue('condimento');
 
-                $usuarios->addUsuario( $nombre, $email, $telefono, $estado, $clave, $condimento);
+                $usuarios->addUsuario( $nombre, $email, $telefono, $estado, $rol, $clave, $condimento);
                 // redirigir al index
                 $this->_helper->redirector( 'index' );
             } else {
@@ -76,6 +77,7 @@ class UsuariosController extends Zend_Controller_Action
                 $email = $forma->getValue( 'email' );
                 $telefono = $forma->getValue( 'telefono' );
                 $estado = $forma->getValue( 'estados' );
+                $rol =  $forma->getValue( 'roles' );
                 $clave = $forma->getValue('clave');
                 $condimento = $forma->getValue('condimento');
 
@@ -83,9 +85,9 @@ class UsuariosController extends Zend_Controller_Action
                 $usuarios = new Application_Model_DbTable_Usuarios();
 
                 if($clave=='' && $condimento=='')
-                    $usuarios->updateUsuario( $id, $nombre, $email, $telefono, $estado);
+                    $usuarios->updateUsuario( $id, $nombre, $email, $telefono, $estado, $rol);
                 else
-                    $usuarios->updateUsuario( $id, $nombre, $email, $telefono, $estado, $clave, $condimento );
+                    $usuarios->updateUsuario( $id, $nombre, $email, $telefono, $estado, $rol, $clave, $condimento );
 
                 // redirigir al index
                 $this->_helper->redirector( 'index' );
@@ -103,6 +105,7 @@ class UsuariosController extends Zend_Controller_Action
                 $this->view->datos = $datos;
                 $forma->populate( $datos  );
                 $forma->estados->setValue( $datos['estado'] );
+                $forma->roles->setValue( $datos['rol'] );
                 $forma->condimento->setValue( null );
 
             }

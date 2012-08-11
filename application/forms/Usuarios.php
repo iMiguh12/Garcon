@@ -29,7 +29,22 @@ class Application_Form_Usuarios extends Zend_Form
         foreach( $meta as $cat ) {
             $estados->addMultiOption( $cat, $cat );
         }
+        
+        $roles = new Zend_Form_Element_Select( 'roles' );
+        $roles->setLabel( 'Rol' )
+              ->setRequired(true);
+        
+        $meta = $usuarios->getEnumValues( 'rol' );
 
+        foreach( $meta as $cat ) {
+            $roles->addMultiOption( $cat, $cat );
+        }
+        
+        
+        
+        
+        
+        
         // @TODO: agregar validador de duplicados por correo. Ver si vamos a usar nuestro modelo ( Usuario->isDuplicate() )
         $email = new Zend_Form_Element_Text( 'email' );
         $email->setLabel( 'Email' )
@@ -71,7 +86,7 @@ class Application_Form_Usuarios extends Zend_Form
         $enviar->setAttrib( 'id', 'botonEnviar' );
 
         $this->addElements(
-            array( $id, $nombre, $estados, $email, $telefono, $clave, $claveConfirma, $condimento, $enviar )
+            array( $id, $nombre, $estados, $roles, $email, $telefono, $clave, $claveConfirma, $condimento, $enviar )
         );
     }
 }

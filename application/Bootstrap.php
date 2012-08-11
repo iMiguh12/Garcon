@@ -110,51 +110,30 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         // Resources
         $acl->addResource( 'index' );
-        $acl->addResource( 'index/index' );
         $acl->addResource( 'autentificacion' );
-        $acl->addResource( 'autentificacion/index' );
-        $acl->addResource( 'autentificacion/logout' );
         $acl->addResource( 'error' );
-        $acl->addResource( 'error/error' );
         $acl->addResource( 'movimientos' );
-        $acl->addResource( 'movimientos/index' );
-        $acl->addResource( 'movimientos/adquirir' );
-        $acl->addResource( 'movimientos/donar' );
         $acl->addResource( 'productos' );
-        $acl->addResource( 'productos/index' );
-        $acl->addResource( 'productos/edit' );
-        $acl->addResource( 'productos/delete' );
-        $acl->addResource( 'productos/add' );
         $acl->addResource( 'usuarios' );
-        $acl->addResource( 'usuarios/index' );
-        $acl->addResource( 'usuarios/add' );
-        $acl->addResource( 'usuarios/edit' );
-        $acl->addResource( 'usuarios/delete' );
-        
+    
         // Permissions
-        $acl->allow( 'invitado', 'index' );
-        $acl->allow( 'invitado', 'index/index' );
-        $acl->allow( 'invitado', 'autentificacion' );
-        $acl->allow( 'invitado', 'autentificacion/index' );
-        $acl->allow( 'invitado', 'autentificacion/logout' );
-        $acl->allow( 'invitado', 'error' );
-        $acl->allow( 'invitado', 'error/error' );
+        $acl->allow( 'invitado', 'index','index' );
+        $acl->allow( 'invitado', 'autentificacion','index' );
+        $acl->allow( 'invitado', 'autentificacion','logout' );
+        $acl->allow( 'invitado', 'error','error' );
         
-        $acl->allow( 'usuario', 'movimientos' );
-        $acl->allow( 'usuario', 'movimientos/index' );
-        $acl->allow( 'usuario', 'movimientos/adquirir' );
-        $acl->allow( 'usuario', 'movimientos/donar' );
+        $acl->allow( 'usuario', 'movimientos','index' );
+        $acl->allow( 'usuario', 'movimientos','adquirir' );
+        $acl->allow( 'usuario', 'movimientos','donar' );
         
-        $acl->allow( 'administrador', 'productos' );
-        $acl->allow( 'administrador', 'productos/index' );
-        $acl->allow( 'administrador', 'productos/edit' );
-        $acl->allow( 'administrador', 'productos/delete' );
-        $acl->allow( 'administrador', 'productos/add' );
-        $acl->allow( 'administrador', 'usuarios' );
-        $acl->allow( 'administrador', 'usuarios/index' );
-        $acl->allow( 'administrador', 'usuarios/add' );
-        $acl->allow( 'administrador', 'usuarios/edit' );
-        $acl->allow( 'administrador', 'usuarios/delete' );
+        $acl->allow( 'administrador', 'productos','index' );
+        $acl->allow( 'administrador', 'productos','edit' );
+        $acl->allow( 'administrador', 'productos','delete' );
+        $acl->allow( 'administrador', 'productos','add' );
+        $acl->allow( 'administrador', 'usuarios','index' );
+        $acl->allow( 'administrador', 'usuarios','add' );
+        $acl->allow( 'administrador', 'usuarios','edit' );
+        $acl->allow( 'administrador', 'usuarios','delete' );
         
         // ponemos el acl en Zend_Registry
         Zend_Registry::set( 'acl', $acl );

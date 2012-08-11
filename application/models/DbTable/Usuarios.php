@@ -15,13 +15,14 @@ class Application_Model_DbTable_Usuarios extends Zend_Db_Table_Abstract
         return $row->toArray();
     }
 
-    public function addUsuario( $nombre, $email, $telefono, $estado, $clave, $condimento )
+    public function addUsuario( $nombre, $email, $telefono, $estado, $rol, $clave, $condimento )
     {
         $data = array(
             'nombre'    => $nombre,
             'email'     => $email,
             'telefono'  => $telefono,
             'estado'  => $estado,
+            'rol' => $rol,
             'clave'     => sha1( $clave . sha1( $condimento ) ),
             'condimento' => sha1( $condimento ),
         );
@@ -29,14 +30,15 @@ class Application_Model_DbTable_Usuarios extends Zend_Db_Table_Abstract
         $this->insert( $data );
     }
 
-    public function updateUsuario( $id, $nombre, $email, $telefono, $estado, $clave, $condimento )
+    public function updateUsuario( $id, $nombre, $email, $telefono, $estado, $rol, $clave, $condimento )
     {
         if( null == $clave || empty( $clave ) ) {
             $data = array(
                 'nombre' => $nombre,
                 'email' => $email,
                 'telefono' => $telefono,
-                'estado' => $estado
+                'estado' => $estado,
+                'rol' => $rol
             );
         } else {
             $data = array(
@@ -44,6 +46,7 @@ class Application_Model_DbTable_Usuarios extends Zend_Db_Table_Abstract
                 'email' => $email,
                 'telefono' => $telefono,
                 'estado' => $estado,
+                'rol' => $rol,
                 'clave'     => sha1( $clave . sha1( $condimento ) ),
                 'condimento' => sha1( $condimento ),
             );
