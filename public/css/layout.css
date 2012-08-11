@@ -58,6 +58,60 @@ footer {
 }
 
 
+/* movimientos */
+aside#cuenta {
+    min-height: 20em;
+    position: absolute;
+    right: 2em;
+    text-align: left;
+    top: 8em;
+    width: 20em;
+}
+
+aside#cuenta section {
+    margin: 1em;
+}
+
+aside#cuenta section figure {
+    text-align: center	;
+}
+
+aside#cuenta section h1 {
+    margin: 1em 0 0 0;
+    text-align: center;
+}
+
+aside#cuenta section h2 {
+    margin: 1em 0 0 0;
+    text-align: center;
+}
+
+aside#cuenta section table {
+    margin: 1em auto 0 auto;
+    width: 100%;
+}
+
+aside#cuenta section table tr#descuento th,
+aside#cuenta section table tr#subtotal th,
+aside#cuenta section table tr#iva th,
+aside#cuenta section table tr#total th {
+    font-weight: bold;
+    text-align: right;
+}
+
+aside#cuenta section table tr#descuento,
+aside#cuenta section table tr#total {
+    height: 3em;
+}
+
+aside#cuenta section table tr#descuento th,
+aside#cuenta section table tr#total th,
+aside#cuenta section table tr#descuento td,
+aside#cuenta section table tr#total td {
+    vertical-align: middle;
+}
+
+
 /* productos */
 section#productos {
     margin: auto;
@@ -130,8 +184,6 @@ table#usuariosTabla tbody {
 }
 
 table#usuariosTabla th {
-    background: #0d0;
-    font-weight: bold;
     text-align: left;
     vertical-align: middle;
     width: 20%;
@@ -140,11 +192,6 @@ table#usuariosTabla th {
 table#usuariosTabla tr {
     height: 1.5em;
 
-}
-
-table#usuariosTabla tr:hover {
-    background: #ffa;
-    font-weight: bold;
 }
 
 table#usuariosTabla td {
