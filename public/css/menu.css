@@ -1,6 +1,9 @@
 /* Menu */
 nav {
     display: inline-block;
+    position: absolute;
+    right: 1em;
+    top: 0;
 }
 
 nav a {
@@ -19,4 +22,3 @@ ul.nav li {
     text-align: center;
     width: 12ex;
 }
-
